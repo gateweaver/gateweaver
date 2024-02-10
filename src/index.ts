@@ -1,16 +1,14 @@
 import "dotenv/config";
 import express from "express";
-import { parseConfig } from "./utils/parse-config";
+import { router } from "./router";
 
 const app = express();
 
 const PORT = process.env.PORT || 6060;
 
-app.get("/", (req, res) => {
-  const config = parseConfig("config.yml");
+app.use(express.json());
 
-  res.send(config);
-});
+app.use(router);
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);

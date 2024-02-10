@@ -4,8 +4,11 @@ import { Config } from "../../types/config";
 import { validateConfig } from "./validate-config";
 
 export const parseConfig = (filePath: string): Config => {
-  const file = fs.readFileSync(filePath, "utf8");
-  const config = YAML.parse(file);
+  const fileContents = fs
+    .readFileSync(filePath, "utf8")
+    .replace(/\$\{(.+?)\}/g, (match, name) => process.env[name] || match);
+
+  const config = YAML.parse(fileContents);
 
   const valid = validateConfig(config);
 

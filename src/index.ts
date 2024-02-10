@@ -1,6 +1,6 @@
 import "dotenv/config";
 import express from "express";
-import { parseConfig } from "./utils/config/parse-config";
+import { parseConfig } from "./utils/parse-config";
 
 const app = express();
 

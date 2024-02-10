@@ -1,6 +1,6 @@
 import Ajv, { JSONSchemaType } from "ajv";
-import { Destination, Endpoint } from "../../types/endpoints";
-import { Config } from "../../types/config";
+import { Destination, Endpoint } from "../types/endpoints";
+import { Config } from "../types/config";
 
 const ajv = new Ajv();
 

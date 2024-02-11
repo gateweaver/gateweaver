@@ -10,6 +10,7 @@ export const parseConfig = (filePath: string): Config => {
 
   const config = YAML.parse(file);
 
+  // TODO: validate config (move all to validateConfig)
   const valid = validateConfig(config);
 
   if (!valid) {
@@ -27,6 +28,8 @@ export const parseConfig = (filePath: string): Config => {
     }
     endpointNames.add(endpoint.name);
   });
+
+  // TODO: validate destination url
 
   return config;
 };

@@ -1,6 +1,6 @@
 import express from "express";
-import { createProxyMiddleware } from "http-proxy-middleware";
 import { parseConfig } from "./utils/parse-config";
+import { createProxies } from "./utils/create-proxies";
 
 const config = parseConfig("config.yml");
 
@@ -12,17 +12,6 @@ if (process.env.NODE_ENV === "development") {
   });
 }
 
-config.endpoints.forEach((endpoint) => {
-  router.use(
-    endpoint.path,
-    createProxyMiddleware({
-      target: endpoint.destination.url,
-      changeOrigin: true,
-      pathRewrite: {
-        [`^${endpoint.path}`]: "",
-      },
-    }),
-  );
-});
+createProxies(router, config.endpoints);
 
 export { router };

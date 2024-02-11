@@ -1,9 +1,12 @@
+interface KeyValue {
+  key: string;
+  value: string;
+}
+
 export interface Destination {
   url: string;
-  headers?: {
-    key: string;
-    value: string;
-  }[];
+  headers?: KeyValue[];
+  params?: KeyValue[];
 }
 
 export interface Endpoint {

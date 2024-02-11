@@ -20,6 +20,18 @@ const destinationSchema: JSONSchemaType<Destination> = {
       },
       nullable: true,
     },
+    params: {
+      type: "array",
+      items: {
+        type: "object",
+        properties: {
+          key: { type: "string" },
+          value: { type: "string" },
+        },
+        required: ["key", "value"],
+      },
+      nullable: true,
+    },
   },
   required: ["url"],
 };

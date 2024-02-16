@@ -2,6 +2,7 @@ import express from "express";
 import { parseConfig } from "./utils/parse-config";
 import { createProxies } from "./utils/create-proxies";
 
+// TODO: prevent the app from crashing if the config is invalid
 const config = parseConfig("config.yml");
 
 const router = express.Router();

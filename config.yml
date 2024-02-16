@@ -36,4 +36,4 @@ endpoints:
       url: "https://api.spotify.com/v1/artists/4Z8W4fKeB5YxbusRsdQVPb"
       headers:
         - key: "Authorization"
-          value: "Bearer ${SPOTIFY_API_KEY}"
+          value: "Bearer ${SPOTIFY_TOKEN}"

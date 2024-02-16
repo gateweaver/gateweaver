@@ -1,6 +1,6 @@
 import { Router, Request } from "express";
 import { createProxyMiddleware } from "http-proxy-middleware";
-import { Endpoint } from "../types/endpoints";
+import { Endpoint } from "../../types/endpoints";
 import { createHeaders } from "./create-headers";
 import { createQueryParams } from "./create-query-params";
 

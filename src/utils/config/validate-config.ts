@@ -1,49 +1,9 @@
-import Ajv, { JSONSchemaType } from "ajv";
-import { Destination, Endpoint, KeyValue } from "../types/endpoints";
-import { Config } from "../types/config";
+import Ajv from "ajv";
+import { Endpoint } from "../../types/endpoints";
+import { Config } from "../../types/config";
+import { configSchema } from "./config-schema";
 
 const ajv = new Ajv();
-
-const keyValueSchema: JSONSchemaType<KeyValue> = {
-  type: "object",
-  properties: {
-    key: { type: "string" },
-    value: { type: "string" },
-  },
-  required: ["key", "value"],
-};
-
-const destinationSchema: JSONSchemaType<Destination> = {
-  type: "object",
-  properties: {
-    url: { type: "string" },
-    headers: { type: "array", items: keyValueSchema, nullable: true },
-    params: { type: "array", items: keyValueSchema, nullable: true },
-  },
-  required: ["url"],
-};
-
-const endpointSchema: JSONSchemaType<Endpoint> = {
-  type: "object",
-  properties: {
-    name: { type: "string" },
-    path: { type: "string" },
-    method: { type: "string", enum: ["GET", "POST", "PUT", "DELETE"] },
-    destination: destinationSchema,
-  },
-  required: ["name", "path", "method", "destination"],
-};
-
-const configSchema: JSONSchemaType<Config> = {
-  type: "object",
-  properties: {
-    endpoints: {
-      type: "array",
-      items: endpointSchema,
-    },
-  },
-  required: ["endpoints"],
-};
 
 const validateEndpointUniqueness = (endpoints: Endpoint[]): string[] => {
   const endpointNames = new Set<string>();

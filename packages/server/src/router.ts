@@ -1,4 +1,5 @@
 import express from "express";
+import { corsMiddleware } from "@endpointly/policies";
 import { parseConfig } from "./utils/config/parse-config";
 import { createProxies } from "./utils/proxy/create-proxies";
 
@@ -11,6 +12,8 @@ if (process.env.NODE_ENV === "development") {
     res.send(config);
   });
 }
+
+router.use(corsMiddleware());
 
 createProxies(router, config.endpoints);
 

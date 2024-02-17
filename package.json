@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.ts",
   "scripts": {
-    "dev": "turbo dev",
+    "dev": "turbo build && turbo dev",
     "build": "turbo build",
     "test": "turbo test",
     "test:watch": "turbo run test:watch",

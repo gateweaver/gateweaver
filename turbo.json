@@ -1,0 +1,20 @@
+{
+  "pipeline": {
+    "build": {
+      "dependsOn": ["^build"],
+      "outputs": ["dist/**"]
+    },
+    "lint": {},
+    "dev": {
+      "cache": false,
+      "persistent": true
+    },
+    "test": {},
+    "test:watch": {
+      "cache": false
+    },
+    "clean": {
+      "cache": false
+    }
+  }
+}

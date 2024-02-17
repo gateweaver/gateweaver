@@ -21,6 +21,7 @@
   },
   "devDependencies": {
     "@endpointly/tsconfig": "*",
+    "@endpointly/eslint-config": "*",
     "@types/express": "^4.17.21",
     "http-proxy-middleware": "^2.0.6",
     "nodemon": "^3.0.3"

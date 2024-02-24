@@ -1,4 +1,5 @@
 import Ajv from "ajv";
+import addFormats from "ajv-formats";
 import { Endpoint } from "../../types/endpoints";
 import { Config } from "../../types/config";
 import { configSchema } from "./config-schema";
@@ -39,6 +40,7 @@ const validateDestinationUrl = (url: string): string | null => {
 
 export const validateConfig = (config: Config) => {
   const ajv = new Ajv({ useDefaults: true });
+  addFormats(ajv, ["uri", "url"]);
 
   const validate = ajv.compile(configSchema);
   const validationErrors: string[] = [];

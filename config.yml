@@ -41,6 +41,7 @@ policies:
   cors:
     origin: "*"
   jwt:
-    secretOrPublicKey: "${JWT_SECRET}"
+    # secretOrPublicKey: "${JWT_SECRET}"
+    jwksUri: "${JWKS_URI}"
     algorithms:
-      - "HS256"
+      - "RS256"

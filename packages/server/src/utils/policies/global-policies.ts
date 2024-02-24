@@ -9,17 +9,6 @@ export const addGlobalPolicies = (router: Router, policies: Policies) => {
   }
 
   if (jwt) {
-    const { secretOrPublicKey, audience, issuer, algorithms } = jwt;
-
-    if (secretOrPublicKey) {
-      router.use(
-        jwtMiddleware({
-          secret: secretOrPublicKey,
-          audience,
-          issuer,
-          algorithms,
-        }),
-      );
-    }
+    router.use(jwtMiddleware(jwt));
   }
 };

@@ -1,5 +1,5 @@
 import { Router, Request } from "express";
-import { createProxyMiddleware } from "http-proxy-middleware";
+import { createProxyMiddleware, type Options } from "http-proxy-middleware";
 import { Endpoint } from "../../types/endpoints";
 import { createHeaders } from "./create-headers";
 import { createQueryParams } from "./create-query-params";
@@ -11,11 +11,14 @@ export const createProxies = (router: Router, endpoints: Endpoint[]) => {
     const destinationUrl =
       endpoint.destination.url + createQueryParams(endpoint.destination.params);
 
-    const proxyOptions = {
+    const proxyOptions: Options = {
       target: destinationUrl,
       changeOrigin: true,
       pathRewrite: { [`^${endpoint.path}`]: "" },
       headers: createHeaders(endpoint.destination.headers),
+      onProxyRes: (proxyRes) => {
+        proxyRes.headers = {};
+      },
     };
 
     router.use(

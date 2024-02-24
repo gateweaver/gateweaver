@@ -1,7 +1,7 @@
 import express from "express";
-import { corsMiddleware } from "@endpointly/policies";
 import { parseConfig } from "./utils/config/parse-config";
 import { createProxies } from "./utils/proxy/create-proxies";
+import { addGlobalPolicies } from "./utils/policies/global-policies";
 
 const config = parseConfig("config.yml");
 
@@ -13,8 +13,10 @@ if (process.env.NODE_ENV === "development") {
   });
 }
 
-router.use(corsMiddleware());
+const { endpoints, policies } = config;
 
-createProxies(router, config.endpoints);
+if (policies) addGlobalPolicies(router, policies);
+
+createProxies(router, endpoints);
 
 export { router };

@@ -1,0 +1,25 @@
+{
+  "name": "@endpointly/policies",
+  "version": "0.0.0",
+  "description": "",
+  "main": "dist/src/index.js",
+  "types": "dist/src/index.d.ts",
+  "scripts": {
+    "build": "tsc -d",
+    "test": "jest --passWithNoTests",
+    "test:watch": "jest --watch",
+    "lint": "eslint .",
+    "clean": "rimraf ./dist"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "ajv": "^8.12.0",
+    "cors": "^2.8.5"
+  },
+  "devDependencies": {
+    "@endpointly/eslint-config": "*",
+    "@endpointly/tsconfig": "*",
+    "@types/cors": "^2.8.17"
+  }
+}

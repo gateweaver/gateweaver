@@ -3,8 +3,6 @@ import { Endpoint } from "../../types/endpoints";
 import { Config } from "../../types/config";
 import { configSchema } from "./config-schema";
 
-const ajv = new Ajv();
-
 const validateEndpointUniqueness = (endpoints: Endpoint[]): string[] => {
   const endpointNames = new Set<string>();
   const endpointPaths = new Set<string>();
@@ -30,15 +28,18 @@ const validateEndpointUniqueness = (endpoints: Endpoint[]): string[] => {
   return errors;
 };
 
-const validateDestinationUrl = (url: string) => {
+const validateDestinationUrl = (url: string): string | null => {
   try {
     new URL(url);
+    return null;
   } catch (error) {
-    throw new Error(`Config Error: Invalid destination URL "${url}"`);
+    return `Config Error: Invalid URL "${url}"`;
   }
 };
 
 export const validateConfig = (config: Config) => {
+  const ajv = new Ajv({ useDefaults: true });
+
   const validate = ajv.compile(configSchema);
   const validationErrors: string[] = [];
 
@@ -54,10 +55,11 @@ export const validateConfig = (config: Config) => {
   }
 
   endpoints.forEach((endpoint) => {
-    try {
-      validateDestinationUrl(endpoint.destination.url);
-    } catch (error) {
-      validationErrors.push((error as Error).message);
+    const destinationUrlError = validateDestinationUrl(
+      endpoint.destination.url,
+    );
+    if (destinationUrlError) {
+      validationErrors.push(destinationUrlError);
     }
   });
 

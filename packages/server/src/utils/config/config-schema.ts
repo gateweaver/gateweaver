@@ -1,4 +1,5 @@
 import { JSONSchemaType } from "ajv";
+import { policiesSchema } from "@endpointly/policies";
 import { Config } from "../../types/config";
 import { KeyValue, Destination, Endpoint } from "../../types/endpoints";
 
@@ -38,6 +39,10 @@ export const configSchema: JSONSchemaType<Config> = {
     endpoints: {
       type: "array",
       items: endpointSchema,
+    },
+    policies: {
+      ...policiesSchema,
+      nullable: true,
     },
   },
   required: ["endpoints"],

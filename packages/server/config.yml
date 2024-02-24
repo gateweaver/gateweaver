@@ -37,3 +37,6 @@ endpoints:
       headers:
         - key: "Authorization"
           value: "Bearer ${SPOTIFY_TOKEN}"
+policies:
+  cors:
+    origin: "*"

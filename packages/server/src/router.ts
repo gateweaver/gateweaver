@@ -1,6 +1,7 @@
 import express from "express";
 import { parseConfig } from "./utils/config/parse-config";
 import { createProxies } from "./utils/proxy/create-proxies";
+import { addGlobalPolicies } from "./utils/policies/global-policies";
 
 const config = parseConfig("config.yml");
 
@@ -12,6 +13,10 @@ if (process.env.NODE_ENV === "development") {
   });
 }
 
-createProxies(router, config.endpoints);
+const { endpoints, policies } = config;
+
+if (policies) addGlobalPolicies(router, policies);
+
+createProxies(router, endpoints);
 
 export { router };

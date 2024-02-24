@@ -2,9 +2,8 @@
   "name": "endpointly",
   "version": "1.0.0",
   "description": "",
-  "main": "index.ts",
   "scripts": {
-    "dev": "turbo build && turbo dev",
+    "dev": "turbo build:watch & nodemon packages/server/src/index.ts",
     "build": "turbo build",
     "test": "turbo test",
     "test:watch": "turbo run test:watch",

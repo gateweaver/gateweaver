@@ -4,7 +4,6 @@
   "description": "",
   "main": "dist/src/index.js",
   "scripts": {
-    "dev": "nodemon ./src/index.ts",
     "build": "tsc",
     "start": "node ./dist/index.js",
     "test": "jest",
@@ -24,7 +23,6 @@
     "@endpointly/eslint-config": "*",
     "@endpointly/policies": "*",
     "@types/express": "^4.17.21",
-    "http-proxy-middleware": "^2.0.6",
-    "nodemon": "^3.0.3"
+    "http-proxy-middleware": "^2.0.6"
   }
 }

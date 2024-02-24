@@ -40,3 +40,7 @@ endpoints:
 policies:
   cors:
     origin: "*"
+  jwt:
+    secretOrPublicKey: "${JWT_SECRET}"
+    algorithms:
+      - "HS256"

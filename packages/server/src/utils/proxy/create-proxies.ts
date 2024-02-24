@@ -16,9 +16,6 @@ export const createProxies = (router: Router, endpoints: Endpoint[]) => {
       changeOrigin: true,
       pathRewrite: { [`^${endpoint.path}`]: "" },
       headers: createHeaders(endpoint.destination.headers),
-      onProxyRes: (proxyRes) => {
-        proxyRes.headers = {};
-      },
     };
 
     router.use(

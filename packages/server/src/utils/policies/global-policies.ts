@@ -1,30 +1,14 @@
 import { Router } from "express";
-import { Policies, corsMiddleware } from "@endpointly/policies";
+import { Policies, corsMiddleware, jwtMiddleware } from "@endpointly/policies";
 
 export const addGlobalPolicies = (router: Router, policies: Policies) => {
-  const { cors } = policies;
+  const { cors, jwt } = policies;
 
   if (cors) {
-    const {
-      origin,
-      methods,
-      allowedHeaders,
-      exposedHeaders,
-      credentials,
-      maxAge,
-      optionsSuccessStatus,
-    } = cors;
+    router.use(corsMiddleware(cors));
+  }
 
-    router.use(
-      corsMiddleware({
-        origin,
-        methods,
-        allowedHeaders,
-        exposedHeaders,
-        credentials,
-        maxAge,
-        optionsSuccessStatus,
-      }),
-    );
+  if (jwt) {
+    router.use(jwtMiddleware(jwt));
   }
 };

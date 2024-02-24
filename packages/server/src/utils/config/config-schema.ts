@@ -15,7 +15,7 @@ const keyValueSchema: JSONSchemaType<KeyValue> = {
 const destinationSchema: JSONSchemaType<Destination> = {
   type: "object",
   properties: {
-    url: { type: "string" },
+    url: { type: "string", format: "url" },
     headers: { type: "array", items: keyValueSchema, nullable: true },
     params: { type: "array", items: keyValueSchema, nullable: true },
   },

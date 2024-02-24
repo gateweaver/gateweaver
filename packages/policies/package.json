@@ -16,7 +16,9 @@
   "license": "ISC",
   "dependencies": {
     "ajv": "^8.12.0",
-    "cors": "^2.8.5"
+    "cors": "^2.8.5",
+    "express-jwt": "^8.4.1",
+    "jwks-rsa": "^3.1.0"
   },
   "devDependencies": {
     "@endpointly/eslint-config": "*",

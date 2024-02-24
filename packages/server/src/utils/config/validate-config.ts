@@ -29,18 +29,9 @@ const validateEndpointUniqueness = (endpoints: Endpoint[]): string[] => {
   return errors;
 };
 
-const validateDestinationUrl = (url: string): string | null => {
-  try {
-    new URL(url);
-    return null;
-  } catch (error) {
-    return `Config Error: Invalid URL "${url}"`;
-  }
-};
-
 export const validateConfig = (config: Config) => {
   const ajv = new Ajv({ useDefaults: true });
-  addFormats(ajv, ["uri", "url"]);
+  addFormats(ajv, ["url"]);
 
   const validate = ajv.compile(configSchema);
   const validationErrors: string[] = [];
@@ -55,15 +46,6 @@ export const validateConfig = (config: Config) => {
   if (uniquenessErrors.length > 0) {
     validationErrors.push(...uniquenessErrors);
   }
-
-  endpoints.forEach((endpoint) => {
-    const destinationUrlError = validateDestinationUrl(
-      endpoint.destination.url,
-    );
-    if (destinationUrlError) {
-      validationErrors.push(destinationUrlError);
-    }
-  });
 
   if (validationErrors.length > 0) {
     throw new Error(`Invalid config: \n${validationErrors.join("\n")}`);

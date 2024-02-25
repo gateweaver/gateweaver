@@ -1,10 +1,12 @@
 import { JSONSchemaType } from "ajv";
 import { CorsPolicy, corsSchema } from "./cors";
 import { JwtPolicy, jwtSchema } from "./jwt";
+import { ApiKeyPolicy, apiKeySchema } from "./api-key";
 
 export interface Policies {
   cors?: CorsPolicy;
   jwt?: JwtPolicy;
+  apiKey?: ApiKeyPolicy;
 }
 
 export const policiesSchema: JSONSchemaType<Policies> = {
@@ -16,6 +18,10 @@ export const policiesSchema: JSONSchemaType<Policies> = {
     },
     jwt: {
       ...jwtSchema,
+      nullable: true,
+    },
+    apiKey: {
+      ...apiKeySchema,
       nullable: true,
     },
   },

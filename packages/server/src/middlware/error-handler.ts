@@ -7,15 +7,15 @@ export const errorHandler = (
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   next: NextFunction,
 ) => {
-  console.log(err);
+  console.error(err);
 
   if (err.name === "UnauthorizedError") {
     res.status(401).send({
-      error: "Invalid token",
+      error: "Unauthorized",
     });
   } else {
     res.status(500).send({
-      error: "Something went wrong!",
+      error: "Internal Server Error",
     });
   }
 };

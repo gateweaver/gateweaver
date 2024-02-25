@@ -1,0 +1,7 @@
+{
+  "extends": "@endpointly/tsconfig/base.json",
+  "compilerOptions": {
+    "outDir": "./dist",
+    "rootDir": "."
+  }
+}

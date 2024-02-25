@@ -1,17 +1,14 @@
 import crypto from "crypto";
+import { hashApiKey } from "@endpointly/utils";
 
 const generateApiKey = (): string => {
   return crypto.randomUUID().replace(/-/g, "");
 };
 
-const generateApiKeyHash = (apiKey: string): string => {
-  return crypto.createHash("sha256").update(apiKey).digest("hex");
-};
-
 export const generateApiKeyAction = (): void => {
   try {
     const apiKey = generateApiKey();
-    const apiKeyHash = generateApiKeyHash(apiKey);
+    const apiKeyHash = hashApiKey(apiKey);
 
     console.log("API Key:", apiKey);
     console.log("\nHashed API Key:", apiKeyHash);

@@ -1,5 +1,5 @@
 {
-  "name": "@endpointly/cli",
+  "name": "@endpointly/utils",
   "version": "0.0.0",
   "description": "",
   "main": "dist/src/index.js",
@@ -13,9 +13,5 @@
   "devDependencies": {
     "@endpointly/eslint-config": "*",
     "@endpointly/tsconfig": "*"
-  },
-  "dependencies": {
-    "@endpointly/utils": "*",
-    "commander": "^12.0.0"
   }
 }

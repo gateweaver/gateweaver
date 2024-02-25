@@ -1,10 +1,10 @@
 import { Request, Response, NextFunction } from "express";
-import crypto from "crypto";
+import { hashApiKey } from "@endpointly/utils";
 import { ApiKeyPolicy } from "./schema";
 
 const isValidApiKey = (apiKey: string, hashes: string[]) => {
   try {
-    const apiKeyHash = crypto.createHash("sha256").update(apiKey).digest("hex");
+    const apiKeyHash = hashApiKey(apiKey);
     return hashes.includes(apiKeyHash);
   } catch (error) {
     console.error("Error validating API key", error);

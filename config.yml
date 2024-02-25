@@ -38,5 +38,4 @@ endpoints:
         - key: "Authorization"
           value: "Bearer ${SPOTIFY_TOKEN}"
 policies:
-  rateLimit:
-    limit: null
+  rateLimit: {}

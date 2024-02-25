@@ -1,5 +1,5 @@
-import { validateConfig } from "./validate-config";
-import { Config } from "../../types/config";
+import { Config } from "./types";
+import { validateConfig } from "./validate";
 
 describe("validateConfig", () => {
   it("should not throw an error if config is valid", () => {

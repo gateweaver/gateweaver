@@ -1,7 +1,7 @@
 import express from "express";
-import { parseConfig } from "./utils/config/parse-config";
-import { createProxies } from "./utils/proxy/create-proxies";
-import { addGlobalPolicies } from "./utils/policies/global-policies";
+import { parseConfig } from "../config/parse";
+import { createProxies } from "./create-proxies";
+import { addGlobalPolicies } from "./global-policies";
 
 const config = parseConfig("config.yml");
 

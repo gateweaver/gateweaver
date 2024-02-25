@@ -1,4 +1,4 @@
-import { Endpoint } from "../../types/endpoints";
+import { Endpoint } from "../config/types";
 
 export const createQueryParams = (
   params: Endpoint["destination"]["params"],

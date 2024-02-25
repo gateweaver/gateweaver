@@ -1,4 +1,4 @@
-import { Destination } from "../../types/endpoints";
+import { Destination } from "../config/types";
 
 interface Headers {
   [key: string]: string;

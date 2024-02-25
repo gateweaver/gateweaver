@@ -1,8 +1,7 @@
 import Ajv from "ajv";
 import addFormats from "ajv-formats";
-import { Endpoint } from "../../types/endpoints";
-import { Config } from "../../types/config";
-import { configSchema } from "./config-schema";
+import { configSchema } from "./schema";
+import { Endpoint, Config } from "./types";
 
 const validateEndpointUniqueness = (endpoints: Endpoint[]): string[] => {
   const endpointNames = new Set<string>();

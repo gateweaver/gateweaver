@@ -1,8 +1,8 @@
 import { Router, Request } from "express";
 import { createProxyMiddleware, type Options } from "http-proxy-middleware";
-import { Endpoint } from "../../types/endpoints";
 import { createHeaders } from "./create-headers";
 import { createQueryParams } from "./create-query-params";
+import { Endpoint } from "../config/types";
 
 export const createProxies = (router: Router, endpoints: Endpoint[]) => {
   endpoints.forEach((endpoint) => {

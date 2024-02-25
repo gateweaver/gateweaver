@@ -1,7 +1,6 @@
 import { JSONSchemaType } from "ajv";
 import { policiesSchema } from "@endpointly/policies";
-import { Config } from "../../types/config";
-import { KeyValue, Destination, Endpoint } from "../../types/endpoints";
+import { KeyValue, Destination, Endpoint, Config } from "./types";
 
 const keyValueSchema: JSONSchemaType<KeyValue> = {
   type: "object",

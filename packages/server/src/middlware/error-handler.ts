@@ -11,11 +11,11 @@ export const errorHandler = (
 
   if (err.name === "UnauthorizedError") {
     res.status(401).send({
-      error: "Invalid token",
+      error: "Unauthorized",
     });
   } else {
     res.status(500).send({
-      error: "Something went wrong!",
+      error: "Internal Server Error",
     });
   }
 };

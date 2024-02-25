@@ -1,0 +1,19 @@
+{
+  "name": "@endpointly/cli",
+  "version": "0.0.0",
+  "description": "",
+  "main": "dist/src/index.js",
+  "scripts": {
+    "build": "tsc -d",
+    "build:watch": "tsc -w -d"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@endpointly/eslint-config": "*",
+    "@endpointly/tsconfig": "*"
+  },
+  "dependencies": {
+    "commander": "^12.0.0"
+  }
+}

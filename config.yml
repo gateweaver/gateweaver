@@ -38,13 +38,5 @@ endpoints:
         - key: "Authorization"
           value: "Bearer ${SPOTIFY_TOKEN}"
 policies:
-  cors:
-    origin: "*"
-  # jwt:
-  #   secretOrPublicKey: "${JWT_SECRET}"
-  #   # jwksUri: "${JWKS_URI}"
-  #   algorithms:
-  #     - "HS256"
-  apiKey:
-    hashes:
-      - "5994471abb01112afcc18159f6cc74b4f511b99806da59b3caf5a9c173cacfc5"
+  rateLimit:
+    limit: null

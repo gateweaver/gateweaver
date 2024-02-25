@@ -4,10 +4,11 @@ import {
   apiKeyMiddleware,
   corsMiddleware,
   jwtMiddleware,
+  rateLimitMiddleware,
 } from "@endpointly/policies";
 
 export const addGlobalPolicies = (router: Router, policies: Policies) => {
-  const { cors, jwt, apiKey } = policies;
+  const { cors, jwt, apiKey, rateLimit } = policies;
 
   if (cors) {
     router.use(corsMiddleware(cors));
@@ -19,5 +20,9 @@ export const addGlobalPolicies = (router: Router, policies: Policies) => {
 
   if (apiKey) {
     router.use(apiKeyMiddleware(apiKey));
+  }
+
+  if (rateLimit) {
+    router.use(rateLimitMiddleware(rateLimit));
   }
 };

@@ -14,13 +14,17 @@ const isValidApiKey = (apiKey: string, hashes: string[]) => {
 
 export const apiKeyMiddleware = (policy: ApiKeyPolicy) => {
   return (req: Request, res: Response, next: NextFunction) => {
-    const apiKey = req.headers["x-api-key"] as string | undefined;
+    const apiKey = req.headers["x-api-key"];
 
     if (!apiKey) {
       res.status(401).send({
         error: "API Key Required",
       });
       return;
+    }
+
+    if (typeof apiKey !== "string") {
+      throw new Error("API key is not a string");
     }
 
     if (!isValidApiKey(apiKey, policy.hashes)) {

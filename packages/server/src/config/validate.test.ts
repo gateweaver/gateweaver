@@ -93,4 +93,34 @@ describe("validateConfig", () => {
 
     expect(() => validateConfig(invalidUrlConfig)).toThrow();
   });
+
+  it("should throw an error if rate limiting by api key and api key policy is not provided", () => {
+    const invalidPolicyConfig: Config = {
+      endpoints: [],
+      policies: {
+        rateLimit: {
+          rateLimitBy: "api-key",
+        },
+      },
+    };
+
+    expect(() => validateConfig(invalidPolicyConfig)).toThrow(
+      "Config Error: Rate limiting by api key requires an api key policy",
+    );
+  });
+
+  it("should throw an error if rate limiting by jwt and jwt policy is not provided", () => {
+    const invalidJwtPolicyConfig: Config = {
+      endpoints: [],
+      policies: {
+        rateLimit: {
+          rateLimitBy: "jwt",
+        },
+      },
+    };
+
+    expect(() => validateConfig(invalidJwtPolicyConfig)).toThrow(
+      "Config Error: Rate limiting by jwt requires a jwt policy",
+    );
+  });
 });

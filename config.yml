@@ -39,4 +39,4 @@ endpoints:
           value: "Bearer ${SPOTIFY_TOKEN}"
 policies:
   rateLimit:
-    identifier: "api-key"
+    rateLimitBy: "api-key"

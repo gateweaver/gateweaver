@@ -17,9 +17,9 @@ const decodeJwt = (token: string) => {
   }
 };
 
-export const keyGenerator = (identifier: RateLimitPolicy["identifier"]) => {
+export const keyGenerator = (rateLimitBy: RateLimitPolicy["rateLimitBy"]) => {
   return (req: Request) => {
-    switch (identifier) {
+    switch (rateLimitBy) {
       case "api-key": {
         const apiKey = ensureString(
           req.headers["x-api-key"],
@@ -41,7 +41,7 @@ export const keyGenerator = (identifier: RateLimitPolicy["identifier"]) => {
         return ip;
       }
       default:
-        throw new Error(`Unknown rate limit identifier: ${identifier}`);
+        throw new Error(`Unknown rate limit rateLimitBy: ${rateLimitBy}`);
     }
   };
 };

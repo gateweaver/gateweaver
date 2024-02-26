@@ -4,7 +4,7 @@ import { keyGenerator } from "./key-generator";
 
 export const rateLimitMiddleware = (policy: RateLimitPolicy) => {
   const {
-    identifier,
+    rateLimitBy,
     windowMs,
     limit,
     message,
@@ -20,6 +20,6 @@ export const rateLimitMiddleware = (policy: RateLimitPolicy) => {
     statusCode,
     skipFailedRequests,
     skipSuccessfulRequests,
-    keyGenerator: keyGenerator(identifier),
+    keyGenerator: keyGenerator(rateLimitBy),
   });
 };

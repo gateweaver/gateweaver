@@ -2,10 +2,10 @@ import { Request, Response, NextFunction } from "express";
 import { hashApiKey } from "@endpointly/utils";
 import { ApiKeyPolicy } from "./schema";
 
-const isValidApiKey = (apiKey: string, hashes: string[]) => {
+const isValidApiKey = (apiKey: string, apiKeyHashes: string[]) => {
   try {
     const apiKeyHash = hashApiKey(apiKey);
-    return hashes.includes(apiKeyHash);
+    return apiKeyHashes.includes(apiKeyHash);
   } catch (error) {
     console.error("Error validating API key", error);
     return false;
@@ -14,7 +14,7 @@ const isValidApiKey = (apiKey: string, hashes: string[]) => {
 
 export const apiKeyMiddleware = (policy: ApiKeyPolicy) => {
   return (req: Request, res: Response, next: NextFunction) => {
-    const apiKey = req.headers["x-api-key"] as string | undefined;
+    const apiKey = req.headers["x-api-key"];
 
     if (!apiKey) {
       res.status(401).send({
@@ -23,7 +23,11 @@ export const apiKeyMiddleware = (policy: ApiKeyPolicy) => {
       return;
     }
 
-    if (!isValidApiKey(apiKey, policy.hashes)) {
+    if (typeof apiKey !== "string") {
+      throw new Error("API key is not a string");
+    }
+
+    if (!isValidApiKey(apiKey, policy.apiKeyHashes)) {
       res.status(401).send({
         error: "Invalid API Key",
       });

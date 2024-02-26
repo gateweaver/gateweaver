@@ -41,7 +41,7 @@ export const keyGenerator = (rateLimitBy: RateLimitPolicy["rateLimitBy"]) => {
         return ip;
       }
       default:
-        throw new Error(`Unknown rate limit rateLimitBy: ${rateLimitBy}`);
+        throw new Error(`Invalid rateLimitBy: ${rateLimitBy}`);
     }
   };
 };

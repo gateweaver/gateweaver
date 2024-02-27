@@ -52,7 +52,7 @@ const validatePolicyDefinitions = (policyDefinitions: PolicyDefinitions) => {
 };
 
 export const validateConfig = (config: Config) => {
-  const ajv = new Ajv({ useDefaults: true });
+  const ajv = new Ajv({ useDefaults: true, allowUnionTypes: true });
   addFormats(ajv, ["url"]);
 
   const validate = ajv.compile(configSchema);

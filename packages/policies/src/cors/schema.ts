@@ -3,8 +3,8 @@ import { JSONSchemaType } from "ajv";
 export interface CorsPolicy {
   origin: boolean | string | string[];
   methods: string | string[];
-  allowedHeaders?: string[];
-  exposedHeaders?: string[];
+  allowedHeaders?: string | string[];
+  exposedHeaders?: string | string[];
   credentials?: boolean;
   maxAge?: number;
   optionsSuccessStatus: number;
@@ -26,13 +26,13 @@ export const corsSchema: JSONSchemaType<CorsPolicy> = {
       default: ["GET", "HEAD", "PUT", "PATCH", "POST", "DELETE"],
     },
     allowedHeaders: {
-      type: "array",
-      items: { type: "string" },
+      type: ["string", "array"],
+      oneOf: [{ type: "string" }, { type: "array", items: { type: "string" } }],
       nullable: true,
     },
     exposedHeaders: {
-      type: "array",
-      items: { type: "string" },
+      type: ["string", "array"],
+      oneOf: [{ type: "string" }, { type: "array", items: { type: "string" } }],
       nullable: true,
     },
     credentials: { type: "boolean", nullable: true },

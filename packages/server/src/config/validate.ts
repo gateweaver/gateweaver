@@ -1,6 +1,6 @@
 import Ajv from "ajv";
 import addFormats from "ajv-formats";
-import { Policies } from "@endpointly/policies";
+import { PolicyDefinitions } from "@endpointly/policies";
 import { configSchema } from "./schema";
 import { Endpoint, Config } from "./types";
 
@@ -29,21 +29,21 @@ const validateEndpointUniqueness = (endpoints: Endpoint[]): string[] => {
   return errors;
 };
 
-const validatePolicies = (policies: Policies) => {
+const validatePolicyDefinitions = (policyDefinitions: PolicyDefinitions) => {
   const errors: string[] = [];
 
-  const { rateLimit } = policies;
+  const { rateLimit } = policyDefinitions;
 
   if (rateLimit) {
     const { rateLimitBy } = rateLimit;
 
-    if (rateLimitBy === "api-key" && !policies.apiKey) {
+    if (rateLimitBy === "api-key" && !policyDefinitions.apiKey) {
       errors.push(
         "Config Error: Rate limiting by api key requires an api key policy",
       );
     }
 
-    if (rateLimitBy === "jwt" && !policies.jwt) {
+    if (rateLimitBy === "jwt" && !policyDefinitions.jwt) {
       errors.push("Config Error: Rate limiting by jwt requires a jwt policy");
     }
   }
@@ -62,10 +62,10 @@ export const validateConfig = (config: Config) => {
     validationErrors.push(JSON.stringify(validate.errors, null, 2));
   }
 
-  const { endpoints, policies } = config;
+  const { endpoints, policyDefinitions } = config;
 
-  if (policies) {
-    const policyErrors = validatePolicies(policies);
+  if (policyDefinitions) {
+    const policyErrors = validatePolicyDefinitions(policyDefinitions);
     if (policyErrors.length > 0) {
       validationErrors.push(...policyErrors);
     }

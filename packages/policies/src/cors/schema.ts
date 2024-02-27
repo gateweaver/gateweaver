@@ -20,6 +20,7 @@ export const corsSchema: JSONSchemaType<CorsPolicy> = {
         { type: "string" },
         { type: "array", items: { type: "string" } },
       ],
+      default: "*",
     },
     methods: {
       type: ["string", "array"],

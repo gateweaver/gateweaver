@@ -1,6 +1,6 @@
 import { JSONSchemaType } from "ajv";
-import { policiesSchema } from "@endpointly/policies";
-import { KeyValue, Destination, Endpoint, Config } from "./types";
+import { PolicyOption, policyDefinitionsSchema } from "@endpointly/policies";
+import { KeyValue, Destination, Endpoint, Config, HttpMethod } from "./types";
 
 const keyValueSchema: JSONSchemaType<KeyValue> = {
   type: "object",
@@ -26,8 +26,13 @@ const endpointSchema: JSONSchemaType<Endpoint> = {
   properties: {
     name: { type: "string" },
     path: { type: "string" },
-    method: { type: "string", enum: ["GET", "POST", "PUT", "DELETE"] },
+    method: { type: "string", enum: Object.values(HttpMethod) },
     destination: destinationSchema,
+    policies: {
+      type: "array",
+      items: { type: "string", enum: Object.values(PolicyOption) },
+      nullable: true,
+    },
   },
   required: ["name", "path", "method", "destination"],
 };
@@ -39,8 +44,8 @@ export const configSchema: JSONSchemaType<Config> = {
       type: "array",
       items: endpointSchema,
     },
-    policies: {
-      ...policiesSchema,
+    policyDefinitions: {
+      ...policyDefinitionsSchema,
       nullable: true,
     },
   },

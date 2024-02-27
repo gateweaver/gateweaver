@@ -1,4 +1,4 @@
-import { Policies } from "@endpointly/policies";
+import { PolicyDefinitions, PolicyOption } from "@endpointly/policies";
 
 export interface KeyValue {
   key: string;
@@ -11,14 +11,23 @@ export interface Destination {
   params?: KeyValue[];
 }
 
+export enum HttpMethod {
+  GET = "GET",
+  POST = "POST",
+  PUT = "PUT",
+  PATCH = "PATCH",
+  DELETE = "DELETE",
+}
+
 export interface Endpoint {
   name: string;
   path: string;
-  method: "GET" | "POST" | "PUT" | "DELETE";
+  method: HttpMethod;
   destination: Destination;
+  policies?: PolicyOption[];
 }
 
 export interface Config {
   endpoints: Endpoint[];
-  policies?: Policies;
+  policyDefinitions?: PolicyDefinitions;
 }

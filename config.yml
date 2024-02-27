@@ -1,3 +1,12 @@
+policyDefinitions:
+  cors:
+    origin: "http://localhost:3000"
+  rateLimit: {}
+  # jwt:
+  #   secretOrPublicKey: "${JWT_SECRET}"
+  #   algorithms:
+  #     - "HS256"
+
 endpoints:
   - name: "todos-get"
     path: "/todos"
@@ -7,8 +16,9 @@ endpoints:
       headers:
         - key: "Content-Type"
           value: "application/json"
-        - key: "Authorization"
-          value: "Bearer ${AUTH_TOKEN}"
+    policies:
+      - cors
+      - rateLimit
   - name: "todos-post"
     path: "/todos"
     method: "POST"
@@ -37,5 +47,3 @@ endpoints:
       headers:
         - key: "Authorization"
           value: "Bearer ${SPOTIFY_TOKEN}"
-policies:
-  rateLimit: {}

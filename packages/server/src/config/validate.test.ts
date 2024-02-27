@@ -16,7 +16,7 @@ describe("validateConfig", () => {
         },
         {
           name: "endpoint2",
-          method: HttpMethod.PUT,
+          method: HttpMethod.POST,
           path: "/path2",
           destination: {
             url: "http://example.com",

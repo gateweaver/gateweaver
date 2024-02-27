@@ -1,23 +1,29 @@
 import express from "express";
-import { parseConfig } from "../config/parse";
+import { parseConfigYaml } from "../config/parse";
 import { createProxies } from "./create-proxies";
 import { addGlobalPolicies } from "./global-policies";
 
-const config = parseConfig("config.yml");
+const setupRouter = (configPath = "config") => {
+  const config = parseConfigYaml(configPath);
 
-const router = express.Router();
+  const router = express.Router();
 
-// TODO: Add config path as env variable and validate config.yml to make sure not using same path
-if (process.env.NODE_ENV === "development") {
-  router.get("/config", (_, res) => {
-    res.send(config);
-  });
-}
+  // TODO: Add config path as env variable and validate config.yml to make sure not using same path
+  if (process.env.NODE_ENV === "development") {
+    router.get("/config", (_, res) => {
+      res.send(config);
+    });
+  }
 
-const { endpoints, policies } = config;
+  const { endpoints, policies } = config;
 
-if (policies) addGlobalPolicies(router, policies);
+  if (policies) {
+    addGlobalPolicies(router, policies);
+  }
 
-createProxies(router, endpoints);
+  createProxies(router, endpoints);
 
-export { router };
+  return router;
+};
+
+export const router = setupRouter();

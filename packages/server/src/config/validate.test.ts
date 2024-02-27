@@ -1,4 +1,5 @@
-import { Config } from "./types";
+import { RateLimitPolicy } from "@endpointly/policies";
+import { Config, HttpMethod } from "./types";
 import { validateConfig } from "./validate";
 
 describe("validateConfig", () => {
@@ -7,7 +8,7 @@ describe("validateConfig", () => {
       endpoints: [
         {
           name: "endpoint1",
-          method: "GET",
+          method: HttpMethod.GET,
           path: "/path1",
           destination: {
             url: "http://example.com",
@@ -15,7 +16,7 @@ describe("validateConfig", () => {
         },
         {
           name: "endpoint2",
-          method: "POST",
+          method: HttpMethod.POST,
           path: "/path2",
           destination: {
             url: "http://example.com",
@@ -32,7 +33,7 @@ describe("validateConfig", () => {
       endpoints: [
         {
           name: "duplicate",
-          method: "GET",
+          method: HttpMethod.GET,
           path: "/path1",
           destination: {
             url: "http://example.com",
@@ -40,7 +41,7 @@ describe("validateConfig", () => {
         },
         {
           name: "duplicate",
-          method: "GET",
+          method: HttpMethod.GET,
           path: "/path2",
           destination: {
             url: "http://example.com",
@@ -57,7 +58,7 @@ describe("validateConfig", () => {
       endpoints: [
         {
           name: "endpoint1",
-          method: "GET",
+          method: HttpMethod.GET,
           path: "/duplicate",
           destination: {
             url: "http://example.com",
@@ -65,7 +66,7 @@ describe("validateConfig", () => {
         },
         {
           name: "endpoint2",
-          method: "GET",
+          method: HttpMethod.GET,
           path: "/duplicate",
           destination: {
             url: "http://example.com",
@@ -82,7 +83,7 @@ describe("validateConfig", () => {
       endpoints: [
         {
           name: "endpoint",
-          method: "GET",
+          method: HttpMethod.GET,
           path: "/path",
           destination: {
             url: "invalid_url",
@@ -97,10 +98,10 @@ describe("validateConfig", () => {
   it("should throw an error if rate limiting by api key and api key policy is not provided", () => {
     const invalidPolicyConfig: Config = {
       endpoints: [],
-      policies: {
+      policyDefinitions: {
         rateLimit: {
           rateLimitBy: "api-key",
-        },
+        } as RateLimitPolicy,
       },
     };
 
@@ -112,10 +113,10 @@ describe("validateConfig", () => {
   it("should throw an error if rate limiting by jwt and jwt policy is not provided", () => {
     const invalidJwtPolicyConfig: Config = {
       endpoints: [],
-      policies: {
+      policyDefinitions: {
         rateLimit: {
           rateLimitBy: "jwt",
-        },
+        } as RateLimitPolicy,
       },
     };
 

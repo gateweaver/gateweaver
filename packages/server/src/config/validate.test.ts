@@ -7,7 +7,6 @@ describe("validateConfig", () => {
     const validConfig: Config = {
       endpoints: [
         {
-          name: "endpoint1",
           method: HttpMethod.GET,
           path: "/path1",
           destination: {
@@ -15,7 +14,6 @@ describe("validateConfig", () => {
           },
         },
         {
-          name: "endpoint2",
           method: HttpMethod.POST,
           path: "/path2",
           destination: {
@@ -32,7 +30,6 @@ describe("validateConfig", () => {
     const invalidConfig: Config = {
       endpoints: [
         {
-          name: "duplicate",
           method: HttpMethod.GET,
           path: "/path1",
           destination: {
@@ -40,7 +37,6 @@ describe("validateConfig", () => {
           },
         },
         {
-          name: "duplicate",
           method: HttpMethod.GET,
           path: "/path2",
           destination: {
@@ -57,7 +53,6 @@ describe("validateConfig", () => {
     const invalidConfig: Config = {
       endpoints: [
         {
-          name: "endpoint1",
           method: HttpMethod.GET,
           path: "/duplicate",
           destination: {
@@ -65,7 +60,6 @@ describe("validateConfig", () => {
           },
         },
         {
-          name: "endpoint2",
           method: HttpMethod.GET,
           path: "/duplicate",
           destination: {
@@ -82,7 +76,6 @@ describe("validateConfig", () => {
     const invalidUrlConfig: Config = {
       endpoints: [
         {
-          name: "endpoint",
           method: HttpMethod.GET,
           path: "/path",
           destination: {

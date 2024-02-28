@@ -5,19 +5,11 @@ import { configSchema } from "./schema";
 import { Endpoint, Config } from "./types";
 
 const validateEndpointUniqueness = (endpoints: Endpoint[]): string[] => {
-  const endpointNames = new Set<string>();
   const endpointPaths = new Set<string>();
   const errors: string[] = [];
 
   endpoints.forEach((endpoint) => {
-    const nameKey = endpoint.name;
     const pathKey = `${endpoint.method} ${endpoint.path}`;
-
-    if (endpointNames.has(nameKey)) {
-      errors.push(`Config Error: Duplicate endpoint name "${nameKey}"`);
-    } else {
-      endpointNames.add(nameKey);
-    }
 
     if (endpointPaths.has(pathKey)) {
       errors.push(`Config Error: Duplicate endpoint path "${pathKey}"`);

@@ -20,7 +20,6 @@ export enum HttpMethod {
 }
 
 export interface Endpoint {
-  name: string;
   path: string;
   method: HttpMethod;
   destination: Destination;

@@ -6,7 +6,9 @@
   "types": "dist/src/index.d.ts",
   "scripts": {
     "build": "tsc -d",
-    "build:watch": "tsc -w -d"
+    "build:watch": "tsc -w -d",
+    "lint": "eslint .",
+    "clean": "rimraf ./dist"
   },
   "author": "",
   "license": "ISC",

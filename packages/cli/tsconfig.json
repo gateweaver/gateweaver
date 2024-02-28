@@ -4,5 +4,6 @@
     "outDir": "./dist",
     "rootDir": "."
   },
-  "include": ["./package.json", "./src/**/*"]
+  "include": ["./package.json", "./src/**/*.ts"],
+  "exclude": ["**/*.test.ts", "dist"]
 }

@@ -21,6 +21,22 @@ const validateEndpointUniqueness = (endpoints: Endpoint[]): string[] => {
   return errors;
 };
 
+const validateEndpointPaths = (endpoints: Endpoint[]): string[] => {
+  const pathPattern = /^\/[a-zA-Z0-9\-_/]*\/?$/;
+
+  const errors: string[] = [];
+
+  endpoints.forEach((endpoint) => {
+    if (!pathPattern.test(endpoint.path)) {
+      errors.push(
+        `Config Error: Invalid path "${endpoint.path}". Must match start with / and only contain alphanumeric characters, hyphens, and underscores.`,
+      );
+    }
+  });
+
+  return errors;
+};
+
 const validatePolicyDefinitions = (policyDefinitions: PolicyDefinitions) => {
   const errors: string[] = [];
 
@@ -68,7 +84,12 @@ export const validateConfig = (config: Config) => {
     validationErrors.push(...uniquenessErrors);
   }
 
+  const pathErrors = validateEndpointPaths(endpoints);
+  if (pathErrors.length > 0) {
+    validationErrors.push(...pathErrors);
+  }
+
   if (validationErrors.length > 0) {
-    throw new Error(`Invalid config: \n${validationErrors.join("\n")}`);
+    throw new Error(`Invalid config:\n${validationErrors.join("\n")}`);
   }
 };

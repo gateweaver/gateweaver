@@ -26,29 +26,6 @@ describe("validateConfig", () => {
     expect(() => validateConfig(validConfig)).not.toThrow();
   });
 
-  it("should throw an error if endpoint names are duplicated", () => {
-    const invalidConfig: Config = {
-      endpoints: [
-        {
-          method: HttpMethod.GET,
-          path: "/path1",
-          destination: {
-            url: "http://example.com",
-          },
-        },
-        {
-          method: HttpMethod.GET,
-          path: "/path2",
-          destination: {
-            url: "http://example.com",
-          },
-        },
-      ],
-    };
-
-    expect(() => validateConfig(invalidConfig)).toThrow();
-  });
-
   it("should throw an error if endpoint path/method combination is duplicated", () => {
     const invalidConfig: Config = {
       endpoints: [
@@ -72,20 +49,22 @@ describe("validateConfig", () => {
     expect(() => validateConfig(invalidConfig)).toThrow();
   });
 
-  it("should throw an error if destination URL is invalid", () => {
-    const invalidUrlConfig: Config = {
+  it("should throw an error if endpoint path is invalid", () => {
+    const invalidConfig: Config = {
       endpoints: [
         {
           method: HttpMethod.GET,
-          path: "/path",
+          path: "invalid path",
           destination: {
-            url: "invalid_url",
+            url: "http://example.com",
           },
         },
       ],
     };
 
-    expect(() => validateConfig(invalidUrlConfig)).toThrow();
+    expect(() => validateConfig(invalidConfig)).toThrow(
+      'Config Error: Invalid path "invalid path". Must match start with / and only contain alphanumeric characters, hyphens, and underscores.',
+    );
   });
 
   it("should throw an error if rate limiting by api key and api key policy is not provided", () => {

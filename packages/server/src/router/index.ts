@@ -15,7 +15,7 @@ const setupEndpoints = (router: Router, config: Config) => {
   });
 };
 
-const setupRouter = (configPath = process.env.CONFIG_PATH || "config") => {
+const setupRouter = (configPath = process.env.CONFIG_PATH || "gateway") => {
   try {
     const config = parseConfigYaml(configPath);
     const router = Router();

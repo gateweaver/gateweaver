@@ -27,6 +27,7 @@ export interface Endpoint {
 }
 
 export interface Config {
+  port?: number;
   endpoints: Endpoint[];
   policyDefinitions?: PolicyDefinitions;
 }

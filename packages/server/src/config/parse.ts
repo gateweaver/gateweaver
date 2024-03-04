@@ -17,7 +17,9 @@ export const parseConfigYaml = (filePath: string): Config => {
   }
 
   if (!finalPath) {
-    throw new Error("Config file not found with .yml or .yaml extension.");
+    throw new Error(
+      `Config file "${filePath}" not found with .yml or .yaml extension.`,
+    );
   }
 
   const file = fs

@@ -39,13 +39,14 @@ const endpointSchema: JSONSchemaType<Endpoint> = {
 export const configSchema: JSONSchemaType<Config> = {
   type: "object",
   properties: {
-    endpoints: {
-      type: "array",
-      items: endpointSchema,
-    },
+    port: { type: "number", nullable: true, default: 6060 },
     policyDefinitions: {
       ...policyDefinitionsSchema,
       nullable: true,
+    },
+    endpoints: {
+      type: "array",
+      items: endpointSchema,
     },
   },
   required: ["endpoints"],

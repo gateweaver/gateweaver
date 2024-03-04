@@ -46,7 +46,9 @@ describe("validateConfig", () => {
       ],
     };
 
-    expect(() => validateConfig(invalidConfig)).toThrow();
+    expect(() => validateConfig(invalidConfig)).toThrow(
+      'Error: Duplicate endpoint path/method combination: "GET /duplicate"',
+    );
   });
 
   it("should throw an error if endpoint path is invalid", () => {
@@ -63,7 +65,7 @@ describe("validateConfig", () => {
     };
 
     expect(() => validateConfig(invalidConfig)).toThrow(
-      'Config Error: Invalid path "invalid path". Must match start with / and only contain alphanumeric characters, hyphens, and underscores.',
+      'Error: Invalid path "invalid path". Must start with / and only contain alphanumeric characters, hyphens, and underscores.',
     );
   });
 
@@ -78,7 +80,7 @@ describe("validateConfig", () => {
     };
 
     expect(() => validateConfig(invalidPolicyConfig)).toThrow(
-      "Config Error: Rate limiting by api key requires an api key policy",
+      "Error: Rate limiting by api key requires an api key policy",
     );
   });
 
@@ -93,7 +95,7 @@ describe("validateConfig", () => {
     };
 
     expect(() => validateConfig(invalidJwtPolicyConfig)).toThrow(
-      "Config Error: Rate limiting by jwt requires a jwt policy",
+      "Error: Rate limiting by jwt requires a jwt policy",
     );
   });
 });

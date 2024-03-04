@@ -1,6 +1,6 @@
 import Ajv from "ajv";
 import addFormats from "ajv-formats";
-import { PolicyDefinitions } from "@endpointly/policies";
+import { PolicyDefinitions, PolicyOption } from "@endpointly/policies";
 import { configSchema } from "./schema";
 import { Endpoint, Config } from "./types";
 
@@ -73,6 +73,29 @@ const validatePolicyDefinitions = (policyDefinitions: PolicyDefinitions) => {
   return errors;
 };
 
+const validateEndpointPolicies = (
+  endpoints: Endpoint[],
+  policyDefinitions?: PolicyDefinitions,
+) => {
+  const errors: string[] = [];
+
+  const validPolicies = Object.values(PolicyOption);
+
+  const endpointPolicies = new Set(
+    endpoints.flatMap((endpoint) => endpoint.policies ?? []),
+  );
+
+  endpointPolicies.forEach((policy) => {
+    if (validPolicies.includes(policy) && !policyDefinitions?.[policy]) {
+      errors.push(
+        `Error: Policy "${policy}" is not defined in policyDefinitions`,
+      );
+    }
+  });
+
+  return errors;
+};
+
 export const validateConfig = (config: Config) => {
   const ajv = new Ajv({ useDefaults: true, allowUnionTypes: true });
   addFormats(ajv, ["url"]);
@@ -96,6 +119,14 @@ export const validateConfig = (config: Config) => {
   const endpointErrors = validateEndpoints(endpoints);
   if (endpointErrors.length > 0) {
     validationErrors.push(...endpointErrors);
+  }
+
+  const endpointPolicyErrors = validateEndpointPolicies(
+    endpoints,
+    policyDefinitions,
+  );
+  if (endpointPolicyErrors.length > 0) {
+    validationErrors.push(...endpointPolicyErrors);
   }
 
   if (validationErrors.length > 0) {

@@ -1,4 +1,4 @@
-import { RateLimitPolicy } from "@endpointly/policies";
+import { PolicyOption, RateLimitPolicy } from "@endpointly/policies";
 import { Config, HttpMethod } from "./types";
 import { validateConfig } from "./validate";
 
@@ -96,6 +96,25 @@ describe("validateConfig", () => {
 
     expect(() => validateConfig(invalidJwtPolicyConfig)).toThrow(
       "Error: Rate limiting by jwt requires a jwt policy",
+    );
+  });
+
+  it("should throw an error if endpoint policies are defined but no policy definitions are provided", () => {
+    const invalidPolicyConfig: Config = {
+      endpoints: [
+        {
+          method: HttpMethod.GET,
+          path: "/path1",
+          destination: {
+            url: "http://example.com",
+          },
+          policies: [PolicyOption.RateLimit],
+        },
+      ],
+    };
+
+    expect(() => validateConfig(invalidPolicyConfig)).toThrow(
+      'Error: Policy "rateLimit" is not defined in policyDefinitions',
     );
   });
 });

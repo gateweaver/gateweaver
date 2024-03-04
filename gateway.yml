@@ -27,6 +27,8 @@ endpoints:
           value: "application/json"
         - key: "Authorization"
           value: "Bearer ${AUTH_TOKEN}"
+    policies:
+      - cors
   - path: "/giphy/trending"
     method: "GET"
     destination:

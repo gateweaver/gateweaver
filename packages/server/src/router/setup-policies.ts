@@ -16,19 +16,19 @@ export const setupPolicies = (
 
     const { cors, jwt, apiKey, rateLimit } = policyDefinitions;
 
-    if (cors && policies.includes("cors" as PolicyOption)) {
+    if (cors && policies.includes(PolicyOption.Cors)) {
       router.use(endpoint.path, policyMiddleware.cors(cors));
     }
 
-    if (jwt && policies.includes("jwt" as PolicyOption)) {
+    if (jwt && policies.includes(PolicyOption.Jwt)) {
       router.use(endpoint.path, policyMiddleware.jwt(jwt));
     }
 
-    if (apiKey && policies.includes("apiKey" as PolicyOption)) {
+    if (apiKey && policies.includes(PolicyOption.ApiKey)) {
       router.use(endpoint.path, policyMiddleware.apiKey(apiKey));
     }
 
-    if (rateLimit && policies.includes("rateLimit" as PolicyOption)) {
+    if (rateLimit && policies.includes(PolicyOption.RateLimit)) {
       router.use(endpoint.path, policyMiddleware.rateLimit(rateLimit));
     }
   }

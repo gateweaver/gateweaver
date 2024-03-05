@@ -1,4 +1,4 @@
-import { RateLimitPolicy } from "@endpointly/policies";
+import { PolicyOption, RateLimitPolicy } from "@endpointly/policies";
 import { Config, HttpMethod } from "./types";
 import { validateConfig } from "./validate";
 
@@ -7,7 +7,6 @@ describe("validateConfig", () => {
     const validConfig: Config = {
       endpoints: [
         {
-          name: "endpoint1",
           method: HttpMethod.GET,
           path: "/path1",
           destination: {
@@ -15,7 +14,6 @@ describe("validateConfig", () => {
           },
         },
         {
-          name: "endpoint2",
           method: HttpMethod.POST,
           path: "/path2",
           destination: {
@@ -28,36 +26,10 @@ describe("validateConfig", () => {
     expect(() => validateConfig(validConfig)).not.toThrow();
   });
 
-  it("should throw an error if endpoint names are duplicated", () => {
-    const invalidConfig: Config = {
-      endpoints: [
-        {
-          name: "duplicate",
-          method: HttpMethod.GET,
-          path: "/path1",
-          destination: {
-            url: "http://example.com",
-          },
-        },
-        {
-          name: "duplicate",
-          method: HttpMethod.GET,
-          path: "/path2",
-          destination: {
-            url: "http://example.com",
-          },
-        },
-      ],
-    };
-
-    expect(() => validateConfig(invalidConfig)).toThrow();
-  });
-
   it("should throw an error if endpoint path/method combination is duplicated", () => {
     const invalidConfig: Config = {
       endpoints: [
         {
-          name: "endpoint1",
           method: HttpMethod.GET,
           path: "/duplicate",
           destination: {
@@ -65,7 +37,6 @@ describe("validateConfig", () => {
           },
         },
         {
-          name: "endpoint2",
           method: HttpMethod.GET,
           path: "/duplicate",
           destination: {
@@ -75,24 +46,27 @@ describe("validateConfig", () => {
       ],
     };
 
-    expect(() => validateConfig(invalidConfig)).toThrow();
+    expect(() => validateConfig(invalidConfig)).toThrow(
+      'Error: Duplicate endpoint path/method combination: "GET /duplicate"',
+    );
   });
 
-  it("should throw an error if destination URL is invalid", () => {
-    const invalidUrlConfig: Config = {
+  it("should throw an error if endpoint path is invalid", () => {
+    const invalidConfig: Config = {
       endpoints: [
         {
-          name: "endpoint",
           method: HttpMethod.GET,
-          path: "/path",
+          path: "invalid path",
           destination: {
-            url: "invalid_url",
+            url: "http://example.com",
           },
         },
       ],
     };
 
-    expect(() => validateConfig(invalidUrlConfig)).toThrow();
+    expect(() => validateConfig(invalidConfig)).toThrow(
+      'Error: Invalid path "invalid path". Must start with / and only contain alphanumeric characters, hyphens, and underscores.',
+    );
   });
 
   it("should throw an error if rate limiting by api key and api key policy is not provided", () => {
@@ -106,7 +80,7 @@ describe("validateConfig", () => {
     };
 
     expect(() => validateConfig(invalidPolicyConfig)).toThrow(
-      "Config Error: Rate limiting by api key requires an api key policy",
+      "Error: Rate limiting by api key requires an api key policy",
     );
   });
 
@@ -121,7 +95,26 @@ describe("validateConfig", () => {
     };
 
     expect(() => validateConfig(invalidJwtPolicyConfig)).toThrow(
-      "Config Error: Rate limiting by jwt requires a jwt policy",
+      "Error: Rate limiting by jwt requires a jwt policy",
+    );
+  });
+
+  it("should throw an error if endpoint policies are defined but no policy definitions are provided", () => {
+    const invalidPolicyConfig: Config = {
+      endpoints: [
+        {
+          method: HttpMethod.GET,
+          path: "/path1",
+          destination: {
+            url: "http://example.com",
+          },
+          policies: [PolicyOption.RateLimit],
+        },
+      ],
+    };
+
+    expect(() => validateConfig(invalidPolicyConfig)).toThrow(
+      'Error: Policy "rateLimit" is not defined in policyDefinitions',
     );
   });
 });

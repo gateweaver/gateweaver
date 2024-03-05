@@ -20,7 +20,6 @@ export enum HttpMethod {
 }
 
 export interface Endpoint {
-  name: string;
   path: string;
   method: HttpMethod;
   destination: Destination;
@@ -28,6 +27,7 @@ export interface Endpoint {
 }
 
 export interface Config {
+  port?: number;
   endpoints: Endpoint[];
   policyDefinitions?: PolicyDefinitions;
 }

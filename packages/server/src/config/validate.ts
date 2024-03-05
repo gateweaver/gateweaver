@@ -1,28 +1,52 @@
 import Ajv from "ajv";
 import addFormats from "ajv-formats";
-import { PolicyDefinitions } from "@endpointly/policies";
+import { PolicyDefinitions, PolicyOption } from "@endpointly/policies";
 import { configSchema } from "./schema";
 import { Endpoint, Config } from "./types";
 
-const validateEndpointUniqueness = (endpoints: Endpoint[]): string[] => {
-  const endpointNames = new Set<string>();
-  const endpointPaths = new Set<string>();
+class ConfigValidationError extends Error {
+  constructor(message: string) {
+    super(message);
+    this.name = "ConfigValidationError";
+  }
+}
+
+const checkEndpointUniqueness = (
+  endpoint: Endpoint,
+  endpointPaths: Set<string>,
+): string | null => {
+  const pathKey = `${endpoint.method} ${endpoint.path}`;
+
+  if (endpointPaths.has(pathKey)) {
+    return `Error: Duplicate endpoint path/method combination: "${pathKey}"`;
+  } else {
+    endpointPaths.add(pathKey);
+    return null;
+  }
+};
+
+const validateEndpointPath = (endpoint: Endpoint): string | null => {
+  const pathPattern = /^\/[a-zA-Z0-9\-_/]*\/?$/;
+  if (!pathPattern.test(endpoint.path)) {
+    return `Error: Invalid path "${endpoint.path}". Must start with / and only contain alphanumeric characters, hyphens, and underscores.`;
+  }
+  return null;
+};
+
+const validateEndpoints = (endpoints: Endpoint[]): string[] => {
   const errors: string[] = [];
 
-  endpoints.forEach((endpoint) => {
-    const nameKey = endpoint.name;
-    const pathKey = `${endpoint.method} ${endpoint.path}`;
+  const endpointPaths = new Set<string>();
 
-    if (endpointNames.has(nameKey)) {
-      errors.push(`Config Error: Duplicate endpoint name "${nameKey}"`);
-    } else {
-      endpointNames.add(nameKey);
+  endpoints.forEach((endpoint) => {
+    const uniquenessError = checkEndpointUniqueness(endpoint, endpointPaths);
+    if (uniquenessError) {
+      errors.push(uniquenessError);
     }
 
-    if (endpointPaths.has(pathKey)) {
-      errors.push(`Config Error: Duplicate endpoint path "${pathKey}"`);
-    } else {
-      endpointPaths.add(pathKey);
+    const pathError = validateEndpointPath(endpoint);
+    if (pathError) {
+      errors.push(pathError);
     }
   });
 
@@ -38,15 +62,36 @@ const validatePolicyDefinitions = (policyDefinitions: PolicyDefinitions) => {
     const { rateLimitBy } = rateLimit;
 
     if (rateLimitBy === "api-key" && !policyDefinitions.apiKey) {
-      errors.push(
-        "Config Error: Rate limiting by api key requires an api key policy",
-      );
+      errors.push("Error: Rate limiting by api key requires an api key policy");
     }
 
     if (rateLimitBy === "jwt" && !policyDefinitions.jwt) {
-      errors.push("Config Error: Rate limiting by jwt requires a jwt policy");
+      errors.push("Error: Rate limiting by jwt requires a jwt policy");
     }
   }
+
+  return errors;
+};
+
+const validateEndpointPolicies = (
+  endpoints: Endpoint[],
+  policyDefinitions?: PolicyDefinitions,
+) => {
+  const errors: string[] = [];
+
+  const validPolicies = Object.values(PolicyOption);
+
+  const endpointPolicies = new Set(
+    endpoints.flatMap((endpoint) => endpoint.policies ?? []),
+  );
+
+  endpointPolicies.forEach((policy) => {
+    if (validPolicies.includes(policy) && !policyDefinitions?.[policy]) {
+      errors.push(
+        `Error: Policy "${policy}" is not defined in policyDefinitions`,
+      );
+    }
+  });
 
   return errors;
 };
@@ -59,10 +104,10 @@ export const validateConfig = (config: Config) => {
   const validationErrors: string[] = [];
 
   if (!validate(config)) {
-    validationErrors.push(JSON.stringify(validate.errors, null, 2));
+    validationErrors.push("Error: ", JSON.stringify(validate.errors, null, 2));
   }
 
-  const { endpoints, policyDefinitions } = config;
+  const { policyDefinitions, endpoints } = config;
 
   if (policyDefinitions) {
     const policyErrors = validatePolicyDefinitions(policyDefinitions);
@@ -71,12 +116,20 @@ export const validateConfig = (config: Config) => {
     }
   }
 
-  const uniquenessErrors = validateEndpointUniqueness(endpoints);
-  if (uniquenessErrors.length > 0) {
-    validationErrors.push(...uniquenessErrors);
+  const endpointErrors = validateEndpoints(endpoints);
+  if (endpointErrors.length > 0) {
+    validationErrors.push(...endpointErrors);
+  }
+
+  const endpointPolicyErrors = validateEndpointPolicies(
+    endpoints,
+    policyDefinitions,
+  );
+  if (endpointPolicyErrors.length > 0) {
+    validationErrors.push(...endpointPolicyErrors);
   }
 
   if (validationErrors.length > 0) {
-    throw new Error(`Invalid config: \n${validationErrors.join("\n")}`);
+    throw new ConfigValidationError(`\n${validationErrors.join("\n")}`);
   }
 };

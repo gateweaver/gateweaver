@@ -24,7 +24,6 @@ const destinationSchema: JSONSchemaType<Destination> = {
 const endpointSchema: JSONSchemaType<Endpoint> = {
   type: "object",
   properties: {
-    name: { type: "string" },
     path: { type: "string" },
     method: { type: "string", enum: Object.values(HttpMethod) },
     destination: destinationSchema,
@@ -34,19 +33,20 @@ const endpointSchema: JSONSchemaType<Endpoint> = {
       nullable: true,
     },
   },
-  required: ["name", "path", "method", "destination"],
+  required: ["path", "method", "destination"],
 };
 
 export const configSchema: JSONSchemaType<Config> = {
   type: "object",
   properties: {
-    endpoints: {
-      type: "array",
-      items: endpointSchema,
-    },
+    port: { type: "number", nullable: true, default: 6060 },
     policyDefinitions: {
       ...policyDefinitionsSchema,
       nullable: true,
+    },
+    endpoints: {
+      type: "array",
+      items: endpointSchema,
     },
   },
   required: ["endpoints"],

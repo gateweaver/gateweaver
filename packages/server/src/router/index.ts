@@ -1,5 +1,4 @@
 import { Router } from "express";
-import { parseConfigYaml } from "../config/parse";
 import { Config } from "../config/types";
 import { setupProxy } from "./setup-proxy";
 import { setupPolicies } from "./setup-policies";
@@ -15,9 +14,8 @@ const setupEndpoints = (router: Router, config: Config) => {
   });
 };
 
-const setupRouter = (configPath = process.env.CONFIG_PATH || "config") => {
+export const setupRouter = (config: Config) => {
   try {
-    const config = parseConfigYaml(configPath);
     const router = Router();
 
     if (process.env.NODE_ENV === "development") {
@@ -30,9 +28,6 @@ const setupRouter = (configPath = process.env.CONFIG_PATH || "config") => {
 
     return router;
   } catch (error) {
-    console.error(`Failed to setup router: ${error}`);
-    throw error;
+    throw new Error(`Failed to set up router:\n${error}`);
   }
 };
-
-export const router = setupRouter();

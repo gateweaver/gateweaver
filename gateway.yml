@@ -1,11 +1,12 @@
 policyDefinitions:
   cors:
     origin: "http://localhost:3000"
-  rateLimit: {}
-  # jwt:
-  #   secretOrPublicKey: "${JWT_SECRET}"
-  #   algorithms:
-  #     - "HS256"
+  rateLimit:
+    rateLimitBy: "jwt"
+  jwt:
+    secretOrPublicKey: "${JWT_SECRET}"
+    algorithms:
+      - "HS256"
 
 endpoints:
   - path: "/todos"

@@ -2,7 +2,6 @@ import {
   PolicyDefinitions,
   PolicyOption,
   policyMiddleware,
-  PolicyMiddleware,
 } from "@endpointly/policies";
 import { Router } from "express";
 import { Endpoint } from "../config/types";
@@ -15,14 +14,22 @@ export const setupPolicies = (
   if (policyDefinitions && endpoint.policies) {
     const { policies } = endpoint;
 
-    Object.entries(policyDefinitions).forEach(([policyKey, policyValue]) => {
-      if (policies.includes(policyKey as PolicyOption)) {
-        const middleware =
-          policyMiddleware[policyKey as keyof PolicyMiddleware];
-        if (middleware) {
-          router.use(endpoint.path, middleware(policyValue));
-        }
-      }
-    });
+    const { cors, jwt, apiKey, rateLimit } = policyDefinitions;
+
+    if (cors && policies.includes("cors" as PolicyOption)) {
+      router.use(endpoint.path, policyMiddleware.cors(cors));
+    }
+
+    if (jwt && policies.includes("jwt" as PolicyOption)) {
+      router.use(endpoint.path, policyMiddleware.jwt(jwt));
+    }
+
+    if (apiKey && policies.includes("apiKey" as PolicyOption)) {
+      router.use(endpoint.path, policyMiddleware.apiKey(apiKey));
+    }
+
+    if (rateLimit && policies.includes("rateLimit" as PolicyOption)) {
+      router.use(endpoint.path, policyMiddleware.rateLimit(rateLimit));
+    }
   }
 };

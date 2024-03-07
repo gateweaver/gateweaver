@@ -74,7 +74,7 @@ describe("validateConfig", () => {
       endpoints: [],
       policyDefinitions: {
         rateLimit: {
-          rateLimitBy: "api-key",
+          rateLimitBy: "apiKey",
         } as RateLimitPolicy,
       },
     };

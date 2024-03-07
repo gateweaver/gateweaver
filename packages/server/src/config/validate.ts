@@ -61,7 +61,7 @@ const validatePolicyDefinitions = (policyDefinitions: PolicyDefinitions) => {
   if (rateLimit) {
     const { rateLimitBy } = rateLimit;
 
-    if (rateLimitBy === "api-key" && !policyDefinitions.apiKey) {
+    if (rateLimitBy === "apiKey" && !policyDefinitions.apiKey) {
       errors.push("Error: Rate limiting by api key requires an api key policy");
     }
 

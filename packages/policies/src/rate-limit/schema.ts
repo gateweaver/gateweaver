@@ -1,7 +1,7 @@
 import { JSONSchemaType } from "ajv";
 
 export interface RateLimitPolicy {
-  rateLimitBy: "ip" | "api-key" | "jwt";
+  rateLimitBy: "ip" | "apiKey" | "jwt";
   windowMs: number;
   limit: number;
   message: string;
@@ -17,7 +17,7 @@ export const rateLimitSchema: JSONSchemaType<RateLimitPolicy> = {
   properties: {
     rateLimitBy: {
       type: "string",
-      enum: ["ip", "api-key", "jwt"],
+      enum: ["ip", "apiKey", "jwt"],
       default: "ip",
     },
     windowMs: {

@@ -13,7 +13,7 @@ const decodeJwt = (token: string) => {
 export const keyGenerator = (rateLimitBy: RateLimitPolicy["rateLimitBy"]) => {
   return (req: Request) => {
     switch (rateLimitBy) {
-      case "api-key": {
+      case "apiKey": {
         const apiKey = req.headers["x-api-key"];
         if (!apiKey) {
           throw new UnauthorizedAccessError("API Key Required");

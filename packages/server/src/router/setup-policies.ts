@@ -39,7 +39,7 @@ export const setupPolicies = (
       }
 
       if (
-        rateLimit.rateLimitBy === "api-key" &&
+        rateLimit.rateLimitBy === "apiKey" &&
         !policies.includes(PolicyOption.ApiKey)
       ) {
         console.warn(

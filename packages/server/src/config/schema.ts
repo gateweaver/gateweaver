@@ -1,24 +1,44 @@
 import { JSONSchemaType } from "ajv";
 import { PolicyOption, policyDefinitionsSchema } from "@endpointly/policies";
-import { KeyValue, Destination, Endpoint, Config, HttpMethod } from "./types";
-
-const keyValueSchema: JSONSchemaType<KeyValue> = {
-  type: "object",
-  properties: {
-    key: { type: "string" },
-    value: { type: "string" },
-  },
-  required: ["key", "value"],
-};
+import {
+  Destination,
+  Endpoint,
+  Config,
+  HttpMethod,
+  TransformedRequest,
+  TransformedResponse,
+} from "./types";
 
 const destinationSchema: JSONSchemaType<Destination> = {
   type: "object",
   properties: {
     url: { type: "string", format: "url" },
-    headers: { type: "array", items: keyValueSchema, nullable: true },
-    params: { type: "array", items: keyValueSchema, nullable: true },
   },
   required: ["url"],
+};
+
+const keyValueSchema: JSONSchemaType<Record<string, string>> = {
+  type: "object",
+  patternProperties: {
+    "^.*$": { type: "string" },
+  },
+  additionalProperties: false,
+  required: [],
+};
+
+const transformedRequestSchema: JSONSchemaType<TransformedRequest> = {
+  type: "object",
+  properties: {
+    headers: { ...keyValueSchema, nullable: true },
+    query: { ...keyValueSchema, nullable: true },
+  },
+};
+
+const transformedResponseSchema: JSONSchemaType<TransformedResponse> = {
+  type: "object",
+  properties: {
+    headers: { ...keyValueSchema, nullable: true },
+  },
 };
 
 const endpointSchema: JSONSchemaType<Endpoint> = {
@@ -27,6 +47,8 @@ const endpointSchema: JSONSchemaType<Endpoint> = {
     path: { type: "string" },
     method: { type: "string", enum: Object.values(HttpMethod) },
     destination: destinationSchema,
+    transformedRequest: { ...transformedRequestSchema, nullable: true },
+    transformedResponse: { ...transformedResponseSchema, nullable: true },
     policies: {
       type: "array",
       items: { type: "string", enum: Object.values(PolicyOption) },

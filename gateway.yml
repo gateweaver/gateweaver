@@ -22,7 +22,6 @@ endpoints:
     transformedResponse:
       headers:
         test-header: "test"
-        Cross-Origin-Opener-Policy: ""
     policies:
       - cors
   - path: "/todos"

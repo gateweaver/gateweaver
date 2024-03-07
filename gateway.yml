@@ -1,8 +1,14 @@
 policyDefinitions:
   cors:
     origin: "http://localhost:3000"
+    methods:
+      - "GET"
+      - "POST"
+    allowedHeaders:
+      - "test-header"
+      - "another-header"
   rateLimit:
-    rateLimitBy: "jwt"
+    rateLimitBy: "ip"
   jwt:
     secretOrPublicKey: "${JWT_SECRET}"
     algorithms:
@@ -13,36 +19,34 @@ endpoints:
     method: "GET"
     destination:
       url: "https://jsonplaceholder.typicode.com/todos"
+    transformedResponse:
       headers:
-        - key: "Content-Type"
-          value: "application/json"
+        test-header: "test"
     policies:
       - cors
-      - rateLimit
   - path: "/todos"
     method: "POST"
     destination:
       url: "https://jsonplaceholder.typicode.com/todos"
+    transformedRequest:
       headers:
-        - key: "Content-Type"
-          value: "application/json"
-        - key: "Authorization"
-          value: "Bearer ${AUTH_TOKEN}"
+        Content-Type: "application/json"
     policies:
       - cors
   - path: "/giphy/trending"
     method: "GET"
     destination:
       url: "https://api.giphy.com/v1/gifs/trending"
-      params:
-        - key: "api_key"
-          value: "${GIPHY_API_KEY}"
-        - key: "limit"
-          value: "1"
+    transformedRequest:
+      query:
+        api_key: "${GIPHY_API_KEY}"
+        limit: "1"
+    policies:
+      - cors
   - path: "/spotify/artist"
     method: "GET"
     destination:
       url: "https://api.spotify.com/v1/artists/4Z8W4fKeB5YxbusRsdQVPb"
+    transformedRequest:
       headers:
-        - key: "Authorization"
-          value: "Bearer ${SPOTIFY_TOKEN}"
+        Authorization: "Bearer ${SPOTIFY_TOKEN}"

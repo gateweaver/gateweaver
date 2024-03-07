@@ -1,14 +1,7 @@
 import { PolicyDefinitions, PolicyOption } from "@endpointly/policies";
 
-export interface KeyValue {
-  key: string;
-  value: string;
-}
-
 export interface Destination {
   url: string;
-  headers?: KeyValue[];
-  params?: KeyValue[];
 }
 
 export enum HttpMethod {
@@ -19,10 +12,21 @@ export enum HttpMethod {
   DELETE = "DELETE",
 }
 
+export interface TransformedRequest {
+  headers?: Record<string, string>;
+  query?: Record<string, string>;
+}
+
+export interface TransformedResponse {
+  headers?: Record<string, string>;
+}
+
 export interface Endpoint {
   path: string;
   method: HttpMethod;
   destination: Destination;
+  transformedRequest?: TransformedRequest;
+  transformedResponse?: TransformedResponse;
   policies?: PolicyOption[];
 }
 

@@ -15,15 +15,14 @@
   "license": "ISC",
   "dependencies": {
     "@endpointly/policies": "*",
+    "@endpointly/utils": "*",
     "ajv": "^8.12.0",
     "ajv-formats": "^2.1.1",
-    "express": "^4.18.2",
-    "yaml": "^2.3.4",
-    "http-proxy-middleware": "^2.0.6"
+    "http-proxy-middleware": "^2.0.6",
+    "yaml": "^2.3.4"
   },
   "devDependencies": {
     "@endpointly/eslint-config": "*",
-    "@endpointly/tsconfig": "*",
-    "@types/express": "^4.17.21"
+    "@endpointly/tsconfig": "*"
   }
 }

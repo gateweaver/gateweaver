@@ -2,7 +2,7 @@ import "dotenv/config";
 import express from "express";
 import { parseConfigYaml } from "./config/parse";
 import { setupRouter } from "./router";
-import { errorHandler } from "./middleware/error-handler";
+import { errorHandler } from "@endpointly/utils";
 
 const app = express();
 

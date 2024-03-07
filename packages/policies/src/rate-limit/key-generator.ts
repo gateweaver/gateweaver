@@ -1,19 +1,12 @@
 import { Request } from "express";
 import { RateLimitPolicy } from "./schema";
-
-const ensureString = (value: unknown, errorMessage: string) => {
-  if (typeof value !== "string") {
-    throw new Error(errorMessage);
-  }
-
-  return value;
-};
+import { UnauthorizedAccessError } from "@endpointly/utils";
 
 const decodeJwt = (token: string) => {
   try {
     return JSON.parse(atob(token.split(".")[1]));
   } catch (e) {
-    throw new Error("Invalid JWT");
+    throw new UnauthorizedAccessError("Invalid Token");
   }
 };
 
@@ -21,23 +14,31 @@ export const keyGenerator = (rateLimitBy: RateLimitPolicy["rateLimitBy"]) => {
   return (req: Request) => {
     switch (rateLimitBy) {
       case "api-key": {
-        const apiKey = ensureString(
-          req.headers["x-api-key"],
-          "API key is not a string",
-        );
+        const apiKey = req.headers["x-api-key"];
+        if (!apiKey) {
+          throw new UnauthorizedAccessError("API Key Required");
+        }
+
         return apiKey;
       }
       case "jwt": {
-        const authHeader = ensureString(
-          req.headers.authorization,
-          "Authorization header is not a string",
-        );
+        const authHeader = req.headers.authorization;
+
+        if (!authHeader) {
+          throw new UnauthorizedAccessError("No authorization token was found");
+        }
+
         const token = authHeader.split(" ")[1];
         const decoded = decodeJwt(token);
         return decoded.sub;
       }
       case "ip": {
-        const ip = ensureString(req.ip, "IP address is not a string");
+        const ip = req.ip;
+
+        if (!ip) {
+          throw new Error("IP address is missing");
+        }
+
         return ip;
       }
       default:

@@ -6,7 +6,7 @@ policyDefinitions:
   jwt:
     secretOrPublicKey: "${JWT_SECRET}"
     algorithms:
-      - "HS256"
+      - "RS256"
 
 endpoints:
   - path: "/todos"

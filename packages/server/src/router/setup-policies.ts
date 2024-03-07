@@ -29,6 +29,24 @@ export const setupPolicies = (
     }
 
     if (rateLimit && policies.includes(PolicyOption.RateLimit)) {
+      if (
+        rateLimit.rateLimitBy === "jwt" &&
+        !policies.includes(PolicyOption.Jwt)
+      ) {
+        console.warn(
+          `Rate limit by jwt is enabled but jwt policy is not enabled for endpoint ${endpoint.path}`,
+        );
+      }
+
+      if (
+        rateLimit.rateLimitBy === "api-key" &&
+        !policies.includes(PolicyOption.ApiKey)
+      ) {
+        console.warn(
+          `Rate limit by apiKey is enabled but apiKey policy is not enabled for endpoint ${endpoint.path}`,
+        );
+      }
+
       router.use(endpoint.path, policyMiddleware.rateLimit(rateLimit));
     }
   }

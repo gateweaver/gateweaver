@@ -1,10 +1,13 @@
 import "dotenv/config";
 import express from "express";
+import helmet from "helmet";
 import { parseConfigYaml } from "./config/parse";
 import { setupRouter } from "./router";
 import { errorHandler } from "@endpointly/utils";
 
 const app = express();
+
+app.use(helmet());
 
 app.use(express.json());
 

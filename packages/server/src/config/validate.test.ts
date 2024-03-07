@@ -71,7 +71,16 @@ describe("validateConfig", () => {
 
   it("should throw an error if rate limiting by api key and api key policy is not provided", () => {
     const invalidPolicyConfig: Config = {
-      endpoints: [],
+      endpoints: [
+        {
+          method: HttpMethod.GET,
+          path: "/path1",
+          destination: {
+            url: "http://example.com",
+          },
+          policies: [PolicyOption.RateLimit],
+        },
+      ],
       policyDefinitions: {
         rateLimit: {
           rateLimitBy: "apiKey",
@@ -86,7 +95,16 @@ describe("validateConfig", () => {
 
   it("should throw an error if rate limiting by jwt and jwt policy is not provided", () => {
     const invalidJwtPolicyConfig: Config = {
-      endpoints: [],
+      endpoints: [
+        {
+          method: HttpMethod.GET,
+          path: "/path1",
+          destination: {
+            url: "http://example.com",
+          },
+          policies: [PolicyOption.RateLimit],
+        },
+      ],
       policyDefinitions: {
         rateLimit: {
           rateLimitBy: "jwt",

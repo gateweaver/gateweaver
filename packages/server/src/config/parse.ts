@@ -28,7 +28,5 @@ export const parseConfigYaml = (filePath: string): Config => {
 
   const config = YAML.parse(file);
 
-  validateConfig(config);
-
-  return config;
+  return validateConfig(config);
 };

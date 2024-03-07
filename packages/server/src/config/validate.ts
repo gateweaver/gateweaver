@@ -107,7 +107,11 @@ export const validateConfig = (config: Config) => {
     validationErrors.push("Error: ", JSON.stringify(validate.errors, null, 2));
   }
 
-  const { policyDefinitions, endpoints } = config;
+  const { policyDefinitions, endpoints } = config || {};
+
+  if (!endpoints || endpoints.length === 0) {
+    throw new ConfigValidationError("Error: No endpoints defined in config.");
+  }
 
   if (policyDefinitions) {
     const policyErrors = validatePolicyDefinitions(policyDefinitions);
@@ -132,4 +136,6 @@ export const validateConfig = (config: Config) => {
   if (validationErrors.length > 0) {
     throw new ConfigValidationError(`\n${validationErrors.join("\n")}`);
   }
+
+  return config;
 };

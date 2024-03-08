@@ -5,7 +5,7 @@ import {
 } from "@endpointly/policies";
 import { logger } from "@endpointly/utils";
 import { Router } from "express";
-import { Endpoint } from "../config/types";
+import { Endpoint } from "../../config/config.types";
 
 export const setupPolicies = (
   router: Router,

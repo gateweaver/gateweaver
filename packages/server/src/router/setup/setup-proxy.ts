@@ -3,7 +3,7 @@ import { Router } from "express";
 import { createProxyMiddleware, type Options } from "http-proxy-middleware";
 import { PolicyOption } from "@endpointly/policies";
 import { logger } from "@endpointly/utils";
-import { Endpoint } from "../config/types";
+import { Endpoint } from "../../config/config.types";
 
 const deleteHeaders = (res: IncomingMessage, headers: string[]) => {
   headers.forEach((header) => {

@@ -1,8 +1,8 @@
 import Ajv from "ajv";
 import addFormats from "ajv-formats";
 import { PolicyDefinitions, PolicyOption } from "@endpointly/policies";
-import { configSchema } from "./schema";
-import { Endpoint, Config } from "./types";
+import { configSchema } from "./config.schema";
+import { Endpoint, Config } from "./config.types";
 
 class InvalidConfigError extends Error {
   constructor(message: string) {

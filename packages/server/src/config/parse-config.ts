@@ -1,7 +1,7 @@
 import fs from "fs";
 import YAML from "yaml";
-import { validateConfig } from "./validate";
-import { Config } from "./types";
+import { validateConfig } from "./validate-config";
+import { Config } from "./config.types";
 
 export const parseConfigYaml = (filePath: string): Config => {
   const extensions = [".yml", ".yaml"];

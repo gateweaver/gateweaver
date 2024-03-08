@@ -2,8 +2,8 @@ import "dotenv/config";
 import express from "express";
 import helmet from "helmet";
 import { errorHandler, logger } from "@endpointly/utils";
-import { parseConfigYaml } from "./config/parse";
-import { setupRouter } from "./router";
+import { parseConfigYaml } from "./config/parse-config";
+import { createRouter } from "./router";
 
 const app = express();
 
@@ -16,7 +16,7 @@ const startServer = () => {
 
   const PORT = config.port || process.env.PORT || 6060;
 
-  const router = setupRouter(config);
+  const router = createRouter(config);
   app.use(router);
 
   app.use(errorHandler);

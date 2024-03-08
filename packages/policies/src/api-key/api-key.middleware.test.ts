@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { hashApiKey } from "@endpointly/utils";
-import { apiKeyMiddleware, isValidApiKey } from "./middleware";
+import { apiKeyMiddleware, isValidApiKey } from "./api-key.middleware";
 
 describe("isValidApiKey", () => {
   it("returns true for a valid API key", () => {

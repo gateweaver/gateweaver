@@ -1,7 +1,7 @@
 import { Request } from "express";
 import { UnauthorizedAccessError } from "@endpointly/utils";
 import { keyGenerator } from "./key-generator";
-import { RateLimitBy } from "./schema";
+import { RateLimitBy } from "./rate-limit.schema";
 
 describe("keyGenerator", () => {
   let req: Request;

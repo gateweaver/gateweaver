@@ -7,7 +7,7 @@ import {
   HttpMethod,
   TransformedRequest,
   TransformedResponse,
-} from "./types";
+} from "./config.types";
 
 const destinationSchema: JSONSchemaType<Destination> = {
   type: "object",

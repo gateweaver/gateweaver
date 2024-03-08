@@ -1,6 +1,6 @@
 import { PolicyOption, RateLimitPolicy } from "@endpointly/policies";
-import { Config, HttpMethod } from "./types";
-import { validateConfig } from "./validate";
+import { Config, HttpMethod } from "./config.types";
+import { validateConfig } from "./validate-config";
 
 describe("validateConfig", () => {
   it("should not throw an error if config is valid", () => {

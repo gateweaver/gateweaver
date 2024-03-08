@@ -1,5 +1,5 @@
 import { rateLimit } from "express-rate-limit";
-import { RateLimitPolicy } from "./schema";
+import { RateLimitPolicy } from "./rate-limit.schema";
 import { keyGenerator } from "./key-generator";
 
 export const rateLimitMiddleware = (policy: RateLimitPolicy) => {

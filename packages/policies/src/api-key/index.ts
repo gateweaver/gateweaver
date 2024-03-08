@@ -1,2 +1,2 @@
-export * from "./schema";
-export * from "./middleware";
+export * from "./api-key.schema";
+export * from "./api-key.middleware";

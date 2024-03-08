@@ -1,8 +1,8 @@
 import { Router } from "express";
-import { Config } from "../config/types";
-import { setupEndpoints } from "./setup-endpoints";
+import { Config } from "../config/config.types";
+import { setupEndpoints } from "./setup/setup-endpoints";
 
-export const setupRouter = (config: Config) => {
+export const createRouter = (config: Config) => {
   const router = Router();
 
   if (process.env.NODE_ENV === "development") {

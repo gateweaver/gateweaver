@@ -2,13 +2,9 @@ import { Request, Response, NextFunction } from "express";
 import { hashApiKey } from "@endpointly/utils";
 import { ApiKeyPolicy } from "./schema";
 
-const isValidApiKey = (apiKey: string, apiKeyHashes: string[]) => {
-  try {
-    const apiKeyHash = hashApiKey(apiKey);
-    return apiKeyHashes.includes(apiKeyHash);
-  } catch (error) {
-    return false;
-  }
+export const isValidApiKey = (apiKey: string, apiKeyHashes: string[]) => {
+  const apiKeyHash = hashApiKey(apiKey);
+  return apiKeyHashes.includes(apiKeyHash);
 };
 
 export const apiKeyMiddleware = (policy: ApiKeyPolicy) => {

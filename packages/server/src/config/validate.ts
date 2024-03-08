@@ -102,12 +102,16 @@ export const validateConfig = (config: Config) => {
   const validationErrors: string[] = [];
 
   if (!validate(config)) {
+    console.log(validate.errors);
+
     const errorMessages = validate.errors?.map((error) => {
       const instancePath = error.instancePath
         .replace(/^\//, "")
         .replace(/\//g, ".");
 
-      return `${instancePath} ${error.message}`;
+      const allowedValues = error.params?.allowedValues?.join(", ");
+
+      return `${instancePath} ${error.message} ${allowedValues ? `(${allowedValues})` : ""}`;
     });
 
     if (errorMessages) validationErrors.push(...errorMessages);

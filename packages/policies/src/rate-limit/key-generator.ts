@@ -1,5 +1,5 @@
 import { Request } from "express";
-import { RateLimitPolicy } from "./schema";
+import { RateLimitBy } from "./schema";
 import { UnauthorizedAccessError } from "@endpointly/utils";
 
 const decodeJwt = (token: string) => {
@@ -10,10 +10,10 @@ const decodeJwt = (token: string) => {
   }
 };
 
-export const keyGenerator = (rateLimitBy: RateLimitPolicy["rateLimitBy"]) => {
+export const keyGenerator = (option: RateLimitBy) => {
   return (req: Request) => {
-    switch (rateLimitBy) {
-      case "apiKey": {
+    switch (option) {
+      case RateLimitBy.API_KEY: {
         const apiKey = req.headers["x-api-key"];
         if (!apiKey) {
           throw new UnauthorizedAccessError("API Key Required");
@@ -21,7 +21,7 @@ export const keyGenerator = (rateLimitBy: RateLimitPolicy["rateLimitBy"]) => {
 
         return apiKey;
       }
-      case "jwt": {
+      case RateLimitBy.JWT: {
         const authHeader = req.headers.authorization;
 
         if (!authHeader) {
@@ -32,7 +32,7 @@ export const keyGenerator = (rateLimitBy: RateLimitPolicy["rateLimitBy"]) => {
         const decoded = decodeJwt(token);
         return decoded.sub;
       }
-      case "ip": {
+      case RateLimitBy.IP: {
         const ip = req.ip;
 
         if (!ip) {
@@ -42,7 +42,7 @@ export const keyGenerator = (rateLimitBy: RateLimitPolicy["rateLimitBy"]) => {
         return ip;
       }
       default:
-        throw new Error(`Invalid rateLimitBy: ${rateLimitBy}`);
+        throw new Error(`Invalid rateLimitBy: ${option}`);
     }
   };
 };

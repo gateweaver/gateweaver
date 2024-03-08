@@ -47,7 +47,7 @@ describe("validateConfig", () => {
     };
 
     expect(() => validateConfig(invalidConfig)).toThrow(
-      'Error: Duplicate endpoint path/method combination: "GET /duplicate"',
+      'Duplicate endpoint path/method combination: "GET /duplicate"',
     );
   });
 
@@ -65,7 +65,7 @@ describe("validateConfig", () => {
     };
 
     expect(() => validateConfig(invalidConfig)).toThrow(
-      'Error: Invalid path "invalid path". Must start with / and only contain alphanumeric characters, hyphens, and underscores.',
+      'Invalid path "invalid path". Must start with / and only contain alphanumeric characters, hyphens, and underscores.',
     );
   });
 
@@ -89,7 +89,7 @@ describe("validateConfig", () => {
     };
 
     expect(() => validateConfig(invalidPolicyConfig)).toThrow(
-      "Error: Rate limiting by api key requires an api key policy",
+      "Rate limiting by api key requires an api key policy",
     );
   });
 
@@ -113,7 +113,7 @@ describe("validateConfig", () => {
     };
 
     expect(() => validateConfig(invalidJwtPolicyConfig)).toThrow(
-      "Error: Rate limiting by jwt requires a jwt policy",
+      "Rate limiting by jwt requires a jwt policy",
     );
   });
 
@@ -132,7 +132,7 @@ describe("validateConfig", () => {
     };
 
     expect(() => validateConfig(invalidPolicyConfig)).toThrow(
-      'Error: Policy "rateLimit" is not defined in policyDefinitions',
+      'Policy "rateLimit" is not defined in policyDefinitions',
     );
   });
 });

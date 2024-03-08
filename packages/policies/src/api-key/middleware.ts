@@ -7,7 +7,6 @@ const isValidApiKey = (apiKey: string, apiKeyHashes: string[]) => {
     const apiKeyHash = hashApiKey(apiKey);
     return apiKeyHashes.includes(apiKeyHash);
   } catch (error) {
-    console.error("Error validating API key", error);
     return false;
   }
 };

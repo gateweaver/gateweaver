@@ -1,9 +1,9 @@
 import "dotenv/config";
 import express from "express";
 import helmet from "helmet";
+import { errorHandler, logger } from "@endpointly/utils";
 import { parseConfigYaml } from "./config/parse";
 import { setupRouter } from "./router";
-import { errorHandler } from "@endpointly/utils";
 
 const app = express();
 
@@ -11,19 +11,9 @@ app.use(helmet());
 
 app.use(express.json());
 
-const loadConfiguration = async () => {
+const startServer = () => {
   try {
     const config = parseConfigYaml("gateway");
-    return config;
-  } catch (error) {
-    console.error(`Failed to load configuration:\n${error}`);
-    process.exit(1);
-  }
-};
-
-const startServer = async () => {
-  try {
-    const config = await loadConfiguration();
 
     const PORT = config.port || process.env.PORT || 6060;
 
@@ -33,10 +23,10 @@ const startServer = async () => {
     app.use(errorHandler);
 
     app.listen(PORT, () => {
-      console.log(`Endpointly server is running on port ${PORT}`);
+      logger.info(`Endpointly server is running on port ${PORT}`);
     });
   } catch (error) {
-    console.error(`Failed to start server:\n${error}`);
+    logger.error(error);
     process.exit(1);
   }
 };

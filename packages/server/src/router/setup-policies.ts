@@ -3,6 +3,7 @@ import {
   PolicyOption,
   policyMiddleware,
 } from "@endpointly/policies";
+import { logger } from "@endpointly/utils";
 import { Router } from "express";
 import { Endpoint } from "../config/types";
 
@@ -33,7 +34,7 @@ export const setupPolicies = (
         rateLimit.rateLimitBy === "jwt" &&
         !policies.includes(PolicyOption.Jwt)
       ) {
-        console.warn(
+        logger.warn(
           `Rate limit by jwt is enabled but jwt policy is not enabled for endpoint ${endpoint.path}`,
         );
       }
@@ -42,7 +43,7 @@ export const setupPolicies = (
         rateLimit.rateLimitBy === "apiKey" &&
         !policies.includes(PolicyOption.ApiKey)
       ) {
-        console.warn(
+        logger.warn(
           `Rate limit by apiKey is enabled but apiKey policy is not enabled for endpoint ${endpoint.path}`,
         );
       }

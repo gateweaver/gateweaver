@@ -1,4 +1,5 @@
 import { NextFunction, Request, Response } from "express";
+import { logger } from "../logger";
 
 export class UnauthorizedAccessError extends Error {
   constructor(message: string) {
@@ -30,7 +31,7 @@ export const errorHandler = (
     return;
   }
 
-  console.error(err);
+  logger.error(err);
 
   return res.status(500).send({
     error: "Internal Server Error",

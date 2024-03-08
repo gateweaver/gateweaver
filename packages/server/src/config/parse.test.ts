@@ -1,5 +1,5 @@
-import { parseConfigYaml } from "./parse";
 import fs from "fs";
+import { parseConfigYaml } from "./parse";
 import { validateConfig } from "./validate";
 
 jest.mock("fs");

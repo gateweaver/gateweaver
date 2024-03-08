@@ -1,6 +1,6 @@
 import { Request } from "express";
-import { RateLimitBy } from "./schema";
 import { UnauthorizedAccessError } from "@endpointly/utils";
+import { RateLimitBy } from "./schema";
 
 const decodeJwt = (token: string) => {
   try {

@@ -3,7 +3,7 @@ import { parseConfigYaml } from "./parse-config";
 import { validateConfig } from "./validate-config";
 
 jest.mock("fs");
-jest.mock("./validate");
+jest.mock("./validate-config");
 
 describe("parseConfigYaml", () => {
   const mockEnv = { TEST_VAR: "value" };

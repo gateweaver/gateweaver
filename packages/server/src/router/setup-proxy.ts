@@ -1,8 +1,9 @@
-import { Router, Request } from "express";
-import { createProxyMiddleware, type Options } from "http-proxy-middleware";
-import { Endpoint } from "../config/types";
 import { IncomingMessage } from "http";
+import { Router } from "express";
+import { createProxyMiddleware, type Options } from "http-proxy-middleware";
 import { PolicyOption } from "@endpointly/policies";
+import { logger } from "@endpointly/utils";
+import { Endpoint } from "../config/types";
 
 const deleteHeaders = (res: IncomingMessage, headers: string[]) => {
   headers.forEach((header) => {
@@ -12,8 +13,6 @@ const deleteHeaders = (res: IncomingMessage, headers: string[]) => {
 };
 
 export const setupProxy = (router: Router, endpoint: Endpoint) => {
-  const proxyFilter = (req: Request) => req.method === endpoint.method;
-
   const buildDestinationUrl = () => {
     let url = endpoint.destination.url;
 
@@ -57,6 +56,16 @@ export const setupProxy = (router: Router, endpoint: Endpoint) => {
     }
   };
 
+  const logProvider = () => {
+    return {
+      debug: logger.debug.bind(logger),
+      log: logger.info.bind(logger),
+      info: logger.info.bind(logger),
+      warn: logger.warn.bind(logger),
+      error: logger.error.bind(logger),
+    };
+  };
+
   const proxyOptions: Options = {
     target: buildDestinationUrl(),
     changeOrigin: true,
@@ -64,10 +73,15 @@ export const setupProxy = (router: Router, endpoint: Endpoint) => {
     headers: endpoint.transformedRequest?.headers,
     xfwd: true,
     onProxyRes,
+    logProvider,
+    logLevel: "error",
   };
 
   router.use(
     endpoint.path,
-    createProxyMiddleware((_, req) => proxyFilter(req), proxyOptions),
+    createProxyMiddleware(
+      (_, req) => req.method === endpoint.method,
+      proxyOptions,
+    ),
   );
 };

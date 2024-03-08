@@ -12,23 +12,23 @@ app.use(helmet());
 app.use(express.json());
 
 const startServer = () => {
-  try {
-    const config = parseConfigYaml("gateway");
+  const config = parseConfigYaml("gateway");
 
-    const PORT = config.port || process.env.PORT || 6060;
+  const PORT = config.port || process.env.PORT || 6060;
 
-    const router = setupRouter(config);
-    app.use(router);
+  const router = setupRouter(config);
+  app.use(router);
 
-    app.use(errorHandler);
+  app.use(errorHandler);
 
-    app.listen(PORT, () => {
-      logger.info(`Endpointly server is running on port ${PORT}`);
-    });
-  } catch (error) {
-    logger.error(error);
-    process.exit(1);
-  }
+  app.listen(PORT, () => {
+    logger.info(`Endpointly server is running on port ${PORT}`);
+  });
 };
 
-startServer();
+try {
+  startServer();
+} catch (error) {
+  logger.error(error);
+  process.exit(1);
+}

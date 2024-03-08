@@ -4,10 +4,10 @@ import { PolicyDefinitions, PolicyOption } from "@endpointly/policies";
 import { configSchema } from "./schema";
 import { Endpoint, Config } from "./types";
 
-class ConfigValidationError extends Error {
+class InvalidConfigError extends Error {
   constructor(message: string) {
     super(message);
-    this.name = "ConfigValidationError";
+    this.name = "InvalidConfigError";
   }
 }
 
@@ -18,7 +18,7 @@ const checkEndpointUniqueness = (
   const pathKey = `${endpoint.method} ${endpoint.path}`;
 
   if (endpointPaths.has(pathKey)) {
-    return `Error: Duplicate endpoint path/method combination: "${pathKey}"`;
+    return `Duplicate endpoint path/method combination: "${pathKey}"`;
   } else {
     endpointPaths.add(pathKey);
     return null;
@@ -28,7 +28,7 @@ const checkEndpointUniqueness = (
 const validateEndpointPath = (endpoint: Endpoint): string | null => {
   const pathPattern = /^\/[a-zA-Z0-9\-_/]*\/?$/;
   if (!pathPattern.test(endpoint.path)) {
-    return `Error: Invalid path "${endpoint.path}". Must start with / and only contain alphanumeric characters, hyphens, and underscores.`;
+    return `Invalid path "${endpoint.path}". Must start with / and only contain alphanumeric characters, hyphens, and underscores`;
   }
   return null;
 };
@@ -62,11 +62,11 @@ const validatePolicyDefinitions = (policyDefinitions: PolicyDefinitions) => {
     const { rateLimitBy } = rateLimit;
 
     if (rateLimitBy === "apiKey" && !policyDefinitions.apiKey) {
-      errors.push("Error: Rate limiting by api key requires an api key policy");
+      errors.push("Rate limiting by api key requires an api key policy");
     }
 
     if (rateLimitBy === "jwt" && !policyDefinitions.jwt) {
-      errors.push("Error: Rate limiting by jwt requires a jwt policy");
+      errors.push("Rate limiting by jwt requires a jwt policy");
     }
   }
 
@@ -87,9 +87,7 @@ const validateEndpointPolicies = (
 
   endpointPolicies.forEach((policy) => {
     if (validPolicies.includes(policy) && !policyDefinitions?.[policy]) {
-      errors.push(
-        `Error: Policy "${policy}" is not defined in policyDefinitions`,
-      );
+      errors.push(`Policy "${policy}" is not defined in policyDefinitions`);
     }
   });
 
@@ -104,13 +102,21 @@ export const validateConfig = (config: Config) => {
   const validationErrors: string[] = [];
 
   if (!validate(config)) {
-    validationErrors.push("Error: ", JSON.stringify(validate.errors, null, 2));
+    const errorMessages = validate.errors?.map((error) => {
+      const instancePath = error.instancePath
+        .replace(/^\//, "")
+        .replace(/\//g, ".");
+
+      return `${instancePath} ${error.message}`;
+    });
+
+    if (errorMessages) validationErrors.push(...errorMessages);
   }
 
   const { policyDefinitions, endpoints } = config || {};
 
   if (!endpoints || endpoints.length === 0) {
-    throw new ConfigValidationError("Error: No endpoints defined in config.");
+    throw new InvalidConfigError("No endpoints defined in configuration file.");
   }
 
   if (policyDefinitions) {
@@ -134,7 +140,7 @@ export const validateConfig = (config: Config) => {
   }
 
   if (validationErrors.length > 0) {
-    throw new ConfigValidationError(`\n${validationErrors.join("\n")}`);
+    throw new InvalidConfigError(`${validationErrors.join("; ")}`);
   }
 
   return config;

@@ -2,6 +2,7 @@ import { Router } from "express";
 import { Config } from "../config/types";
 import { setupProxy } from "./setup-proxy";
 import { setupPolicies } from "./setup-policies";
+import { logger } from "@endpointly/utils";
 
 export const setupEndpoints = (router: Router, config: Config) => {
   const { endpoints, policyDefinitions } = config;
@@ -11,5 +12,9 @@ export const setupEndpoints = (router: Router, config: Config) => {
       setupPolicies(router, endpoint, policyDefinitions);
     }
     setupProxy(router, endpoint);
+
+    logger.info(
+      `Created endpoint ${endpoint.path} -> ${endpoint.destination.url}`,
+    );
   });
 };

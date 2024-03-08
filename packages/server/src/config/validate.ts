@@ -4,12 +4,10 @@ import { PolicyDefinitions, PolicyOption } from "@endpointly/policies";
 import { configSchema } from "./schema";
 import { Endpoint, Config } from "./types";
 
-// TODO: Return multiple errors instead of throwing an error with a concatenated string of errors?
-
-class ConfigValidationError extends Error {
+class InvalidConfigError extends Error {
   constructor(message: string) {
     super(message);
-    this.name = "ConfigValidationError";
+    this.name = "InvalidConfigError";
   }
 }
 
@@ -30,7 +28,7 @@ const checkEndpointUniqueness = (
 const validateEndpointPath = (endpoint: Endpoint): string | null => {
   const pathPattern = /^\/[a-zA-Z0-9\-_/]*\/?$/;
   if (!pathPattern.test(endpoint.path)) {
-    return `Invalid path "${endpoint.path}". Must start with / and only contain alphanumeric characters, hyphens, and underscores.`;
+    return `Invalid path "${endpoint.path}". Must start with / and only contain alphanumeric characters, hyphens, and underscores`;
   }
   return null;
 };
@@ -104,13 +102,21 @@ export const validateConfig = (config: Config) => {
   const validationErrors: string[] = [];
 
   if (!validate(config)) {
-    validationErrors.push("", JSON.stringify(validate.errors, null, 2));
+    const errorMessages = validate.errors?.map((error) => {
+      const instancePath = error.instancePath
+        .replace(/^\//, "")
+        .replace(/\//g, ".");
+
+      return `${instancePath} ${error.message}`;
+    });
+
+    if (errorMessages) validationErrors.push(...errorMessages);
   }
 
   const { policyDefinitions, endpoints } = config || {};
 
   if (!endpoints || endpoints.length === 0) {
-    throw new ConfigValidationError("No endpoints defined in config.");
+    throw new InvalidConfigError("No endpoints defined in configuration file.");
   }
 
   if (policyDefinitions) {
@@ -134,7 +140,7 @@ export const validateConfig = (config: Config) => {
   }
 
   if (validationErrors.length > 0) {
-    throw new ConfigValidationError(`${validationErrors.join(", ")}`);
+    throw new InvalidConfigError(`${validationErrors.join("; ")}`);
   }
 
   return config;

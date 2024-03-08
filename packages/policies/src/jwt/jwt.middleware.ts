@@ -1,6 +1,6 @@
 import { expressjwt, GetVerificationKey } from "express-jwt";
 import { expressJwtSecret } from "jwks-rsa";
-import { JwtPolicy } from "./schema";
+import { JwtPolicy } from "./jwt.schema";
 
 export const jwtMiddleware = (policy: JwtPolicy) => {
   const { secretOrPublicKey, jwksUri, audience, issuer, algorithms } = policy;

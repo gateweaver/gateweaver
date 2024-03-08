@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from "express";
 import { hashApiKey } from "@endpointly/utils";
-import { ApiKeyPolicy } from "./schema";
+import { ApiKeyPolicy } from "./api-key.schema";
 
 export const isValidApiKey = (apiKey: string, apiKeyHashes: string[]) => {
   const apiKeyHash = hashApiKey(apiKey);

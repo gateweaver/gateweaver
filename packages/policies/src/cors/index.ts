@@ -1,2 +1,2 @@
-export * from "./schema";
-export * from "./middleware";
+export * from "./cors.schema";
+export * from "./cors.middleware";

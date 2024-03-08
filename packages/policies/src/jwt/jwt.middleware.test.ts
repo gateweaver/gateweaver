@@ -1,7 +1,7 @@
 import { expressjwt } from "express-jwt";
 import { expressJwtSecret } from "jwks-rsa";
-import { jwtMiddleware } from "./middleware";
-import { JwtPolicy } from "./schema";
+import { jwtMiddleware } from "./jwt.middleware";
+import { JwtPolicy } from "./jwt.schema";
 
 jest.mock("express-jwt", () => ({
   expressjwt: jest.fn(),

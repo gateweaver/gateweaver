@@ -2,14 +2,15 @@
   "name": "@endpointly/cli",
   "version": "0.0.0",
   "description": "",
-  "main": "dist/src/index.js",
-  "types": "dist/src/index.d.ts",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
   "bin": {
     "endpointly": "dist/src/index.js"
   },
   "scripts": {
-    "build": "tsc -d",
-    "build:watch": "tsc -w -d",
+    "build": "tsup src/index.ts --format cjs,esm --dts",
+    "build:watch": "npm run build -- --watch",
     "lint": "eslint .",
     "clean": "rimraf ./dist"
   },

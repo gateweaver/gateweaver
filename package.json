@@ -3,8 +3,9 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "dev": "turbo build:watch & nodemon apps/server/src/index.ts",
+    "dev": "turbo build:watch & nodemon apps/server/src/server.ts",
     "build": "turbo build",
+    "build:watch": "turbo build:watch",
     "test": "turbo test",
     "test:watch": "turbo run test:watch",
     "lint": "turbo lint",

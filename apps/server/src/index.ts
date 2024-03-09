@@ -14,7 +14,7 @@ app.use(express.json());
 const startServer = () => {
   const config = parseConfigYaml("gateway");
 
-  const PORT = config.port || process.env.PORT || 6060;
+  const PORT = config.port || process.env.PORT || 8080;
 
   const router = createRouter(config);
   app.use(router);

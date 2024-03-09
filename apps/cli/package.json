@@ -1,12 +1,12 @@
 {
   "name": "@endpointly/cli",
-  "version": "0.0.0",
+  "version": "0.0.7",
   "description": "",
-  "main": "dist/index.js",
-  "module": "dist/index.mjs",
-  "types": "dist/index.d.ts",
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
   "bin": {
-    "endpointly": "dist/src/index.js"
+    "endpointly": "./dist/index.js"
   },
   "scripts": {
     "build": "tsup src/index.ts --format cjs,esm --dts",

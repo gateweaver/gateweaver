@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "dev": "turbo build:watch & nodemon apps/server/src/server.ts",
+    "dev": "turbo build:watch & nodemon apps/server/src/server/index.ts",
     "build": "turbo build",
     "build:watch": "turbo build:watch",
     "test": "turbo test",

@@ -1,8 +1,8 @@
 import express from "express";
 import helmet from "helmet";
 import { errorHandler, logger } from "@endpointly/utils";
-import { parseConfigYaml } from "./config/parse-config";
-import { createRouter } from "./router";
+import { parseConfigYaml } from "../config/parse-config";
+import { createRouter } from "../router";
 
 export const startServer = () => {
   const config = parseConfigYaml("gateway");

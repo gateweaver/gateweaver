@@ -3,8 +3,9 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "dev": "turbo build:watch & nodemon apps/server/src/index.ts",
+    "dev": "turbo build:watch & nodemon apps/server/src/server/index.ts",
     "build": "turbo build",
+    "build:watch": "turbo build:watch",
     "test": "turbo test",
     "test:watch": "turbo run test:watch",
     "lint": "turbo lint",
@@ -15,6 +16,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@changesets/cli": "^2.27.1",
     "dotenv": "^16.4.1",
     "express": "^4.18.3"
   },
@@ -32,6 +34,7 @@
     "prettier": "3.2.5",
     "ts-jest": "^29.1.2",
     "ts-node": "^10.9.2",
+    "tsup": "^8.0.2",
     "turbo": "^1.12.4",
     "typescript": "^5.3.3"
   },

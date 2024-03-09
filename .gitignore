@@ -3,6 +3,7 @@
 dist/
 node_modules/
 .env
+.env.gateway
 .DS_Store
 *.log
 .turbo

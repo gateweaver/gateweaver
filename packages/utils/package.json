@@ -1,12 +1,13 @@
 {
   "name": "@endpointly/utils",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "",
-  "main": "dist/src/index.js",
-  "types": "dist/src/index.d.ts",
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
   "scripts": {
-    "build": "tsc -d",
-    "build:watch": "tsc -w -d",
+    "build": "tsup src/index.ts --format cjs,esm --dts",
+    "build:watch": "npm run build -- --watch",
     "lint": "eslint .",
     "clean": "rimraf ./dist"
   },
@@ -14,10 +15,10 @@
   "license": "ISC",
   "devDependencies": {
     "@endpointly/eslint-config": "*",
-    "@endpointly/tsconfig": "*",
-    "pino-pretty": "^10.3.1"
+    "@endpointly/tsconfig": "*"
   },
   "dependencies": {
-    "pino": "^8.19.0"
+    "pino": "^8.19.0",
+    "pino-pretty": "^10.3.1"
   }
 }

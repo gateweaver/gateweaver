@@ -1,5 +1,17 @@
 # @endpointly/eslint-config
 
+## 0.0.9
+
+### Patch Changes
+
+- Change
+
+## 0.0.8
+
+### Patch Changes
+
+- Change
+
 ## 0.0.7
 
 ### Patch Changes

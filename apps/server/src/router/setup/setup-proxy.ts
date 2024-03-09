@@ -13,8 +13,8 @@ const deleteHeaders = (res: IncomingMessage, headers: string[]) => {
 };
 
 export const setupProxy = (router: Router, endpoint: Endpoint) => {
-  const buildDestinationUrl = () => {
-    let url = endpoint.destination.url;
+  const buildTargetUrl = () => {
+    let url = endpoint.target.url;
 
     if (endpoint.transformedRequest?.query) {
       const query = new URLSearchParams(endpoint.transformedRequest.query);
@@ -67,7 +67,7 @@ export const setupProxy = (router: Router, endpoint: Endpoint) => {
   };
 
   const proxyOptions: Options = {
-    target: buildDestinationUrl(),
+    target: buildTargetUrl(),
     changeOrigin: true,
     pathRewrite: { [`^${endpoint.path}`]: "" },
     headers: endpoint.transformedRequest?.headers,

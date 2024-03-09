@@ -17,7 +17,7 @@ policyDefinitions:
 endpoints:
   - path: "/todos"
     method: "GET"
-    destination:
+    target:
       url: "https://jsonplaceholder.typicode.com/todos"
     transformedResponse:
       headers:
@@ -26,7 +26,7 @@ endpoints:
       - cors
   - path: "/todos"
     method: "POST"
-    destination:
+    target:
       url: "https://jsonplaceholder.typicode.com/todos"
     transformedRequest:
       headers:
@@ -35,7 +35,7 @@ endpoints:
       - cors
   - path: "/giphy/trending"
     method: "GET"
-    destination:
+    target:
       url: "https://api.giphy.com/v1/gifs/trending"
     transformedRequest:
       query:
@@ -45,7 +45,7 @@ endpoints:
       - cors
   - path: "/spotify/artist"
     method: "GET"
-    destination:
+    target:
       url: "https://api.spotify.com/v1/artists/4Z8W4fKeB5YxbusRsdQVPb"
     transformedRequest:
       headers:

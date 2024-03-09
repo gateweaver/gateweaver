@@ -13,8 +13,6 @@ export const setupEndpoints = (router: Router, config: Config) => {
     }
     setupProxy(router, endpoint);
 
-    logger.info(
-      `Created endpoint ${endpoint.path} -> ${endpoint.destination.url}`,
-    );
+    logger.info(`Created endpoint ${endpoint.path} -> ${endpoint.target.url}`);
   });
 };

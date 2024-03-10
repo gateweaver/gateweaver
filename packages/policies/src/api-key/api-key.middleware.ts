@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from "express";
-import { hashApiKey } from "@endpointly/utils";
+import { hashApiKey } from "@gateweaver/utils";
 import { ApiKeyPolicy } from "./api-key.schema";
 
 export const isValidApiKey = (apiKey: string, apiKeyHashes: string[]) => {

@@ -1,5 +1,5 @@
 {
-  "name": "@endpointly/utils",
+  "name": "@gateweaver/utils",
   "version": "0.2.4",
   "description": "",
   "main": "./dist/index.js",

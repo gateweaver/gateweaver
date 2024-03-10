@@ -1,8 +1,8 @@
 import { IncomingMessage } from "http";
 import { Router } from "express";
 import { createProxyMiddleware, type Options } from "http-proxy-middleware";
-import { PolicyOption } from "@endpointly/policies";
-import { logger } from "@endpointly/utils";
+import { PolicyOption } from "@gateweaver/policies";
+import { logger } from "@gateweaver/utils";
 import { Endpoint } from "../../config/config.types";
 
 const deleteHeaders = (res: IncomingMessage, headers: string[]) => {

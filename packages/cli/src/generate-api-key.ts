@@ -1,5 +1,5 @@
 import crypto from "crypto";
-import { hashApiKey } from "@endpointly/utils";
+import { hashApiKey } from "@gateweaver/utils";
 
 const generateApiKey = (): string => {
   return crypto.randomUUID().replace(/-/g, "");

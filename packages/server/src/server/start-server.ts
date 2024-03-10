@@ -1,11 +1,11 @@
 import express from "express";
 import helmet from "helmet";
-import { errorHandler, logger } from "@endpointly/utils";
+import { errorHandler, logger } from "@gateweaver/utils";
 import { parseConfigYaml } from "../config/parse-config";
 import { createRouter } from "../router";
 
 export const startServer = () => {
-  const config = parseConfigYaml("endpointly");
+  const config = parseConfigYaml("gateweaver");
 
   const PORT = config.port || process.env.PORT || 8080;
 
@@ -21,6 +21,6 @@ export const startServer = () => {
   app.use(errorHandler);
 
   app.listen(PORT, () => {
-    logger.info(`Endpointly server is running on port ${PORT}`);
+    logger.info(`Gateweaver server is running on port ${PORT}`);
   });
 };

@@ -1,4 +1,4 @@
-import { PolicyOption, RateLimitPolicy } from "@endpointly/policies";
+import { PolicyOption, RateLimitPolicy } from "@gateweaver/policies";
 import { Config, HttpMethod } from "./config.types";
 import { validateConfig } from "./validate-config";
 

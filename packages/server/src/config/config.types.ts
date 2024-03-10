@@ -1,4 +1,4 @@
-import { PolicyDefinitions, PolicyOption } from "@endpointly/policies";
+import { PolicyDefinitions, PolicyOption } from "@gateweaver/policies";
 
 export interface Target {
   url: string;

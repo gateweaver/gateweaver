@@ -1,5 +1,5 @@
 {
-  "name": "@endpointly/policies",
+  "name": "@gateweaver/policies",
   "version": "0.1.4",
   "description": "",
   "main": "./dist/index.js",
@@ -16,7 +16,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@endpointly/utils": "*",
+    "@gateweaver/utils": "*",
     "ajv": "^8.12.0",
     "cors": "^2.8.5",
     "express-jwt": "^8.4.1",

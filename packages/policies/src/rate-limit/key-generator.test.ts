@@ -1,5 +1,5 @@
 import { Request } from "express";
-import { UnauthorizedAccessError } from "@endpointly/utils";
+import { UnauthorizedAccessError } from "@gateweaver/utils";
 import { keyGenerator } from "./key-generator";
 import { RateLimitBy } from "./rate-limit.schema";
 

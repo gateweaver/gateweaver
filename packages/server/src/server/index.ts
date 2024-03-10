@@ -1,6 +1,6 @@
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-require("dotenv").config({ path: ".env.endpointly" });
-import { logger } from "@endpointly/utils";
+require("dotenv").config({ path: ".env.gateweaver" });
+import { logger } from "@gateweaver/utils";
 import { startServer } from "./start-server";
 
 try {

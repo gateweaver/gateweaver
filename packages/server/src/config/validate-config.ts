@@ -1,6 +1,6 @@
 import Ajv from "ajv";
 import addFormats from "ajv-formats";
-import { PolicyDefinitions, PolicyOption } from "@endpointly/policies";
+import { PolicyDefinitions, PolicyOption } from "@gateweaver/policies";
 import { configSchema } from "./config.schema";
 import { Endpoint, Config } from "./config.types";
 

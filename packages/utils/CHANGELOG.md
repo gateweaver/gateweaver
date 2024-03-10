@@ -1,4 +1,4 @@
-# @endpointly/utils
+# @gateweaver/utils
 
 ## 0.2.4
 

@@ -1,12 +1,12 @@
 #! /usr/bin/env node
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-require("dotenv").config({ path: ".env.endpointly" });
+require("dotenv").config({ path: ".env.gateweaver" });
 import { readFileSync } from "node:fs";
 import { resolve } from "node:path";
 import { program } from "commander";
-import { startServer } from "@endpointly/server";
-import { logger } from "@endpointly/utils";
+import { startServer } from "@gateweaver/server";
+import { logger } from "@gateweaver/utils";
 import { generateApiKeyAction } from "./generate-api-key";
 
 const packageJson = JSON.parse(
@@ -14,8 +14,8 @@ const packageJson = JSON.parse(
 );
 
 program
-  .name("endpointly")
-  .description("A CLI tool for managing endpointly gateways")
+  .name("gateweaver")
+  .description("A CLI tool for managing gateweaver gateways")
   .version(packageJson.version);
 
 program
@@ -25,7 +25,7 @@ program
 
 program
   .command("start")
-  .description("Start the endpointly server")
+  .description("Start the gateweaver server")
   .action(() => {
     try {
       startServer();

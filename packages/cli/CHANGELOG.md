@@ -1,4 +1,4 @@
-# @endpointly/cli
+# @gateweaver/cli
 
 ## 0.2.4
 
@@ -6,8 +6,8 @@
 
 - Update packages with build
 - Updated dependencies
-  - @endpointly/server@0.2.4
-  - @endpointly/utils@0.2.4
+  - @gateweaver/server@0.2.4
+  - @gateweaver/utils@0.2.4
 
 ## 0.2.3
 
@@ -15,7 +15,7 @@
 
 - Update packages
 - Updated dependencies
-  - @endpointly/server@0.2.3
+  - @gateweaver/server@0.2.3
 
 ## 0.2.2
 
@@ -23,8 +23,8 @@
 
 - Update packages
 - Updated dependencies
-  - @endpointly/server@0.2.2
-  - @endpointly/utils@0.2.2
+  - @gateweaver/server@0.2.2
+  - @gateweaver/utils@0.2.2
 
 ## 0.2.1
 
@@ -32,8 +32,8 @@
 
 - Remove dev packages
 - Updated dependencies
-  - @endpointly/utils@0.2.1
-  - @endpointly/server@0.2.1
+  - @gateweaver/utils@0.2.1
+  - @gateweaver/server@0.2.1
 
 ## 0.2.0
 
@@ -44,8 +44,8 @@
 ### Patch Changes
 
 - Updated dependencies
-  - @endpointly/utils@0.2.0
-  - @endpointly/server@0.2.0
+  - @gateweaver/utils@0.2.0
+  - @gateweaver/server@0.2.0
 
 ## 0.1.0
 
@@ -56,5 +56,5 @@
 ### Patch Changes
 
 - Updated dependencies
-  - @endpointly/utils@0.1.0
-  - @endpointly/server@0.1.0
+  - @gateweaver/utils@0.1.0
+  - @gateweaver/server@0.1.0

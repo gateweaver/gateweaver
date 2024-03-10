@@ -2,8 +2,8 @@ import {
   PolicyDefinitions,
   PolicyOption,
   policyMiddleware,
-} from "@endpointly/policies";
-import { logger } from "@endpointly/utils";
+} from "@gateweaver/policies";
+import { logger } from "@gateweaver/utils";
 import { Router } from "express";
 import { Endpoint } from "../../config/config.types";
 

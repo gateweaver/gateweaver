@@ -1,5 +1,5 @@
 import { JSONSchemaType } from "ajv";
-import { PolicyOption, policyDefinitionsSchema } from "@endpointly/policies";
+import { PolicyOption, policyDefinitionsSchema } from "@gateweaver/policies";
 import {
   Target,
   Endpoint,

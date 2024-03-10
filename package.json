@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "dev": "turbo build:watch & nodemon apps/server/src/server/index.ts",
+    "dev": "turbo build:watch & nodemon packages/server/src/server/index.ts",
     "build": "turbo build",
     "build:watch": "turbo build:watch",
     "test": "turbo test",
@@ -11,7 +11,7 @@
     "lint": "turbo lint",
     "clean": "turbo clean",
     "prepare": "husky",
-    "purge:node_modules": "rm -rf node_modules && rm -rf packages/*/node_modules && rm -rf apps/*/node_modules"
+    "purge:node_modules": "rm -rf node_modules && rm -rf packages/*/node_modules"
   },
   "author": "",
   "license": "ISC",
@@ -39,7 +39,6 @@
     "typescript": "^5.3.3"
   },
   "workspaces": [
-    "packages/*",
-    "apps/*"
+    "packages/*"
   ]
 }

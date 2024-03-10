@@ -1,5 +1,14 @@
 # @endpointly/server
 
+## 0.2.2
+
+### Patch Changes
+
+- Update packages
+- Updated dependencies
+  - @endpointly/policies@0.1.2
+  - @endpointly/utils@0.2.2
+
 ## 0.2.1
 
 ### Patch Changes

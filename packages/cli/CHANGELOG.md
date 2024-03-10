@@ -1,5 +1,14 @@
 # @endpointly/cli
 
+## 0.2.2
+
+### Patch Changes
+
+- Update packages
+- Updated dependencies
+  - @endpointly/server@0.2.2
+  - @endpointly/utils@0.2.2
+
 ## 0.2.1
 
 ### Patch Changes

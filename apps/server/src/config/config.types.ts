@@ -1,6 +1,6 @@
 import { PolicyDefinitions, PolicyOption } from "@endpointly/policies";
 
-export interface Destination {
+export interface Target {
   url: string;
 }
 
@@ -24,7 +24,7 @@ export interface TransformedResponse {
 export interface Endpoint {
   path: string;
   method: HttpMethod;
-  destination: Destination;
+  target: Target;
   transformedRequest?: TransformedRequest;
   transformedResponse?: TransformedResponse;
   policies?: PolicyOption[];

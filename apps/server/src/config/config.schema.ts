@@ -1,7 +1,7 @@
 import { JSONSchemaType } from "ajv";
 import { PolicyOption, policyDefinitionsSchema } from "@endpointly/policies";
 import {
-  Destination,
+  Target,
   Endpoint,
   Config,
   HttpMethod,
@@ -9,7 +9,7 @@ import {
   TransformedResponse,
 } from "./config.types";
 
-const destinationSchema: JSONSchemaType<Destination> = {
+const targetSchema: JSONSchemaType<Target> = {
   type: "object",
   properties: {
     url: { type: "string", format: "url" },
@@ -46,7 +46,7 @@ const endpointSchema: JSONSchemaType<Endpoint> = {
   properties: {
     path: { type: "string" },
     method: { type: "string", enum: Object.values(HttpMethod) },
-    destination: destinationSchema,
+    target: targetSchema,
     transformedRequest: { ...transformedRequestSchema, nullable: true },
     transformedResponse: { ...transformedResponseSchema, nullable: true },
     policies: {
@@ -55,7 +55,7 @@ const endpointSchema: JSONSchemaType<Endpoint> = {
       nullable: true,
     },
   },
-  required: ["path", "method", "destination"],
+  required: ["path", "method", "target"],
 };
 
 export const configSchema: JSONSchemaType<Config> = {

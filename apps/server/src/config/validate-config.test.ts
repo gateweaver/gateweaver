@@ -9,14 +9,14 @@ describe("validateConfig", () => {
         {
           method: HttpMethod.GET,
           path: "/path1",
-          destination: {
+          target: {
             url: "http://example.com",
           },
         },
         {
           method: HttpMethod.POST,
           path: "/path2",
-          destination: {
+          target: {
             url: "http://example.com",
           },
         },
@@ -32,14 +32,14 @@ describe("validateConfig", () => {
         {
           method: HttpMethod.GET,
           path: "/duplicate",
-          destination: {
+          target: {
             url: "http://example.com",
           },
         },
         {
           method: HttpMethod.GET,
           path: "/duplicate",
-          destination: {
+          target: {
             url: "http://example.com",
           },
         },
@@ -57,7 +57,7 @@ describe("validateConfig", () => {
         {
           method: HttpMethod.GET,
           path: "invalid path",
-          destination: {
+          target: {
             url: "http://example.com",
           },
         },
@@ -75,7 +75,7 @@ describe("validateConfig", () => {
         {
           method: HttpMethod.GET,
           path: "/path1",
-          destination: {
+          target: {
             url: "http://example.com",
           },
           policies: [PolicyOption.RateLimit],
@@ -99,7 +99,7 @@ describe("validateConfig", () => {
         {
           method: HttpMethod.GET,
           path: "/path1",
-          destination: {
+          target: {
             url: "http://example.com",
           },
           policies: [PolicyOption.RateLimit],
@@ -123,7 +123,7 @@ describe("validateConfig", () => {
         {
           method: HttpMethod.GET,
           path: "/path1",
-          destination: {
+          target: {
             url: "http://example.com",
           },
           policies: [PolicyOption.RateLimit],

@@ -5,7 +5,7 @@ import { parseConfigYaml } from "../config/parse-config";
 import { createRouter } from "../router";
 
 export const startServer = () => {
-  const config = parseConfigYaml("gateway");
+  const config = parseConfigYaml("endpointly");
 
   const PORT = config.port || process.env.PORT || 8080;
 

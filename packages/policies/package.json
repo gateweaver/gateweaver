@@ -1,6 +1,6 @@
 {
   "name": "@endpointly/policies",
-  "version": "0.1.0",
+  "version": "0.1.2",
   "description": "",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
@@ -8,10 +8,10 @@
   "scripts": {
     "build": "tsup src/index.ts --format cjs,esm --dts",
     "build:watch": "npm run build -- --watch",
-    "test": "jest --passWithNoTests",
-    "test:watch": "jest --watch",
     "lint": "eslint .",
-    "clean": "rimraf ./dist"
+    "clean": "rimraf ./dist",
+    "test": "jest --passWithNoTests",
+    "test:watch": "jest --watch"
   },
   "author": "",
   "license": "ISC",
@@ -24,8 +24,6 @@
     "jwks-rsa": "^3.1.0"
   },
   "devDependencies": {
-    "@endpointly/eslint-config": "*",
-    "@endpointly/tsconfig": "*",
     "@types/cors": "^2.8.17"
   }
 }

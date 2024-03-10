@@ -1,6 +1,6 @@
 {
   "name": "@endpointly/cli",
-  "version": "0.2.0",
+  "version": "0.2.2",
   "description": "",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
@@ -12,14 +12,13 @@
     "build": "tsup src/index.ts --format cjs,esm --dts",
     "build:watch": "npm run build -- --watch",
     "lint": "eslint .",
-    "clean": "rimraf ./dist"
+    "clean": "rimraf ./dist",
+    "test": "jest --passWithNoTests",
+    "test:watch": "jest --watch"
   },
   "author": "",
   "license": "ISC",
-  "devDependencies": {
-    "@endpointly/eslint-config": "*",
-    "@endpointly/tsconfig": "*"
-  },
+  "devDependencies": {},
   "dependencies": {
     "@endpointly/server": "*",
     "@endpointly/utils": "*",

@@ -1,5 +1,17 @@
 # @endpointly/utils
 
+## 0.2.4
+
+### Patch Changes
+
+- Update packages with build
+
+## 0.2.3
+
+### Patch Changes
+
+- Update logger default
+
 ## 0.2.2
 
 ### Patch Changes

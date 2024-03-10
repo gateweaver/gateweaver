@@ -3,7 +3,7 @@ require("dotenv").config({ path: ".env.endpointly" });
 import pino from "pino";
 
 const options =
-  process.env.NODE_ENV === "development"
+  process.env.NODE_ENV !== "production"
     ? {
         transport: {
           target: "pino-pretty",

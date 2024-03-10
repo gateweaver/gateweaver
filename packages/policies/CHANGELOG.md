@@ -1,5 +1,19 @@
 # @endpointly/policies
 
+## 0.1.4
+
+### Patch Changes
+
+- Update packages with build
+- Updated dependencies
+  - @endpointly/utils@0.2.4
+
+## 0.1.3
+
+### Patch Changes
+
+- Update packages
+
 ## 0.1.2
 
 ### Patch Changes

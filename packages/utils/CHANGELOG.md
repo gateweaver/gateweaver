@@ -1,5 +1,11 @@
 # @endpointly/utils
 
+## 0.2.1
+
+### Patch Changes
+
+- Remove dev packages
+
 ## 0.2.0
 
 ### Minor Changes

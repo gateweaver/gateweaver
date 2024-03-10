@@ -1,7 +1,7 @@
 #! /usr/bin/env node
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-require("dotenv").config({ path: ".env.gateway" });
+require("dotenv").config({ path: ".env.endpointly" });
 import { readFileSync } from "node:fs";
 import { resolve } from "node:path";
 import { program } from "commander";

@@ -24,8 +24,6 @@
     "jwks-rsa": "^3.1.0"
   },
   "devDependencies": {
-    "@endpointly/eslint-config": "*",
-    "@endpointly/tsconfig": "*",
     "@types/cors": "^2.8.17"
   }
 }

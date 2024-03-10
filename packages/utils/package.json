@@ -13,10 +13,7 @@
   },
   "author": "",
   "license": "ISC",
-  "devDependencies": {
-    "@endpointly/eslint-config": "*",
-    "@endpointly/tsconfig": "*"
-  },
+  "devDependencies": {},
   "dependencies": {
     "pino": "^8.19.0",
     "pino-pretty": "^10.3.1"

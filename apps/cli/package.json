@@ -16,10 +16,7 @@
   },
   "author": "",
   "license": "ISC",
-  "devDependencies": {
-    "@endpointly/eslint-config": "*",
-    "@endpointly/tsconfig": "*"
-  },
+  "devDependencies": {},
   "dependencies": {
     "@endpointly/server": "*",
     "@endpointly/utils": "*",

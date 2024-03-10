@@ -1,4 +1,4 @@
 {
-  "extends": ["@endpointly/eslint-config/base.json"],
+  "extends": ["../../.eslintrc.json"],
   "root": true
 }

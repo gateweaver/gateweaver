@@ -9,7 +9,9 @@
     "build": "tsup src/index.ts --format cjs,esm --dts",
     "build:watch": "npm run build -- --watch",
     "lint": "eslint .",
-    "clean": "rimraf ./dist"
+    "clean": "rimraf ./dist",
+    "test": "jest --passWithNoTests",
+    "test:watch": "jest --watch"
   },
   "author": "",
   "license": "ISC",

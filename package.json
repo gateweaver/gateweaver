@@ -17,7 +17,6 @@
   "license": "ISC",
   "dependencies": {
     "@changesets/cli": "^2.27.1",
-    "dotenv": "^16.4.1",
     "express": "^4.18.3"
   },
   "devDependencies": {

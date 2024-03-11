@@ -18,10 +18,10 @@
   },
   "author": "",
   "license": "ISC",
-  "devDependencies": {},
   "dependencies": {
     "@gateweaver/server": "*",
     "@gateweaver/utils": "*",
-    "commander": "^12.0.0"
+    "commander": "^12.0.0",
+    "dotenv": "^16.4.5"
   }
 }

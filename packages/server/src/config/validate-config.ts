@@ -53,7 +53,9 @@ const validateEndpoints = (endpoints: Endpoint[]): string[] => {
   return errors;
 };
 
-const validatePolicyDefinitions = (policyDefinitions: PolicyDefinitions) => {
+const validatePolicyDefinitions = (
+  policyDefinitions: PolicyDefinitions,
+): string[] => {
   const errors: string[] = [];
 
   const { rateLimit } = policyDefinitions;
@@ -76,7 +78,7 @@ const validatePolicyDefinitions = (policyDefinitions: PolicyDefinitions) => {
 const validateEndpointPolicies = (
   endpoints: Endpoint[],
   policyDefinitions?: PolicyDefinitions,
-) => {
+): string[] => {
   const errors: string[] = [];
 
   const validPolicies = Object.values(PolicyOption);
@@ -94,7 +96,7 @@ const validateEndpointPolicies = (
   return errors;
 };
 
-export const validateConfig = (config: Config) => {
+export const validateConfig = (config: Config): Config => {
   const ajv = new Ajv({ useDefaults: true, allowUnionTypes: true });
   addFormats(ajv, ["url"]);
 

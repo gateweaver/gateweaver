@@ -7,17 +7,10 @@ settings:
 importers:
 
   .:
-    dependencies:
-      express:
-        specifier: ^4.18.3
-        version: 4.18.3
     devDependencies:
       '@changesets/cli':
         specifier: ^2.27.1
         version: 2.27.1
-      '@types/express':
-        specifier: ^4.17.21
-        version: 4.17.21
       '@types/jest':
         specifier: ^29.5.12
         version: 29.5.12
@@ -106,6 +99,9 @@ importers:
       '@types/cors':
         specifier: ^2.8.17
         version: 2.8.17
+      '@types/express':
+        specifier: ^4.17.21
+        version: 4.17.21
 
   packages/server:
     dependencies:
@@ -124,6 +120,9 @@ importers:
       dotenv:
         specifier: ^16.4.5
         version: 16.4.5
+      express:
+        specifier: ^4.18.3
+        version: 4.18.3
       helmet:
         specifier: ^7.1.0
         version: 7.1.0
@@ -133,6 +132,10 @@ importers:
       yaml:
         specifier: ^2.3.4
         version: 2.4.1
+    devDependencies:
+      '@types/express':
+        specifier: ^4.17.21
+        version: 4.17.21
 
   packages/utils:
     dependencies:
@@ -145,6 +148,10 @@ importers:
       pino-pretty:
         specifier: ^10.3.1
         version: 10.3.1
+    devDependencies:
+      '@types/express':
+        specifier: ^4.17.21
+        version: 4.17.21
 
 packages:
 

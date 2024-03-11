@@ -16,10 +16,10 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@changesets/cli": "^2.27.1",
     "express": "^4.18.3"
   },
   "devDependencies": {
+    "@changesets/cli": "^2.27.1",
     "@types/express": "^4.17.21",
     "@types/jest": "^29.5.12",
     "@types/node": "^20.11.17",

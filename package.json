@@ -1,6 +1,6 @@
 {
   "name": "gateweaver",
-  "version": "1.0.0",
+  "version": "0.0.0",
   "description": "",
   "scripts": {
     "dev": "turbo build:watch & nodemon packages/server/src/server/index.ts",

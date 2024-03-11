@@ -1,8 +1,11 @@
+import { RequestHandler } from "express";
 import { rateLimit } from "express-rate-limit";
 import { RateLimitPolicy } from "./rate-limit.schema";
 import { keyGenerator } from "./key-generator";
 
-export const rateLimitMiddleware = (policy: RateLimitPolicy) => {
+export const rateLimitMiddleware = (
+  policy: RateLimitPolicy,
+): RequestHandler => {
   const {
     rateLimitBy,
     windowMs,

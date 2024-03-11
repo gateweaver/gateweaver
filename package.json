@@ -11,17 +11,12 @@
     "lint": "turbo lint",
     "clean": "turbo clean",
     "prepare": "husky",
-    "purge:node_modules": "rm -rf node_modules && rm -rf packages/*/node_modules"
+    "purge:node_modules": "rimraf node_modules packages/*/node_modules"
   },
   "author": "",
   "license": "ISC",
-  "dependencies": {
-    "@changesets/cli": "^2.27.1",
-    "dotenv": "^16.4.1",
-    "express": "^4.18.3"
-  },
   "devDependencies": {
-    "@types/express": "^4.17.21",
+    "@changesets/cli": "^2.27.1",
     "@types/jest": "^29.5.12",
     "@types/node": "^20.11.17",
     "@typescript-eslint/eslint-plugin": "^6.21.0",
@@ -32,6 +27,7 @@
     "jest": "^29.7.0",
     "nodemon": "^3.1.0",
     "prettier": "3.2.5",
+    "rimraf": "^5.0.5",
     "ts-jest": "^29.1.2",
     "ts-node": "^10.9.2",
     "tsup": "^8.0.2",

@@ -1,4 +1,4 @@
-import { Request, Response, NextFunction } from "express";
+import { Request, Response, NextFunction, RequestHandler } from "express";
 import { hashApiKey } from "@gateweaver/utils";
 import { ApiKeyPolicy } from "./api-key.schema";
 
@@ -7,7 +7,7 @@ export const isValidApiKey = (apiKey: string, apiKeyHashes: string[]) => {
   return apiKeyHashes.includes(apiKeyHash);
 };
 
-export const apiKeyMiddleware = (policy: ApiKeyPolicy) => {
+export const apiKeyMiddleware = (policy: ApiKeyPolicy): RequestHandler => {
   return (req: Request, res: Response, next: NextFunction) => {
     const apiKey = req.headers["x-api-key"];
 

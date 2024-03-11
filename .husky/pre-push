@@ -1,2 +1,2 @@
-npm run build
-npm test
+pnpm build
+pnpm test

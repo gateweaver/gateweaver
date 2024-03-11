@@ -1,8 +1,9 @@
+import { RequestHandler } from "express";
 import { expressjwt, GetVerificationKey } from "express-jwt";
 import { expressJwtSecret } from "jwks-rsa";
 import { JwtPolicy } from "./jwt.schema";
 
-export const jwtMiddleware = (policy: JwtPolicy) => {
+export const jwtMiddleware = (policy: JwtPolicy): RequestHandler => {
   const { secretOrPublicKey, jwksUri, audience, issuer, algorithms } = policy;
 
   if (!jwksUri && !secretOrPublicKey) {

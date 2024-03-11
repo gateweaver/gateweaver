@@ -7,7 +7,7 @@
   "types": "./dist/index.d.ts",
   "scripts": {
     "build": "tsup src/index.ts --format cjs,esm --dts",
-    "build:watch": "npm run build -- --watch",
+    "build:watch": "pnpm build --watch",
     "lint": "eslint .",
     "clean": "rimraf ./dist",
     "test": "jest --passWithNoTests",

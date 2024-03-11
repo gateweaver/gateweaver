@@ -7,7 +7,7 @@
   "types": "./dist/index.d.ts",
   "scripts": {
     "build": "tsup src/index.ts --format cjs,esm --dts",
-    "build:watch": "npm run build -- --watch",
+    "build:watch": "pnpm build --watch",
     "start": "node ./dist/index.js",
     "lint": "eslint .",
     "clean": "rimraf ./dist",
@@ -17,8 +17,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@gateweaver/policies": "*",
-    "@gateweaver/utils": "*",
+    "@gateweaver/policies": "workspace:*",
+    "@gateweaver/utils": "workspace:*",
     "ajv": "^8.12.0",
     "ajv-formats": "^2.1.1",
     "dotenv": "^16.4.5",

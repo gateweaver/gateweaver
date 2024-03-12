@@ -3,7 +3,7 @@ import YAML from "yaml";
 import { validateConfig } from "./validate-config";
 import { Config } from "./config.types";
 
-export const parseConfigYaml = (filePath: string): Config => {
+export const parseConfig = (filePath: string): Config => {
   const extensions = [".yml", ".yaml"];
 
   let finalPath;

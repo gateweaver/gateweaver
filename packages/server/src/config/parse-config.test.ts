@@ -1,11 +1,11 @@
 import fs from "fs";
-import { parseConfigYaml } from "./parse-config";
+import { parseConfig } from "./parse-config";
 import { validateConfig } from "./validate-config";
 
 jest.mock("fs");
 jest.mock("./validate-config");
 
-describe("parseConfigYaml", () => {
+describe("parseConfig", () => {
   const mockEnv = { TEST_VAR: "value" };
 
   beforeEach(() => {
@@ -22,7 +22,7 @@ describe("parseConfigYaml", () => {
     (fs.readFileSync as jest.Mock).mockReturnValue("endpoints: value");
     (validateConfig as jest.Mock).mockReturnValue(mockConfig);
 
-    const result = parseConfigYaml(configPath);
+    const result = parseConfig(configPath);
 
     expect(fs.existsSync).toHaveBeenCalledWith(fullPath);
     expect(fs.readFileSync).toHaveBeenCalledWith(fullPath, "utf8");
@@ -33,7 +33,7 @@ describe("parseConfigYaml", () => {
   it("should throw an error if the config file does not exist", () => {
     (fs.existsSync as jest.Mock).mockReturnValue(false);
 
-    expect(() => parseConfigYaml("missingConfig")).toThrow(
+    expect(() => parseConfig("missingConfig")).toThrow(
       /not found with .yml or .yaml extension/,
     );
   });
@@ -46,7 +46,7 @@ describe("parseConfigYaml", () => {
     (fs.existsSync as jest.Mock).mockReturnValue(true);
     (fs.readFileSync as jest.Mock).mockReturnValue("endpoints: ${TEST_VAR}");
 
-    parseConfigYaml(configPath);
+    parseConfig(configPath);
 
     expect(fs.readFileSync).toHaveBeenCalledWith(fullPath, "utf8");
     expect(validateConfig).toHaveBeenCalledWith(mockConfig);

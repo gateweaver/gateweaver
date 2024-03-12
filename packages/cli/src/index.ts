@@ -4,7 +4,6 @@ import { config } from "dotenv";
 config({ path: ".env.gateweaver" });
 import { program } from "commander";
 import { startServer } from "@gateweaver/server/start";
-import { logger } from "@gateweaver/utils";
 import { generateApiKeyAction } from "./generate-api-key";
 
 const setupCLI = async () => {
@@ -29,7 +28,7 @@ const setupCLI = async () => {
       try {
         startServer();
       } catch (error) {
-        logger.error(error);
+        console.error(error);
         process.exit(1);
       }
     });

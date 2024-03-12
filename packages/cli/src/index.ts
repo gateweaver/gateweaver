@@ -15,7 +15,7 @@ const setupCLI = async () => {
   program
     .name("gateweaver")
     .description("A CLI tool for managing gateweaver gateways")
-    .version(packageJson.version);
+    .version(packageJson.default.version);
 
   program
     .command("generate-api-key")

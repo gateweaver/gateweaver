@@ -1,5 +1,14 @@
 # @gateweaver/cli
 
+## 0.0.4
+
+### Patch Changes
+
+- Publish packages
+- Updated dependencies
+  - @gateweaver/server@0.0.4
+  - @gateweaver/utils@0.0.4
+
 ## 0.0.3
 
 ### Patch Changes

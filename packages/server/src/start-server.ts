@@ -7,7 +7,7 @@ import { createRouter } from "./router";
 export const startServer = () => {
   const config = parseConfig("gateweaver");
 
-  const PORT = config.port || process.env.PORT || 8080;
+  const PORT = process.env.PORT || config.port || 8080;
 
   const app = express();
 

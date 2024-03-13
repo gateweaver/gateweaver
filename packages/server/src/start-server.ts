@@ -1,11 +1,11 @@
 import express from "express";
 import helmet from "helmet";
 import { errorHandler, logger } from "@gateweaver/utils";
-import { parseConfigYaml } from "../config/parse-config";
-import { createRouter } from "../router";
+import { parseConfig } from "./config/parse-config";
+import { createRouter } from "./router";
 
 export const startServer = () => {
-  const config = parseConfigYaml("gateweaver");
+  const config = parseConfig("gateweaver");
 
   const PORT = config.port || process.env.PORT || 8080;
 

@@ -1,5 +1,5 @@
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-require("dotenv").config({ path: ".env.gateweaver" });
+import { config } from "dotenv";
+config({ path: ".env.gateweaver" });
 import pino from "pino";
 
 const options =

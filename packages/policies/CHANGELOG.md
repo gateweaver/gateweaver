@@ -1,5 +1,13 @@
 # @gateweaver/policies
 
+## 0.0.5
+
+### Patch Changes
+
+- Update packages
+- Updated dependencies
+  - @gateweaver/utils@0.0.5
+
 ## 0.0.4
 
 ### Patch Changes

@@ -61,7 +61,6 @@ const endpointSchema: JSONSchemaType<Endpoint> = {
 export const configSchema: JSONSchemaType<Config> = {
   type: "object",
   properties: {
-    port: { type: "number", nullable: true, default: 8080 },
     policyDefinitions: {
       ...policyDefinitionsSchema,
       nullable: true,

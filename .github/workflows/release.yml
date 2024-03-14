@@ -4,6 +4,11 @@ on:
   push:
     branches:
       - main
+  pull_request:
+    types: [opened, reopened, synchronize] # remove
+
+env:
+  HUSKY: 0
 
 concurrency: ${{ github.workflow }}-${{ github.ref }}
 
@@ -45,20 +50,11 @@ jobs:
       - name: Install dependencies
         run: pnpm install
 
-      - name: Lint
-        run: pnpm lint
-
-      - name: Build
-        run: pnpm build
-
-      - name: Test
-        run: pnpm test
-
       - name: Create Release Pull Request or Publish to npm
         id: changesets
         uses: changesets/action@v1
         with:
-          publish: pnpm release
+          publish: pnpm release # Add turbo lint, build, test, before release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}

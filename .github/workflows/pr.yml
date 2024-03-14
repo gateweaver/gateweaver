@@ -1,17 +1,18 @@
-name: Pull Request
+name: Checks
 
 on:
   pull_request:
     types: [opened, reopened, synchronize]
 
 jobs:
-  pr:
-    name: Pull Request Checks
+  checks:
+    name: Checks
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
+        # Move these to a prepare action and add build as optional step with an input (see directus)
       - name: Install Node.js
         uses: actions/setup-node@v4
         with:
@@ -38,6 +39,7 @@ jobs:
       - name: Install dependencies
         run: pnpm install
 
+      # move lint and test to seperate jobs
       - name: Lint
         run: pnpm lint
 

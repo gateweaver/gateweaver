@@ -1,5 +1,11 @@
 # @gateweaver/utils
 
+## 0.0.7
+
+### Patch Changes
+
+- 10b6ad2: Update packages
+
 ## 0.0.6
 
 ### Patch Changes

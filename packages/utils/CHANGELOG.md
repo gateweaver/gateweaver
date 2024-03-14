@@ -1,5 +1,11 @@
 # @gateweaver/utils
 
+## 0.0.6
+
+### Patch Changes
+
+- ec45b9e: Update releases
+
 ## 0.0.5
 
 ### Patch Changes

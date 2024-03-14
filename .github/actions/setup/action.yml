@@ -1,4 +1,9 @@
-name: Monorepo Install
+name: Setup Monorepo
+description: Install dependencies and build the project if necessary
+inputs:
+  build:
+    required: false
+    default: false
 
 runs:
   using: "composite"
@@ -29,3 +34,7 @@ runs:
     - name: Install dependencies
       shell: bash
       run: pnpm install
+
+    - name: Build
+      if: ${{ inputs.build }}
+      run: pnpm build

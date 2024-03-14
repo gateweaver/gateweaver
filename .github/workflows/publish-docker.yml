@@ -8,7 +8,6 @@ on:
 env:
   REGISTRY: ghcr.io
   IMAGE_NAME: gateweaver/server
-  VERSION: "0.0.1"
 
 jobs:
   build-and-push-image:
@@ -25,6 +24,11 @@ jobs:
           registry: ${{ env.REGISTRY }}
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
+      - name: Get server package version
+        run: |
+          VERSION=$(jq -r '.version' ./packages/server/package.json)
+          echo "Server package version is $VERSION"
+          echo "VERSION=$VERSION" >> $GITHUB_ENV
       - name: Extract metadata (tags, labels) for Docker
         id: meta
         uses: docker/metadata-action@v5

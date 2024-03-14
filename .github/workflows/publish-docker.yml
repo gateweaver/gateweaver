@@ -1,5 +1,5 @@
 # Move to composite action and run after npm package publish
-name: Create and publish a Docker image
+name: Create and publish a Server Docker image
 
 on:
   pull_request:
@@ -7,7 +7,8 @@ on:
 
 env:
   REGISTRY: ghcr.io
-  IMAGE_NAME: ${{ github.repository }}
+  IMAGE_NAME: gateweaver/server
+  VERSION: "0.0.1"
 
 jobs:
   build-and-push-image:
@@ -30,7 +31,7 @@ jobs:
         with:
           images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
           tags: |
-            type=semver,pattern={{version}},value=0.0.1
+            type=semver,pattern={{version}},value=${{ env.VERSION }}
       - name: Build and push Docker image
         uses: docker/build-push-action@v5
         with:

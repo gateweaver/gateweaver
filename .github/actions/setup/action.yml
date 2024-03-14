@@ -37,4 +37,5 @@ runs:
 
     - name: Build
       if: ${{ inputs.build }}
+      shell: bash
       run: pnpm build

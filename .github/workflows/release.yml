@@ -1,8 +1,6 @@
 name: Release
 
 on:
-  pull_request: # TODO: Remove this
-    types: [opened, reopened, synchronize]
   push:
     branches:
       - main

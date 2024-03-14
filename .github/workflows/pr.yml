@@ -1,14 +1,12 @@
-name: Continuous Integration
+name: Pull Request
 
 on:
   pull_request:
     types: [opened, reopened, synchronize]
-  push:
-    branches: ["main"]
 
 jobs:
-  ci:
-    name: Continuous Integration
+  pr:
+    name: Pull Request Checks
     runs-on: ubuntu-latest
     steps:
       - name: Checkout

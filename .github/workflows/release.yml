@@ -12,8 +12,6 @@ env:
 
 concurrency: ${{ github.workflow }}-${{ github.ref }}
 
-permissions: {}
-
 jobs:
   release:
     name: Release

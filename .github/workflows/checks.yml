@@ -28,7 +28,7 @@ jobs:
       - name: Setup
         uses: ./.github/actions/setup
         with:
-          build: true
+          build: "true"
 
       - name: Test
         run: pnpm test

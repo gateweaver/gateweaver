@@ -3,7 +3,7 @@ description: Install dependencies and build the project if necessary
 inputs:
   build:
     required: false
-    default: false
+    default: "false"
 
 runs:
   using: "composite"
@@ -36,6 +36,6 @@ runs:
       run: pnpm install
 
     - name: Build
-      if: ${{ inputs.build }}
+      if: ${{ inputs.build == 'true' }}
       shell: bash
       run: pnpm build

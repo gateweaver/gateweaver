@@ -5,18 +5,41 @@ on:
     types: [opened, reopened, synchronize]
 
 jobs:
-  checks:
+  lint:
     name: Lint
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Prepare
-        uses: ./.github/actions/prepare
+      - name: Install Dependencies
+        uses: ./.github/actions/install
 
       - name: Lint
         run: pnpm lint
+
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install Dependencies
+        uses: ./.github/actions/install
+
+      - name: Build
+        run: pnpm build
+
+  test:
+    name: Test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install Dependencies
+        uses: ./.github/actions/install
 
       - name: Test
         run: pnpm test

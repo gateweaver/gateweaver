@@ -1,8 +1,4 @@
-name: Prepare
-inputs:
-  build:
-    required: false
-    default: true
+name: Monorepo Install
 
 runs:
   using: "composite"
@@ -32,7 +28,3 @@ runs:
 
     - name: Install dependencies
       run: pnpm install
-
-    - name: Build
-      if: ${{ inputs.build == 'true' }}
-      run: pnpm build

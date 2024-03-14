@@ -22,10 +22,8 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Prepare
-        uses: ./.github/actions/prepare
-        with:
-          build: false
+      - name: Install Dependencies
+        uses: ./.github/actions/install
 
       - name: Create Release Pull Request or Publish to npm
         id: changesets

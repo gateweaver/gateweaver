@@ -1,6 +1,8 @@
 name: Release
 
 on:
+  pull_request: # TODO: Remove this
+    types: [opened, reopened, synchronize]
   push:
     branches:
       - main
@@ -9,6 +11,10 @@ concurrency: ${{ github.workflow }}-${{ github.ref }}
 
 jobs:
   release:
+    permissions:
+      contents: write
+      issues: write
+      pull-requests: write
     name: Release
     runs-on: ubuntu-latest
     steps:

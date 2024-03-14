@@ -1,5 +1,13 @@
 # @gateweaver/policies
 
+## 0.0.6
+
+### Patch Changes
+
+- ec45b9e: Update releases
+- Updated dependencies [ec45b9e]
+  - @gateweaver/utils@0.0.6
+
 ## 0.0.5
 
 ### Patch Changes

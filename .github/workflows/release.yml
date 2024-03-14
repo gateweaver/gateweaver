@@ -30,6 +30,8 @@ jobs:
         uses: changesets/action@v1
         with:
           publish: pnpm release
+          commit: "chore: new release"
+          title: "chore: new release"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}

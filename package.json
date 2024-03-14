@@ -12,7 +12,7 @@
     "clean": "turbo clean",
     "prepare": "husky",
     "purge:node_modules": "rimraf node_modules packages/*/node_modules",
-    "release": "turbo run build lint test && changeset publish"
+    "release": "turbo run build && turbo run lint test && changeset publish"
   },
   "author": "",
   "license": "ISC",

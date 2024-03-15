@@ -1,5 +1,14 @@
 # @gateweaver/cli
 
+## 0.0.11
+
+### Patch Changes
+
+- da19b0d: Publish packages
+- Updated dependencies [da19b0d]
+  - @gateweaver/server@0.0.11
+  - @gateweaver/utils@0.0.11
+
 ## 0.0.10
 
 ### Patch Changes

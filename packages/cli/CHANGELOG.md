@@ -1,5 +1,14 @@
 # @gateweaver/cli
 
+## 0.0.8
+
+### Patch Changes
+
+- aa83a72: Publish packages
+- Updated dependencies [aa83a72]
+  - @gateweaver/server@0.0.8
+  - @gateweaver/utils@0.0.8
+
 ## 0.0.7
 
 ### Patch Changes

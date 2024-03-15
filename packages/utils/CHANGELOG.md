@@ -1,5 +1,11 @@
 # @gateweaver/utils
 
+## 0.0.8
+
+### Patch Changes
+
+- aa83a72: Publish packages
+
 ## 0.0.7
 
 ### Patch Changes

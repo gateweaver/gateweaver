@@ -1,5 +1,13 @@
 # @gateweaver/policies
 
+## 0.0.13
+
+### Patch Changes
+
+- a8ae391: Update packages
+- Updated dependencies [a8ae391]
+  - @gateweaver/utils@0.0.13
+
 ## 0.0.12
 
 ### Patch Changes

@@ -1,5 +1,14 @@
 # @gateweaver/cli
 
+## 0.0.10
+
+### Patch Changes
+
+- 60aec87: Update packages
+- Updated dependencies [60aec87]
+  - @gateweaver/server@0.0.10
+  - @gateweaver/utils@0.0.10
+
 ## 0.0.9
 
 ### Patch Changes

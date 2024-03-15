@@ -40,3 +40,5 @@ jobs:
       - name: Publish Server Docker Image
         if: steps.changesets.outputs.published == 'true'
         uses: ./.github/actions/publish-image
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

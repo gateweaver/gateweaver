@@ -1,5 +1,11 @@
 # @gateweaver/utils
 
+## 0.0.11
+
+### Patch Changes
+
+- da19b0d: Publish packages
+
 ## 0.0.10
 
 ### Patch Changes

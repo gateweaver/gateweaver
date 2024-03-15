@@ -24,10 +24,10 @@ runs:
         password: ${{ inputs.GITHUB_TOKEN }}
 
     - name: Get server package version
-        run: |
-          VERSION=$(jq -r '.version' ./packages/server/package.json)
-          echo "Server package version is $VERSION"
-          echo "VERSION=$VERSION" >> $GITHUB_ENV
+      run: |
+        VERSION=$(jq -r '.version' ./packages/server/package.json)
+        echo "Server package version is $VERSION"
+        echo "VERSION=$VERSION" >> $GITHUB_ENV
 
     - name: Extract metadata (tags, labels) for Docker
       id: meta

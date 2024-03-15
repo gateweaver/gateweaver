@@ -24,6 +24,7 @@ runs:
         password: ${{ inputs.GITHUB_TOKEN }}
 
     - name: Get server package version
+      shell: bash
       run: |
         VERSION=$(jq -r '.version' ./packages/server/package.json)
         echo "Server package version is $VERSION"

@@ -1,5 +1,14 @@
 # @gateweaver/server
 
+## 0.0.9
+
+### Patch Changes
+
+- 052668d: Publish packages
+- Updated dependencies [052668d]
+  - @gateweaver/policies@0.0.9
+  - @gateweaver/utils@0.0.9
+
 ## 0.0.8
 
 ### Patch Changes

@@ -5,6 +5,10 @@
 ### Patch Changes
 
 - da19b0d: Publish packages
+<<<<<<< Updated upstream
+=======
+- Update packages
+>>>>>>> Stashed changes
 
 ## 0.0.10
 

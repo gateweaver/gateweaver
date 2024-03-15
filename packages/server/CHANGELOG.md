@@ -5,7 +5,13 @@
 ### Patch Changes
 
 - da19b0d: Publish packages
+<<<<<<< Updated upstream
 - Updated dependencies [da19b0d]
+=======
+- Update packages
+- Updated dependencies [da19b0d]
+- Updated dependencies
+>>>>>>> Stashed changes
   - @gateweaver/policies@0.0.11
   - @gateweaver/utils@0.0.11
 

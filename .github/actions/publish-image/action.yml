@@ -1,0 +1,46 @@
+name: Publish Server Docker Image
+description: Create and publish Server Docker image
+inputs:
+  REGISTRY:
+    description: The registry to push the image to
+    required: false
+    default: ghcr.io
+  IMAGE_NAME:
+    description: The name of the image to push
+    required: false
+    default: gateweaver/server
+
+runs:
+  using: "composite"
+  steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Log in to the Container registry
+      uses: docker/login-action@v3
+      with:
+        registry: ${{ env.REGISTRY }}
+        username: ${{ github.actor }}
+        password: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: Get server package version
+        run: |
+          VERSION=$(jq -r '.version' ./packages/server/package.json)
+          echo "Server package version is $VERSION"
+          echo "VERSION=$VERSION" >> $GITHUB_ENV
+
+    - name: Extract metadata (tags, labels) for Docker
+      id: meta
+      uses: docker/metadata-action@v5
+      with:
+        images: ${{ inputs.REGISTRY }}/${{ inputs.IMAGE_NAME }}
+        tags: |
+          type=semver,pattern={{version}},value=${{ env.VERSION }}
+
+    - name: Build and push Docker image
+      uses: docker/build-push-action@v5
+      with:
+        context: .
+        push: true
+        tags: ${{ steps.meta.outputs.tags }}
+        labels: ${{ steps.meta.outputs.labels }}

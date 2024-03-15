@@ -1,14 +1,20 @@
 # @gateweaver/utils
 
+## 0.0.12
+
+### Patch Changes
+
+- Update packages
+
 ## 0.0.11
 
 ### Patch Changes
 
 - da19b0d: Publish packages
-<<<<<<< Updated upstream
-=======
+  <<<<<<< Updated upstream
+  =======
 - Update packages
->>>>>>> Stashed changes
+  > > > > > > > Stashed changes
 
 ## 0.0.10
 

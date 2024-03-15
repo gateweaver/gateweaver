@@ -1,17 +1,24 @@
 # @gateweaver/policies
 
+## 0.0.12
+
+### Patch Changes
+
+- Update packages
+- Updated dependencies
+  - @gateweaver/utils@0.0.12
+
 ## 0.0.11
 
 ### Patch Changes
 
 - da19b0d: Publish packages
-<<<<<<< Updated upstream
-- Updated dependencies [da19b0d]
-=======
+  <<<<<<< Updated upstream
+- # Updated dependencies [da19b0d]
 - Update packages
 - Updated dependencies [da19b0d]
 - Updated dependencies
->>>>>>> Stashed changes
+  > > > > > > > Stashed changes
   - @gateweaver/utils@0.0.11
 
 ## 0.0.10

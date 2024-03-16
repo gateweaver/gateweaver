@@ -4,7 +4,7 @@ import { PolicyDefinitions, PolicyOption } from "@gateweaver/policies";
 import { configSchema } from "./config.schema";
 import { Endpoint, Config } from "./config.types";
 
-class InvalidConfigError extends Error {
+export class InvalidConfigError extends Error {
   constructor(message: string) {
     super(message);
     this.name = "InvalidConfigError";
@@ -18,7 +18,7 @@ const checkEndpointUniqueness = (
   const pathKey = `${endpoint.method} ${endpoint.path}`;
 
   if (endpointPaths.has(pathKey)) {
-    return `Duplicate endpoint path/method combination: "${pathKey}"`;
+    return `Duplicate endpoint path/method combination: ${pathKey}`;
   } else {
     endpointPaths.add(pathKey);
     return null;
@@ -28,7 +28,7 @@ const checkEndpointUniqueness = (
 const validateEndpointPath = (endpoint: Endpoint): string | null => {
   const pathPattern = /^\/[a-zA-Z0-9\-_/]*\/?$/;
   if (!pathPattern.test(endpoint.path)) {
-    return `Invalid path "${endpoint.path}". Must start with / and only contain alphanumeric characters, hyphens, and underscores`;
+    return `Invalid path: '${endpoint.path}'. Must start with / and only contain alphanumeric characters, hyphens, and underscores`;
   }
   return null;
 };
@@ -104,8 +104,6 @@ export const validateConfig = (config: Config): Config => {
   const validationErrors: string[] = [];
 
   if (!validate(config)) {
-    console.log(validate.errors);
-
     const errorMessages = validate.errors?.map((error) => {
       const instancePath = error.instancePath
         .replace(/^\//, "")
@@ -113,7 +111,7 @@ export const validateConfig = (config: Config): Config => {
 
       const allowedValues = error.params?.allowedValues?.join(", ");
 
-      return `${instancePath} ${error.message} ${allowedValues ? `(${allowedValues})` : ""}`;
+      return `${instancePath} ${error.message}${allowedValues ? ` (${allowedValues})` : ""}`;
     });
 
     if (errorMessages) validationErrors.push(...errorMessages);
@@ -146,7 +144,7 @@ export const validateConfig = (config: Config): Config => {
   }
 
   if (validationErrors.length > 0) {
-    throw new InvalidConfigError(`${validationErrors.join("; ")}`);
+    throw new InvalidConfigError(validationErrors.join("\n"));
   }
 
   return config;

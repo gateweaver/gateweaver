@@ -9,10 +9,10 @@
       "require": "./dist/index.js",
       "types": "./dist/index.d.ts"
     },
-    "./start": {
-      "import": "./dist/start-server.mjs",
-      "require": "./dist/start-server.js",
-      "types": "./dist/start-server.d.ts"
+    "./utils": {
+      "import": "./dist/utils.mjs",
+      "require": "./dist/utils.js",
+      "types": "./dist/utils.d.ts"
     }
   },
   "scripts": {

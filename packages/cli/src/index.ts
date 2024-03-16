@@ -3,7 +3,11 @@
 import { config } from "dotenv";
 config({ path: ".env.gateweaver" });
 import { program } from "commander";
-import { startServer } from "@gateweaver/server/start";
+import {
+  startServer,
+  parseConfig,
+  InvalidConfigError,
+} from "@gateweaver/server/utils";
 import { generateApiKeyAction } from "./generate-api-key";
 
 const setupCLI = async () => {
@@ -30,6 +34,26 @@ const setupCLI = async () => {
       } catch (error) {
         console.error(error);
         process.exit(1);
+      }
+    });
+
+  program
+    .command("validate")
+    .description("Validate a gateweaver config file")
+    .argument("[configPath]", "Path to the config file", "gateweaver")
+    .action((configPath) => {
+      try {
+        parseConfig(configPath);
+        console.log("✅ Config file is valid");
+      } catch (error) {
+        if (error instanceof InvalidConfigError) {
+          const validationErrors = error.message.split("\n");
+
+          console.error("❌ Config file validation errors:");
+          validationErrors.map((error) => console.error(`- ${error}`));
+        } else {
+          console.error((error as Error).message);
+        }
       }
     });
 

@@ -10,9 +10,9 @@
       "types": "./dist/index.d.ts"
     },
     "./utils": {
-      "import": "./dist/utils.mjs",
-      "require": "./dist/utils.js",
-      "types": "./dist/utils.d.ts"
+      "import": "./dist/utils/index.mjs",
+      "require": "./dist/utils/index.js",
+      "types": "./dist/utils/index.d.ts"
     }
   },
   "scripts": {

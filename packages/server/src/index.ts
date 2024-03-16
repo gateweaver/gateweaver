@@ -1,7 +1,7 @@
 import { config } from "dotenv";
 config({ path: ".env.gateweaver" });
 import { logger } from "@gateweaver/utils";
-import { startServer } from "./start-server";
+import { startServer } from "./utils/start-server";
 import { InvalidConfigError } from "./utils";
 
 try {

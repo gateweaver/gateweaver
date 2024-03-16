@@ -1,5 +1,4 @@
 #! /usr/bin/env node
-
 import { config } from "dotenv";
 config({ path: ".env.gateweaver" });
 import { program } from "commander";

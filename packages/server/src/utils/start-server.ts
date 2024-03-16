@@ -1,8 +1,8 @@
 import express from "express";
 import helmet from "helmet";
 import { errorHandler, logger } from "@gateweaver/utils";
-import { parseConfig } from "./config/parse-config";
-import { createRouter } from "./router";
+import { parseConfig } from "../config/parse-config";
+import { createRouter } from "../router";
 
 export const startServer = () => {
   const config = parseConfig("gateweaver");

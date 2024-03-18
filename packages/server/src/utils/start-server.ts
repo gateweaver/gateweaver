@@ -2,7 +2,7 @@ import express from "express";
 import helmet from "helmet";
 import { parseConfig } from "../config/parse-config";
 import { createRouter } from "../router";
-import { errorHandler } from "../middleware";
+import { errorHandler, httpLogger } from "../middleware";
 import { logger } from "./logger";
 
 export const startServer = (filePath: string = "gateweaver") => {
@@ -15,6 +15,8 @@ export const startServer = (filePath: string = "gateweaver") => {
   app.use(helmet());
 
   app.use(express.json());
+
+  app.use(httpLogger);
 
   const router = createRouter(config);
   app.use(router);

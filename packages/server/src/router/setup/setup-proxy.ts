@@ -40,7 +40,7 @@ export const setupProxy = (router: Router, endpoint: Endpoint) => {
       deleteHeaders(proxyRes, [
         "X-Ratelimit-Limit",
         "X-Ratelimit-Remaining",
-        "X-Ratelimit-proxyReset",
+        "X-Ratelimit-Reset",
       ]);
     }
 

@@ -20,11 +20,6 @@ const setupCLI = async () => {
     .version(packageJson.default.version);
 
   program
-    .command("generate-api-key")
-    .description("Generate a new API key and hash")
-    .action(generateApiKeyAction);
-
-  program
     .command("start")
     .description("Start the gateweaver server")
     .argument("[configPath]", "Path to the config file", "gateweaver")
@@ -55,6 +50,11 @@ const setupCLI = async () => {
         }
       }
     });
+
+  program
+    .command("generate-api-key")
+    .description("Generate a new API key and hash")
+    .action(generateApiKeyAction);
 
   program.parse();
 };

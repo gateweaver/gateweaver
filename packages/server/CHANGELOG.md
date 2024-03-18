@@ -1,5 +1,13 @@
 # @gateweaver/server
 
+## 0.0.14
+
+### Patch Changes
+
+- 4bee000: Update CLI
+- Updated dependencies [4bee000]
+  - @gateweaver/policies@0.0.14
+
 ## 0.0.13
 
 ### Patch Changes

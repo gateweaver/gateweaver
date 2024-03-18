@@ -33,7 +33,6 @@ const setupCLI = async () => {
         startServer(configPath);
       } catch (error) {
         console.error(error);
-        process.exit(1);
       }
     });
 

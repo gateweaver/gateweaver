@@ -1,5 +1,5 @@
 import { Request } from "express";
-import { UnauthorizedAccessError, keyGenerator } from "./key-generator";
+import { RateLimitUnauthorizedError, keyGenerator } from "./key-generator";
 import { RateLimitBy } from "./rate-limit.schema";
 
 describe("keyGenerator", () => {
@@ -24,7 +24,7 @@ describe("keyGenerator", () => {
 
   it("should throw an error if API key is missing and rate limiting by API key", () => {
     expect(() => keyGenerator(RateLimitBy.API_KEY)(req)).toThrow(
-      new UnauthorizedAccessError("API Key Required"),
+      new RateLimitUnauthorizedError("API Key Required"),
     );
   });
 
@@ -41,7 +41,7 @@ describe("keyGenerator", () => {
 
   it("should throw an error if JWT is missing and rate limiting by JWT", () => {
     expect(() => keyGenerator(RateLimitBy.JWT)(req)).toThrow(
-      new UnauthorizedAccessError("No authorization token was found"),
+      new RateLimitUnauthorizedError("No authorization token was found"),
     );
   });
 

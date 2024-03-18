@@ -1,4 +1,6 @@
 import { NextFunction, Request, Response } from "express";
+import { UnauthorizedError } from "express-jwt";
+import { RateLimitUnauthorizedError } from "@gateweaver/policies";
 import { logger } from "../utils/logger";
 
 export const errorHandler = (
@@ -8,16 +10,14 @@ export const errorHandler = (
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   next: NextFunction,
 ) => {
-  // express-jwt middleware error
-  if (err.name === "UnauthorizedError") {
+  if (err instanceof UnauthorizedError) {
     res.status(401).send({
       error: "Invalid Token",
     });
     return;
   }
 
-  // custom unauthorized access error
-  if (err.name === "UnauthorizedAccessError") {
+  if (err instanceof RateLimitUnauthorizedError) {
     res.status(401).send({
       error: err.message,
     });

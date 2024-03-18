@@ -24,20 +24,20 @@ export const setupProxy = (router: Router, endpoint: Endpoint) => {
     return url;
   };
 
-  const onProxyRes = (res: IncomingMessage) => {
-    res.headers = {
-      ...res.headers,
+  const onProxyRes = (proxyRes: IncomingMessage) => {
+    proxyRes.headers = {
+      ...proxyRes.headers,
       ...endpoint.transformedResponse?.headers,
     };
 
-    Object.keys(res.headers).forEach((key) => {
-      if (!res.headers[key]) {
-        delete res.headers[key];
+    Object.keys(proxyRes.headers).forEach((key) => {
+      if (!proxyRes.headers[key]) {
+        delete proxyRes.headers[key];
       }
     });
 
     if (endpoint.policies?.includes(PolicyOption.RateLimit)) {
-      deleteHeaders(res, [
+      deleteHeaders(proxyRes, [
         "X-Ratelimit-Limit",
         "X-Ratelimit-Remaining",
         "X-Ratelimit-Reset",
@@ -45,7 +45,7 @@ export const setupProxy = (router: Router, endpoint: Endpoint) => {
     }
 
     if (endpoint.policies?.includes(PolicyOption.Cors)) {
-      deleteHeaders(res, [
+      deleteHeaders(proxyRes, [
         "Access-Control-Allow-Origin",
         "Access-Control-Allow-Credentials",
         "Access-Control-Allow-Methods",

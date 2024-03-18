@@ -1,11 +1,16 @@
 import { config } from "dotenv";
 config({ path: ".env.gateweaver" });
-import { logger } from "@gateweaver/utils";
-import { startServer } from "./start-server";
+import { startServer, logger, InvalidConfigError } from "./utils";
 
 try {
   startServer();
 } catch (error) {
-  logger.error(error);
-  process.exit(1);
+  if (error instanceof InvalidConfigError) {
+    const validationErrors = error.message.split("\n");
+
+    logger.error("Invalid config file");
+    logger.error(validationErrors);
+  } else {
+    logger.error(error);
+  }
 }

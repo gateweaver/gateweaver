@@ -9,10 +9,10 @@
       "require": "./dist/index.js",
       "types": "./dist/index.d.ts"
     },
-    "./start": {
-      "import": "./dist/start-server.mjs",
-      "require": "./dist/start-server.js",
-      "types": "./dist/start-server.d.ts"
+    "./utils": {
+      "import": "./dist/utils/index.mjs",
+      "require": "./dist/utils/index.js",
+      "types": "./dist/utils/index.d.ts"
     }
   },
   "scripts": {
@@ -28,16 +28,18 @@
   "license": "ISC",
   "dependencies": {
     "@gateweaver/policies": "workspace:*",
-    "@gateweaver/utils": "workspace:*",
     "ajv": "^8.12.0",
     "ajv-formats": "^2.1.1",
     "dotenv": "^16.4.5",
     "express": "^4.18.3",
     "helmet": "^7.1.0",
     "http-proxy-middleware": "^2.0.6",
+    "pino": "^8.19.0",
+    "pino-pretty": "^10.3.1",
     "yaml": "^2.3.4"
   },
   "devDependencies": {
-    "@types/express": "^4.17.21"
+    "@types/express": "^4.17.21",
+    "express-jwt": "^8.4.1"
   }
 }

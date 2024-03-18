@@ -1,6 +1,9 @@
 import { Request, Response } from "express";
-import { hashApiKey } from "@gateweaver/utils";
-import { apiKeyMiddleware, isValidApiKey } from "./api-key.middleware";
+import {
+  apiKeyMiddleware,
+  hashApiKey,
+  isValidApiKey,
+} from "./api-key.middleware";
 
 describe("isValidApiKey", () => {
   it("returns true for a valid API key", () => {

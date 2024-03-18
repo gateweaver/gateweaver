@@ -2,7 +2,7 @@ import { Router } from "express";
 import { Config } from "../../config/config.types";
 import { setupProxy } from "./setup-proxy";
 import { setupPolicies } from "./setup-policies";
-import { logger } from "@gateweaver/utils";
+import { logger } from "../../utils";
 
 export const setupEndpoints = (router: Router, config: Config) => {
   const { endpoints, policyDefinitions } = config;

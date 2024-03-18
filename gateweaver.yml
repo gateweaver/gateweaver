@@ -24,6 +24,7 @@ endpoints:
         test-header: "test"
     policies:
       - cors
+      - rateLimit
   - path: "/todos"
     method: "POST"
     target:

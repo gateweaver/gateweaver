@@ -1,12 +1,18 @@
 import { Request } from "express";
-import { UnauthorizedAccessError } from "@gateweaver/utils";
 import { RateLimitBy } from "./rate-limit.schema";
+
+export class RateLimitUnauthorizedError extends Error {
+  constructor(message: string) {
+    super(message);
+    this.name = "RateLimitUnauthorizedError";
+  }
+}
 
 const decodeJwt = (token: string) => {
   try {
     return JSON.parse(atob(token.split(".")[1]));
   } catch (e) {
-    throw new UnauthorizedAccessError("Invalid Token");
+    throw new RateLimitUnauthorizedError("Invalid Token");
   }
 };
 
@@ -16,7 +22,7 @@ export const keyGenerator = (option: RateLimitBy) => {
       case RateLimitBy.API_KEY: {
         const apiKey = req.headers["x-api-key"];
         if (!apiKey) {
-          throw new UnauthorizedAccessError("API Key Required");
+          throw new RateLimitUnauthorizedError("API Key Required");
         }
 
         return apiKey;
@@ -25,7 +31,9 @@ export const keyGenerator = (option: RateLimitBy) => {
         const authHeader = req.headers.authorization;
 
         if (!authHeader) {
-          throw new UnauthorizedAccessError("No authorization token was found");
+          throw new RateLimitUnauthorizedError(
+            "No authorization token was found",
+          );
         }
 
         const token = authHeader.split(" ")[1];

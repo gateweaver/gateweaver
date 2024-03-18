@@ -47,7 +47,7 @@ describe("validateConfig", () => {
     };
 
     expect(() => validateConfig(invalidConfig)).toThrow(
-      'Duplicate endpoint path/method combination: "GET /duplicate"',
+      "Duplicate endpoint path/method combination: GET /duplicate",
     );
   });
 
@@ -65,7 +65,7 @@ describe("validateConfig", () => {
     };
 
     expect(() => validateConfig(invalidConfig)).toThrow(
-      'Invalid path "invalid path". Must start with / and only contain alphanumeric characters, hyphens, and underscores',
+      "Invalid path: 'invalid path'. Must start with / and only contain alphanumeric characters, hyphens, and underscores",
     );
   });
 

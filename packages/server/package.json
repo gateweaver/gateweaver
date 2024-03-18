@@ -28,13 +28,14 @@
   "license": "ISC",
   "dependencies": {
     "@gateweaver/policies": "workspace:*",
-    "@gateweaver/utils": "workspace:*",
     "ajv": "^8.12.0",
     "ajv-formats": "^2.1.1",
     "dotenv": "^16.4.5",
     "express": "^4.18.3",
     "helmet": "^7.1.0",
     "http-proxy-middleware": "^2.0.6",
+    "pino": "^8.19.0",
+    "pino-pretty": "^10.3.1",
     "yaml": "^2.3.4"
   },
   "devDependencies": {

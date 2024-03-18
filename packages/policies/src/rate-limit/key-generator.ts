@@ -1,6 +1,12 @@
 import { Request } from "express";
-import { UnauthorizedAccessError } from "@gateweaver/utils";
 import { RateLimitBy } from "./rate-limit.schema";
+
+export class UnauthorizedAccessError extends Error {
+  constructor(message: string) {
+    super(message);
+    this.name = "UnauthorizedAccessError";
+  }
+}
 
 const decodeJwt = (token: string) => {
   try {

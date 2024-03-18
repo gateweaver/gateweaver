@@ -16,7 +16,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@gateweaver/utils": "workspace:*",
     "ajv": "^8.12.0",
     "cors": "^2.8.5",
     "express-jwt": "^8.4.1",

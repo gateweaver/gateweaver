@@ -3,9 +3,9 @@ import {
   PolicyOption,
   policyMiddleware,
 } from "@gateweaver/policies";
-import { logger } from "@gateweaver/utils";
 import { Router } from "express";
 import { Endpoint } from "../../config/config.types";
+import { logger } from "../../utils";
 
 export const setupPolicies = (
   router: Router,

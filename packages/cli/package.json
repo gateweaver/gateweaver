@@ -20,7 +20,7 @@
   "license": "ISC",
   "dependencies": {
     "@gateweaver/server": "*",
-    "@gateweaver/utils": "*",
+    "@gateweaver/policies": "*",
     "commander": "^12.0.0",
     "dotenv": "^16.4.5"
   }

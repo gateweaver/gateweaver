@@ -1,8 +1,9 @@
 import express from "express";
 import helmet from "helmet";
-import { errorHandler, logger } from "@gateweaver/utils";
 import { parseConfig } from "../config/parse-config";
 import { createRouter } from "../router";
+import { errorHandler } from "../middleware";
+import { logger } from "./logger";
 
 export const startServer = () => {
   const config = parseConfig("gateweaver");
@@ -21,6 +22,6 @@ export const startServer = () => {
   app.use(errorHandler);
 
   app.listen(PORT, () => {
-    logger.info(`Gateweaver server is running on port ${PORT}`);
+    logger.info(`Gateweaver is running on port ${PORT}`);
   });
 };

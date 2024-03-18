@@ -1,6 +1,5 @@
 import { Request } from "express";
-import { UnauthorizedAccessError } from "@gateweaver/utils";
-import { keyGenerator } from "./key-generator";
+import { UnauthorizedAccessError, keyGenerator } from "./key-generator";
 import { RateLimitBy } from "./rate-limit.schema";
 
 describe("keyGenerator", () => {

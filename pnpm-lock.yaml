@@ -62,12 +62,12 @@ importers:
 
   packages/cli:
     dependencies:
+      '@gateweaver/policies':
+        specifier: '*'
+        version: link:../policies
       '@gateweaver/server':
         specifier: '*'
         version: link:../server
-      '@gateweaver/utils':
-        specifier: '*'
-        version: link:../utils
       commander:
         specifier: ^12.0.0
         version: 12.0.0
@@ -77,9 +77,6 @@ importers:
 
   packages/policies:
     dependencies:
-      '@gateweaver/utils':
-        specifier: workspace:*
-        version: link:../utils
       ajv:
         specifier: ^8.12.0
         version: 8.12.0
@@ -108,9 +105,6 @@ importers:
       '@gateweaver/policies':
         specifier: workspace:*
         version: link:../policies
-      '@gateweaver/utils':
-        specifier: workspace:*
-        version: link:../utils
       ajv:
         specifier: ^8.12.0
         version: 8.12.0
@@ -129,25 +123,15 @@ importers:
       http-proxy-middleware:
         specifier: ^2.0.6
         version: 2.0.6(@types/express@4.17.21)
-      yaml:
-        specifier: ^2.3.4
-        version: 2.4.1
-    devDependencies:
-      '@types/express':
-        specifier: ^4.17.21
-        version: 4.17.21
-
-  packages/utils:
-    dependencies:
-      dotenv:
-        specifier: ^16.4.5
-        version: 16.4.5
       pino:
         specifier: ^8.19.0
         version: 8.19.0
       pino-pretty:
         specifier: ^10.3.1
         version: 10.3.1
+      yaml:
+        specifier: ^2.3.4
+        version: 2.4.1
     devDependencies:
       '@types/express':
         specifier: ^4.17.21

@@ -1,5 +1,5 @@
 import crypto from "crypto";
-import { hashApiKey } from "@gateweaver/utils";
+import { hashApiKey } from "@gateweaver/policies";
 
 const generateApiKey = (): string => {
   return crypto.randomUUID().replace(/-/g, "");

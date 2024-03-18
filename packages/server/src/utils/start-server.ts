@@ -5,8 +5,8 @@ import { createRouter } from "../router";
 import { errorHandler } from "../middleware";
 import { logger } from "./logger";
 
-export const startServer = () => {
-  const config = parseConfig("gateweaver");
+export const startServer = (filePath: string = "gateweaver") => {
+  const config = parseConfig(filePath);
 
   const PORT = process.env.PORT || 8080;
 

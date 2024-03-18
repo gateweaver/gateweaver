@@ -27,9 +27,10 @@ const setupCLI = async () => {
   program
     .command("start")
     .description("Start the gateweaver server")
-    .action(() => {
+    .argument("[configPath]", "Path to the config file", "gateweaver")
+    .action((configPath) => {
       try {
-        startServer();
+        startServer(configPath);
       } catch (error) {
         console.error(error);
         process.exit(1);

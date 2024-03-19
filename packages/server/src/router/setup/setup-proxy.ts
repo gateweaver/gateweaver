@@ -1,5 +1,5 @@
 import { IncomingMessage } from "http";
-import { Router } from "express";
+import { Request, Response, Router } from "express";
 import { createProxyMiddleware, type Options } from "http-proxy-middleware";
 import { PolicyOption } from "@gateweaver/policies";
 import { Endpoint } from "../../config/config.types";
@@ -24,7 +24,11 @@ export const setupProxy = (router: Router, endpoint: Endpoint) => {
     return url;
   };
 
-  const onProxyRes = (proxyRes: IncomingMessage) => {
+  const onProxyRes = (
+    proxyRes: IncomingMessage,
+    req: Request,
+    res: Response,
+  ) => {
     proxyRes.headers = {
       ...proxyRes.headers,
       ...endpoint.transformedResponse?.headers,
@@ -54,6 +58,13 @@ export const setupProxy = (router: Router, endpoint: Endpoint) => {
         "Access-Control-Max-Age",
       ]);
     }
+
+    logger.info({
+      message: "Proxy response",
+      path: endpoint.path,
+      target: endpoint.target.url,
+      status: res.statusCode,
+    });
   };
 
   const logProvider = () => {
@@ -77,11 +88,5 @@ export const setupProxy = (router: Router, endpoint: Endpoint) => {
     logLevel: "error",
   };
 
-  router.use(
-    endpoint.path,
-    createProxyMiddleware(
-      (_, req) => req.method === endpoint.method,
-      proxyOptions,
-    ),
-  );
+  router.use(endpoint.path, createProxyMiddleware(proxyOptions));
 };

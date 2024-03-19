@@ -35,7 +35,7 @@ export const setupPolicies = (
         !policies.includes(PolicyOption.Jwt)
       ) {
         logger.warn(
-          `Rate limit by jwt is enabled but jwt policy is not enabled for endpoint ${endpoint.path}`,
+          `rateLimitBy is set to jwt, but jwt policy is not enabled for endpoint ${endpoint.path}`,
         );
       }
 
@@ -44,7 +44,7 @@ export const setupPolicies = (
         !policies.includes(PolicyOption.ApiKey)
       ) {
         logger.warn(
-          `Rate limit by apiKey is enabled but apiKey policy is not enabled for endpoint ${endpoint.path}`,
+          `rateLimitBy is set to apiKey, but apiKey policy is not enabled for endpoint ${endpoint.path}`,
         );
       }
 

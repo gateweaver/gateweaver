@@ -16,7 +16,6 @@ policyDefinitions:
 
 endpoints:
   - path: "/todos"
-    method: "GET"
     target:
       url: "https://jsonplaceholder.typicode.com/todos"
     transformedResponse:
@@ -24,18 +23,7 @@ endpoints:
         test-header: "test"
     policies:
       - cors
-      - rateLimit
-  - path: "/todos"
-    method: "POST"
-    target:
-      url: "https://jsonplaceholder.typicode.com/todos"
-    transformedRequest:
-      headers:
-        Content-Type: "application/json"
-    policies:
-      - cors
   - path: "/giphy/trending"
-    method: "GET"
     target:
       url: "https://api.giphy.com/v1/gifs/trending"
     transformedRequest:
@@ -45,7 +33,6 @@ endpoints:
     policies:
       - cors
   - path: "/spotify/artist"
-    method: "GET"
     target:
       url: "https://api.spotify.com/v1/artists/4Z8W4fKeB5YxbusRsdQVPb"
     transformedRequest:

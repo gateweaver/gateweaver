@@ -11,21 +11,21 @@ export class InvalidConfigError extends Error {
   }
 }
 
-const checkEndpointUniqueness = (
+const checkPathUniqueness = (
   endpoint: Endpoint,
   endpointPaths: Set<string>,
 ): string | null => {
-  const pathKey = `${endpoint.method} ${endpoint.path}`;
+  const pathKey = endpoint.path;
 
   if (endpointPaths.has(pathKey)) {
-    return `Duplicate endpoint path/method combination: ${pathKey}`;
+    return `Duplicate endpoint path: ${pathKey}`;
   } else {
     endpointPaths.add(pathKey);
     return null;
   }
 };
 
-const validateEndpointPath = (endpoint: Endpoint): string | null => {
+const validatePathFormat = (endpoint: Endpoint): string | null => {
   const pathPattern = /^\/[a-zA-Z0-9\-_/]*\/?$/;
   if (!pathPattern.test(endpoint.path)) {
     return `Invalid path: '${endpoint.path}'. Must start with / and only contain alphanumeric characters, hyphens, and underscores`;
@@ -39,12 +39,12 @@ const validateEndpoints = (endpoints: Endpoint[]): string[] => {
   const endpointPaths = new Set<string>();
 
   endpoints.forEach((endpoint) => {
-    const uniquenessError = checkEndpointUniqueness(endpoint, endpointPaths);
+    const uniquenessError = checkPathUniqueness(endpoint, endpointPaths);
     if (uniquenessError) {
       errors.push(uniquenessError);
     }
 
-    const pathError = validateEndpointPath(endpoint);
+    const pathError = validatePathFormat(endpoint);
     if (pathError) {
       errors.push(pathError);
     }

@@ -4,7 +4,6 @@ import {
   Target,
   Endpoint,
   Config,
-  HttpMethod,
   TransformedRequest,
   TransformedResponse,
 } from "./config.types";
@@ -45,7 +44,6 @@ const endpointSchema: JSONSchemaType<Endpoint> = {
   type: "object",
   properties: {
     path: { type: "string" },
-    method: { type: "string", enum: Object.values(HttpMethod) },
     target: targetSchema,
     transformedRequest: { ...transformedRequestSchema, nullable: true },
     transformedResponse: { ...transformedResponseSchema, nullable: true },
@@ -55,7 +53,7 @@ const endpointSchema: JSONSchemaType<Endpoint> = {
       nullable: true,
     },
   },
-  required: ["path", "method", "target"],
+  required: ["path", "target"],
 };
 
 export const configSchema: JSONSchemaType<Config> = {

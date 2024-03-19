@@ -1,5 +1,5 @@
 import { PolicyOption, RateLimitPolicy } from "@gateweaver/policies";
-import { Config, HttpMethod } from "./config.types";
+import { Config } from "./config.types";
 import { validateConfig } from "./validate-config";
 
 describe("validateConfig", () => {
@@ -7,14 +7,12 @@ describe("validateConfig", () => {
     const validConfig: Config = {
       endpoints: [
         {
-          method: HttpMethod.GET,
           path: "/path1",
           target: {
             url: "http://example.com",
           },
         },
         {
-          method: HttpMethod.POST,
           path: "/path2",
           target: {
             url: "http://example.com",
@@ -26,18 +24,16 @@ describe("validateConfig", () => {
     expect(() => validateConfig(validConfig)).not.toThrow();
   });
 
-  it("should throw an error if endpoint path/method combination is duplicated", () => {
+  it("should throw an error if endpoint path is duplicated", () => {
     const invalidConfig: Config = {
       endpoints: [
         {
-          method: HttpMethod.GET,
           path: "/duplicate",
           target: {
             url: "http://example.com",
           },
         },
         {
-          method: HttpMethod.GET,
           path: "/duplicate",
           target: {
             url: "http://example.com",
@@ -47,7 +43,7 @@ describe("validateConfig", () => {
     };
 
     expect(() => validateConfig(invalidConfig)).toThrow(
-      "Duplicate endpoint path/method combination: GET /duplicate",
+      "Duplicate endpoint path: /duplicate",
     );
   });
 
@@ -55,7 +51,6 @@ describe("validateConfig", () => {
     const invalidConfig: Config = {
       endpoints: [
         {
-          method: HttpMethod.GET,
           path: "invalid path",
           target: {
             url: "http://example.com",
@@ -73,7 +68,6 @@ describe("validateConfig", () => {
     const invalidPolicyConfig: Config = {
       endpoints: [
         {
-          method: HttpMethod.GET,
           path: "/path1",
           target: {
             url: "http://example.com",
@@ -97,7 +91,6 @@ describe("validateConfig", () => {
     const invalidJwtPolicyConfig: Config = {
       endpoints: [
         {
-          method: HttpMethod.GET,
           path: "/path1",
           target: {
             url: "http://example.com",
@@ -121,7 +114,6 @@ describe("validateConfig", () => {
     const invalidPolicyConfig: Config = {
       endpoints: [
         {
-          method: HttpMethod.GET,
           path: "/path1",
           target: {
             url: "http://example.com",

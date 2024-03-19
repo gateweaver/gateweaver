@@ -88,11 +88,5 @@ export const setupProxy = (router: Router, endpoint: Endpoint) => {
     logLevel: "error",
   };
 
-  router.use(
-    endpoint.path,
-    createProxyMiddleware(
-      (_, req) => req.method === endpoint.method,
-      proxyOptions,
-    ),
-  );
+  router.use(endpoint.path, createProxyMiddleware(proxyOptions));
 };

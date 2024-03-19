@@ -1,5 +1,11 @@
 # @gateweaver/policies
 
+## 0.0.15
+
+### Patch Changes
+
+- 1d42c3d: Update packages
+
 ## 0.0.14
 
 ### Patch Changes

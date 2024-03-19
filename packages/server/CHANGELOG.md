@@ -1,5 +1,13 @@
 # @gateweaver/server
 
+## 0.0.16
+
+### Patch Changes
+
+- 833d253: Update packages
+- Updated dependencies [833d253]
+  - @gateweaver/policies@0.0.16
+
 ## 0.0.15
 
 ### Patch Changes

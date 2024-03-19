@@ -1,5 +1,12 @@
 # @gateweaver/server
 
+## 0.0.17
+
+### Patch Changes
+
+- b59317c: Update config
+  - @gateweaver/policies@0.0.17
+
 ## 0.0.16
 
 ### Patch Changes

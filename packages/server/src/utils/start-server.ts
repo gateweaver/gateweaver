@@ -16,12 +16,12 @@ export const startServer = (filePath: string = "gateweaver") => {
 
   app.use(express.json());
 
-  app.use(httpLogger);
-
   const router = createRouter(config);
   app.use(router);
 
   app.use(errorHandler);
+
+  app.use(httpLogger);
 
   app.listen(PORT, () => {
     logger.info(`Gateweaver is running on port ${PORT}`);

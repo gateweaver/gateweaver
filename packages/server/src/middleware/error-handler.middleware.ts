@@ -10,9 +10,11 @@ export const errorHandler = (
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   next: NextFunction,
 ) => {
+  logger.error(err);
+
   if (err instanceof UnauthorizedError) {
     res.status(401).send({
-      error: "Invalid Token",
+      error: "Invalid Authorization Token",
     });
     return;
   }
@@ -23,8 +25,6 @@ export const errorHandler = (
     });
     return;
   }
-
-  logger.error(err);
 
   return res.status(500).send({
     error: "Internal Server Error",

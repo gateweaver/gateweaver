@@ -7,6 +7,10 @@ const options =
     ? {
         transport: {
           target: "pino-pretty",
+          options: {
+            ignore: "time,pid,hostname,level",
+            messageFormat: "[gateweaver]: {msg}",
+          },
         },
       }
     : {};

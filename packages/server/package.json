@@ -3,20 +3,10 @@
   "version": "0.0.17",
   "description": "",
   "main": "./dist/index.js",
-  "exports": {
-    ".": {
-      "import": "./dist/index.mjs",
-      "require": "./dist/index.js",
-      "types": "./dist/index.d.ts"
-    },
-    "./utils": {
-      "import": "./dist/utils/index.mjs",
-      "require": "./dist/utils/index.js",
-      "types": "./dist/utils/index.d.ts"
-    }
-  },
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
   "scripts": {
-    "start": "node ./dist/index.js",
+    "start": "node ./dist/main.js",
     "build": "tsup",
     "build:watch": "pnpm build --watch",
     "lint": "eslint .",
@@ -30,6 +20,7 @@
     "@gateweaver/policies": "workspace:*",
     "ajv": "^8.12.0",
     "ajv-formats": "^2.1.1",
+    "chokidar": "^3.6.0",
     "dotenv": "^16.4.5",
     "express": "^4.18.3",
     "express-jwt": "^8.4.1",

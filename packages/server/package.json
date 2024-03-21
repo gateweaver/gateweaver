@@ -1,6 +1,6 @@
 {
   "name": "@gateweaver/server",
-  "version": "0.0.17",
+  "version": "0.0.18",
   "description": "",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",

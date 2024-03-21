@@ -1,5 +1,13 @@
 # @gateweaver/server
 
+## 0.0.18
+
+### Patch Changes
+
+- 682012a: Update CLI and server with watch config
+- Updated dependencies [682012a]
+  - @gateweaver/policies@0.0.18
+
 ## 0.0.17
 
 ### Patch Changes

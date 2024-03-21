@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from "express";
-import { logger } from "../utils";
+import { logger } from "../logger";
 
 export const httpLogger = (req: Request, res: Response, next: NextFunction) => {
   const query = Object.keys(req.query).length ? req.query : undefined;

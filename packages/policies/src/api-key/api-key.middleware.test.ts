@@ -1,9 +1,6 @@
 import { Request, Response } from "express";
-import {
-  apiKeyMiddleware,
-  hashApiKey,
-  isValidApiKey,
-} from "./api-key.middleware";
+import { apiKeyMiddleware } from "./api-key.middleware";
+import { hashApiKey, isValidApiKey } from "./utils";
 
 describe("isValidApiKey", () => {
   it("returns true for a valid API key", () => {

@@ -3,7 +3,7 @@ import { Request, Response, Router } from "express";
 import { createProxyMiddleware, type Options } from "http-proxy-middleware";
 import { PolicyOption } from "@gateweaver/policies";
 import { Endpoint } from "../../config/config.types";
-import { logger } from "../../utils";
+import { logger } from "../../logger";
 
 const deleteHeaders = (res: IncomingMessage, headers: string[]) => {
   headers.forEach((header) => {

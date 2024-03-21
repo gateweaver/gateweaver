@@ -5,7 +5,7 @@ import {
 } from "@gateweaver/policies";
 import { Router } from "express";
 import { Endpoint } from "../../config/config.types";
-import { logger } from "../../utils";
+import { logger } from "../../logger";
 
 export const setupPolicies = (
   router: Router,

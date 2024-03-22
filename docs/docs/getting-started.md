@@ -7,7 +7,7 @@ import TabItem from "@theme/TabItem";
 
 # Getting Started
 
-Let's get started with Gateweaver!
+Welcome to the beginning of your journey with Gateweaver!
 
 ## Installation
 
@@ -43,7 +43,7 @@ policyDefinitions:
 endpoints:
   - path: "/todos"
     target:
-      url: "https://jsonplaceholder.typicode.com/todos"
+      url: "https://example.com/todos"
     policies:
       - cors
 ```
@@ -68,7 +68,7 @@ You can set environment variables in a `.env.gateweaver` file in the root of you
 ```bash title=".env.gateweaver"
 NODE_ENV=development
 PORT=3000
-API_URL=https://jsonplaceholder.typicode.com
+API_URL=https://example.com
 ```
 
 Visit the [Environment Variables](/docs/environment-variables) page to learn more.
@@ -88,3 +88,16 @@ npx gateweaver start --config path/to/config.yml
 ```
 
 Visit the [CLI Commands](/docs/cli-commands) page to learn more about the available commands.
+
+## Usage with Docker
+
+You can also run Gateweaver using Docker:
+
+```bash
+docker run \
+-v ./gateweaver.yml:/prod/server/gateweaver.yml \
+-p 8080:8080 \
+ghcr.io/gateweaver/server:0.0.18
+```
+
+This command mounts the `gateweaver.yml` file into the Docker container and exposes the server on port 8080. You can replace `0.0.18` with the version of the Gateweaver server image you would like to use.

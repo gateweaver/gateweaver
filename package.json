@@ -12,7 +12,10 @@
     "clean": "turbo clean",
     "prepare": "husky",
     "purge:node_modules": "rimraf node_modules packages/*/node_modules",
-    "release": "turbo run build && turbo run lint test && changeset publish"
+    "release": "turbo run build && turbo run lint test && changeset publish",
+    "docs:start": "pnpm --filter docs run start",
+    "docs:build": "pnpm --filter docs run build",
+    "docs:deploy": "pnpm --filter docs run deploy"
   },
   "author": "",
   "license": "ISC",

@@ -11,8 +11,10 @@ export const validateConfigCommand = (program: Command) => {
       "gateweaver",
     )
     .action((options) => {
+      const { config } = options;
+
       try {
-        parseConfig(options.config);
+        parseConfig(config);
         console.log("✅ Config file is valid");
       } catch (error) {
         if (error instanceof InvalidConfigError) {

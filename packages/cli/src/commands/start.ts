@@ -15,8 +15,10 @@ export const startServerCommand = (program: Command) => {
       "Watch the config file for changes and restart the server",
     )
     .action((options) => {
+      const { config, watch } = options;
+
       try {
-        startServer(options.config, options.watch);
+        startServer(config, watch);
       } catch (error) {
         console.error(error);
       }

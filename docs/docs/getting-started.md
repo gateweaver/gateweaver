@@ -71,33 +71,36 @@ PORT=3000
 API_URL=https://example.com
 ```
 
-Visit the [Environment Variables](/docs/environment-variables) page to learn more.
-
 ## Usage
 
-Run the following command where your `gateweaver.yml` file is located to start the Gateweaver server:
+Run the following command where your `gateweaver.yml` file is located to start the Gateweaver server in watch mode. This will automatically reload the server when the configuration file changes:
 
 ```bash
-npx gateweaver start
+npx gateweaver start -w
 ```
 
 If you would like to use a configuration file with a different name or path, you can specify it using the `--config` or `-c` option:
 
 ```bash
-npx gateweaver start --config path/to/config.yml
+npx gateweaver start -w -c path/to/config.yml
 ```
 
-Visit the [CLI Commands](/docs/cli-commands) page to learn more about the available commands.
+Visit the [CLI Commands](/docs/cli-commands) reference page to learn more about the available commands.
 
 ## Usage with Docker
 
-You can also run Gateweaver using Docker:
+You can also run the Gateweaver server using Docker:
 
 ```bash
 docker run \
--v ./gateweaver.yml:/prod/server/gateweaver.yml \
+--env-file ./env.gateweaver \
+-v $(pwd)/gateweaver.yml:/prod/server/gateweaver.yml \
 -p 8080:8080 \
 ghcr.io/gateweaver/server:0.0.18
 ```
 
-This command mounts the `gateweaver.yml` file into the Docker container and exposes the server on port 8080. You can replace `0.0.18` with the version of the Gateweaver server image you would like to use.
+This command mounts the `gateweaver.yml` configuration file and uses the environment variables defined in the `.env.gateweaver` file.
+
+## Next Steps
+
+Now that you have Gateweaver set up, you can start defining your policies and endpoints in the configuration file. Visit the [Configuration](/docs/configuration) page to learn more about the available options.

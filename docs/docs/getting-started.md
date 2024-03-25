@@ -48,7 +48,7 @@ endpoints:
       - cors
 ```
 
-You can define policies and endpoints in the configuration file. Policies are reusable configurations that can be applied to multiple endpoints. Visit the [Configuration](/docs/configuration) page to learn more.
+You can define policies and endpoints in the configuration file. Policies are reusable configurations that can be applied to multiple endpoints. Visit the [Configuration](/docs/category/configuration) page to learn more.
 
 ## Environment Variables
 
@@ -87,7 +87,7 @@ If you would like to use a configuration file with a different name or path, you
 npx gateweaver start -w -c path/to/config.yml
 ```
 
-Visit the [CLI Commands](/docs/cli-commands) reference page to learn more about the available commands.
+Visit the [CLI Commands](/docs/cli) reference page to learn more about the available commands.
 
 ## Usage with Docker
 

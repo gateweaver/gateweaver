@@ -88,16 +88,9 @@ When set to true, successful requests won’t be counted.
 
 **Default**: `false`.
 
-## Default Configuration
+## Usage
 
-To enable Rate Limiting with the default configuration, you can define the policy as:
-
-```yaml title="gateweaver.yml"
-policyDefinitions:
-  rateLimit: {}
-```
-
-Which is equivalent to:
+Below are the default values for the Rate Limiting policy. You can use the defaults by setting `rateLimit: {}`, or you can customize the policy by specifying the values you want to change.
 
 ```yaml title="gateweaver.yml"
 policyDefinitions:

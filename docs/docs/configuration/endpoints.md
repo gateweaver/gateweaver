@@ -59,3 +59,5 @@ An array of policies to apply to the request. The available policies include:
 - [jwt](/docs/policies/jwt)
 
 You must define the policy in the `policyDefinitions` section of the configuration file before you can reference it in the endpoint.
+
+Powered by [http-proxy-middleware](https://github.com/chimurai/http-proxy-middleware/tree/v2.0.4#readme)

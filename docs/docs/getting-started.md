@@ -100,7 +100,3 @@ ghcr.io/gateweaver/server:0.0.18
 ```
 
 This command mounts the `gateweaver.yml` configuration file and uses the environment variables defined in the `.env.gateweaver` file.
-
-## Next Steps
-
-Now that you have Gateweaver set up, you can start defining your policies and endpoints in the configuration file. Visit the [Configuration](/docs/configuration) page to learn more about the available options.

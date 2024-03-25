@@ -60,7 +60,7 @@ Configures the **Access-Control-Max-Age** CORS header.
 
 - `Number`: set to a number of seconds to cache preflight requests.
 
-### optionsSuccessStatus (Optional)
+### optionsSuccessStatus
 
 Configures the status code to be sent in response to a preflight request.
 
@@ -68,16 +68,9 @@ Configures the status code to be sent in response to a preflight request.
 
 **Default**: `204`.
 
-## Default Configuration
+## Usage
 
-To enable CORS with the default configuration, you can define the policy as:
-
-```yaml title="gateweaver.yml"
-policyDefinitions:
-  cors: {}
-```
-
-Which is equivalent to:
+Below are the default values for the CORS policy. You can use the defaults by setting `cors: {}`, or you can customize the policy by specifying the values you want to change.
 
 ```yaml title="gateweaver.yml"
 policyDefinitions:

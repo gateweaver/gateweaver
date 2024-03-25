@@ -67,7 +67,7 @@ You can set environment variables in a `.env.gateweaver` file in the root of you
 
 ```bash title=".env.gateweaver"
 NODE_ENV=development
-PORT=3000
+PORT=8080
 API_URL=https://example.com
 ```
 

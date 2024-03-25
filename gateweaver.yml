@@ -1,6 +1,6 @@
 policyDefinitions:
   cors:
-    origin: "http://localhost:3000"
+    origin: "/\\.example2\\.com$/"
     methods:
       - "GET"
       - "POST"
@@ -8,7 +8,7 @@ policyDefinitions:
       - "test-header"
       - "another-header"
   rateLimit:
-    rateLimitBy: "ip"
+    rateLimitBy: "jwt"
   jwt:
     secretOrPublicKey: "${JWT_SECRET}"
     algorithms:

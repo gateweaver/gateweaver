@@ -71,6 +71,8 @@ PORT=8080
 API_URL=https://example.com
 ```
 
+Remember to add the `.env.gateweaver` file to your `.gitignore` file to prevent it from being committed to your repository.
+
 ## Usage
 
 Run the following command where your `gateweaver.yml` file is located to start the Gateweaver server in watch mode. This will automatically reload the server when the configuration file changes:

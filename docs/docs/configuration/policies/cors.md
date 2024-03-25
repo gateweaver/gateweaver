@@ -78,6 +78,13 @@ policyDefinitions:
     origin: "*"
     methods: ["GET", "HEAD", "PUT", "PATCH", "POST", "DELETE"]
     optionsSuccessStatus: 204
+
+endpoints:
+  - path: "/todos"
+    target:
+      url: "https://example.com/todos"
+    policies:
+      - cors
 ```
 
 Powered by [expressjs/cors](https://github.com/expressjs/cors)

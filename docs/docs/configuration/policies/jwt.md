@@ -48,6 +48,13 @@ policyDefinitions:
     issuer: "my_issuer"
     algorithms:
       - "HS256"
+
+endpoints:
+  - path: "/todos"
+    target:
+      url: "https://example.com/todos"
+    policies:
+      - jwt
 ```
 
 ### JWKS
@@ -60,6 +67,13 @@ policyDefinitions:
     issuer: "my_issuer"
     algorithms:
       - "RS256"
+
+endpoints:
+  - path: "/todos"
+    target:
+      url: "https://example.com/todos"
+    policies:
+      - jwt
 ```
 
 Powered by [express-jwt](https://github.com/auth0/express-jwt)

@@ -104,6 +104,13 @@ policyDefinitions:
     standardHeaders: "draft-7"
     skipFailedRequests: false
     skipSuccessfulRequests: false
+
+endpoints:
+  - path: "/todos"
+    target:
+      url: "https://example.com/todos"
+    policies:
+      - rateLimit
 ```
 
 Powered by [express-rate-limit](https://github.com/express-rate-limit/express-rate-limit)

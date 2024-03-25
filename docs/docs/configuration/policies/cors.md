@@ -8,19 +8,7 @@ The CORS (Cross-Origin Resource Sharing) policy allows you to tailor how endpoin
 
 ## Configuration Options
 
-```yaml title="gateweaver.yml"
-policyDefinitions:
-  cors:
-    origin: "https://example.com"
-    methods: ["GET", "POST"]
-    allowedHeaders: ["X-Custom-Header"]
-    exposedHeaders: ["X-Exposed-Header"]
-    credentials: true
-    maxAge: 600
-    optionsSuccessStatus: 204
-```
-
-### Origin
+### origin
 
 Configures the **Access-Control-Allow-Origin** CORS header.
 
@@ -34,7 +22,7 @@ Configures the **Access-Control-Allow-Origin** CORS header.
 
 **Default**: `"*"` (Allows all origins).
 
-### Methods
+### methods
 
 Configures the **Access-Control-Allow-Methods** CORS header.
 
@@ -44,7 +32,7 @@ Configures the **Access-Control-Allow-Methods** CORS header.
 
 **Default**: `["GET", "HEAD", "PUT", "PATCH", "POST", "DELETE"]`.
 
-### Allowed Headers (Optional)
+### allowedHeaders (Optional)
 
 Configures the **Access-Control-Allow-Headers** CORS header.
 
@@ -52,7 +40,7 @@ Configures the **Access-Control-Allow-Headers** CORS header.
 
 - `Array`: an array of header names. For example, `["Content-Type", "Authorization"]`.
 
-### Exposed Headers (Optional)
+### exposedHeaders (Optional)
 
 Configures the **Access-Control-Expose-Headers** CORS header.
 
@@ -60,19 +48,19 @@ Configures the **Access-Control-Expose-Headers** CORS header.
 
 - `Array`: an array of header names. For example, `["Content-Range", "X-Content-Range"]`.
 
-### Credentials (Optional)
+### credentials (Optional)
 
 Configures the **Access-Control-Allow-Credentials** CORS header.
 
 - `Boolean`: set to `true` to enable credentials.
 
-### Max Age (Optional)
+### maxAge (Optional)
 
 Configures the **Access-Control-Max-Age** CORS header.
 
 - `Number`: set to a number of seconds to cache preflight requests.
 
-### Options Success Status
+### optionsSuccessStatus (Optional)
 
 Configures the status code to be sent in response to a preflight request.
 
@@ -82,7 +70,7 @@ Configures the status code to be sent in response to a preflight request.
 
 ## Default Configuration
 
-To just enable CORS with the default configuration, you can define the policy as:
+To enable CORS with the default configuration, you can define the policy as:
 
 ```yaml title="gateweaver.yml"
 policyDefinitions:
@@ -98,3 +86,5 @@ policyDefinitions:
     methods: ["GET", "HEAD", "PUT", "PATCH", "POST", "DELETE"]
     optionsSuccessStatus: 204
 ```
+
+Powered by [expressjs/cors](https://github.com/expressjs/cors)

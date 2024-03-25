@@ -1,6 +1,6 @@
 policyDefinitions:
   cors:
-    origin: "http://localhost:3000"
+    origin: "/\\.example2\\.com$/"
     methods:
       - "GET"
       - "POST"
@@ -9,10 +9,12 @@ policyDefinitions:
       - "another-header"
   rateLimit:
     rateLimitBy: "ip"
+    standardHeaders: "draft-7"
+    skipSuccessfulRequests: true
   jwt:
-    secretOrPublicKey: "${JWT_SECRET}"
+    secret: "${JWT_SECRET}"
     algorithms:
-      - "RS256"
+      - "HS256"
 
 endpoints:
   - path: "/todos"
@@ -22,7 +24,7 @@ endpoints:
       headers:
         test-header: "test"
     policies:
-      - cors
+      - jwt
   - path: "/giphy/trending"
     target:
       url: "https://api.giphy.com/v1/gifs/trending"
@@ -32,6 +34,7 @@ endpoints:
         limit: "1"
     policies:
       - cors
+      - rateLimit
   - path: "/spotify/artist"
     target:
       url: "https://api.spotify.com/v1/artists/4Z8W4fKeB5YxbusRsdQVPb"

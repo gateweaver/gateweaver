@@ -1,5 +1,5 @@
-export * from "./policies.schema";
-export * from "./policies.middleware";
+export * from "./policyDefinitions.schema";
+export * from "./policy.middleware";
 export * from "./cors";
 export * from "./jwt";
 export * from "./api-key";

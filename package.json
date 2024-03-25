@@ -10,9 +10,11 @@
     "test:watch": "turbo run test:watch",
     "lint": "turbo lint",
     "clean": "turbo clean",
-    "prepare": "husky",
     "purge:node_modules": "rimraf node_modules packages/*/node_modules",
-    "release": "turbo run build && turbo run lint test && changeset publish"
+    "release": "turbo run build && turbo run lint test && changeset publish",
+    "docs:start": "cd docs && pnpm start",
+    "docs:build": "cd docs && pnpm run build",
+    "prepare": "husky"
   },
   "author": "",
   "license": "ISC",

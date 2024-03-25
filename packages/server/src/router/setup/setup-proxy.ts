@@ -45,6 +45,11 @@ export const setupProxy = (router: Router, endpoint: Endpoint) => {
         "X-Ratelimit-Limit",
         "X-Ratelimit-Remaining",
         "X-Ratelimit-Reset",
+        "RateLimit-Policy",
+        "RateLimit-Limit",
+        "RateLimit-Remaining",
+        "RateLimit-Reset",
+        "RateLimit",
       ]);
     }
 

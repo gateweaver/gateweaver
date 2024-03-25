@@ -17,7 +17,7 @@ describe("jwtMiddleware", () => {
     (expressJwtSecret as jest.Mock).mockClear();
   });
 
-  it("throws an error if neither jwksUri nor secretOrPublicKey is provided", () => {
+  it("throws an error if neither jwksUri nor secret is provided", () => {
     const policy = {
       audience: "test-audience",
       issuer: "test-issuer",
@@ -25,13 +25,13 @@ describe("jwtMiddleware", () => {
     } as JwtPolicy;
 
     expect(() => jwtMiddleware(policy)).toThrow(
-      'Either "jwksUri" or "secretOrPublicKey" must be provided',
+      'Either "jwksUri" or "secret" must be provided',
     );
   });
 
-  it("uses secretOrPublicKey if provided", () => {
+  it("uses secret if provided", () => {
     const policy = {
-      secretOrPublicKey: "secret",
+      secret: "test-secret",
       audience: "test-audience",
       issuer: "test-issuer",
       algorithms: ["RS256"],
@@ -40,7 +40,7 @@ describe("jwtMiddleware", () => {
     jwtMiddleware(policy);
 
     expect(expressjwt).toHaveBeenCalledWith({
-      secret: "secret",
+      secret: "test-secret",
       audience: "test-audience",
       issuer: "test-issuer",
       algorithms: ["RS256"],

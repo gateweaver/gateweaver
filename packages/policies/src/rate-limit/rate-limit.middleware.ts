@@ -12,6 +12,8 @@ export const rateLimitMiddleware = (
     limit,
     message,
     statusCode,
+    legacyHeaders,
+    standardHeaders,
     skipFailedRequests,
     skipSuccessfulRequests,
   } = policy;
@@ -21,6 +23,8 @@ export const rateLimitMiddleware = (
     limit,
     message,
     statusCode,
+    legacyHeaders,
+    standardHeaders,
     skipFailedRequests,
     skipSuccessfulRequests,
     keyGenerator: keyGenerator(rateLimitBy),

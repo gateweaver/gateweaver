@@ -12,9 +12,9 @@ policyDefinitions:
     standardHeaders: "draft-7"
     skipSuccessfulRequests: true
   jwt:
-    secretOrPublicKey: "${JWT_SECRET}"
+    secret: "${JWT_SECRET}"
     algorithms:
-      - "RS256"
+      - "HS256"
 
 endpoints:
   - path: "/todos"
@@ -24,8 +24,7 @@ endpoints:
       headers:
         test-header: "test"
     policies:
-      - cors
-      - rateLimit
+      - jwt
   - path: "/giphy/trending"
     target:
       url: "https://api.giphy.com/v1/gifs/trending"

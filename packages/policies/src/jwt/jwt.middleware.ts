@@ -4,23 +4,21 @@ import { expressJwtSecret } from "jwks-rsa";
 import { JwtPolicy } from "./jwt.schema";
 
 export const jwtMiddleware = (policy: JwtPolicy): RequestHandler => {
-  const { secretOrPublicKey, jwksUri, audience, issuer, algorithms } = policy;
+  const { secret, jwksUri, audience, issuer, algorithms } = policy;
 
-  if (!jwksUri && !secretOrPublicKey) {
-    throw new Error('Either "jwksUri" or "secretOrPublicKey" must be provided');
+  if (!jwksUri && !secret) {
+    throw new Error('Either "jwksUri" or "secret" must be provided');
   }
 
-  const secret =
-    secretOrPublicKey ||
-    (expressJwtSecret({
-      cache: true,
-      rateLimit: true,
-      jwksRequestsPerMinute: 5,
-      jwksUri: jwksUri!,
-    }) as GetVerificationKey);
-
   return expressjwt({
-    secret,
+    secret:
+      secret ||
+      (expressJwtSecret({
+        cache: true,
+        rateLimit: true,
+        jwksRequestsPerMinute: 5,
+        jwksUri: jwksUri!,
+      }) as GetVerificationKey),
     audience,
     issuer,
     algorithms,

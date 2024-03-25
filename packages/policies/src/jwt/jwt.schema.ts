@@ -16,7 +16,7 @@ type Algorithm =
   | "none";
 
 export interface JwtPolicy {
-  secretOrPublicKey?: string;
+  secret?: string;
   jwksUri?: string;
   audience?: string;
   issuer?: string;
@@ -26,7 +26,7 @@ export interface JwtPolicy {
 export const jwtSchema: JSONSchemaType<JwtPolicy> = {
   type: "object",
   properties: {
-    secretOrPublicKey: { type: "string", nullable: true },
+    secret: { type: "string", nullable: true },
     jwksUri: { type: "string", nullable: true, format: "url" },
     audience: { type: "string", nullable: true },
     issuer: { type: "string", nullable: true },
@@ -53,5 +53,5 @@ export const jwtSchema: JSONSchemaType<JwtPolicy> = {
     },
   },
   required: ["algorithms"],
-  oneOf: [{ required: ["secretOrPublicKey"] }, { required: ["jwksUri"] }],
+  oneOf: [{ required: ["secret"] }, { required: ["jwksUri"] }],
 };

@@ -3,9 +3,10 @@ description: Create and publish Server Docker image
 inputs:
   GITHUB_TOKEN:
     required: true
-  REGISTRY:
-    required: false
-    default: ghcr.io
+  DOCKERHUB_USERNAME:
+    required: true
+  DOCKERHUB_TOKEN:
+    required: true
   IMAGE_NAME:
     required: false
     default: gateweaver/server
@@ -13,10 +14,16 @@ inputs:
 runs:
   using: "composite"
   steps:
+  - name: Log in to Docker Hub
+      uses: docker/login-action@f4ef78c080cd8ba55a85445d5b36e214a81df20a
+      with:
+        username: ${{ inputs.DOCKERHUB_USERNAME }}
+        password: ${{ inputs.DOCKERHUB_TOKEN }}
+
     - name: Log in to the Container registry
       uses: docker/login-action@v3
       with:
-        registry: ${{ inputs.REGISTRY }}
+        registry: ghcr.io
         username: ${{ github.actor }}
         password: ${{ inputs.GITHUB_TOKEN }}
 
@@ -31,7 +38,9 @@ runs:
       id: meta
       uses: docker/metadata-action@v5
       with:
-        images: ${{ inputs.REGISTRY }}/${{ inputs.IMAGE_NAME }}
+        images: |
+          ghcr.io/gateweaver/server
+          gateweaver/server
         tags: |
           type=semver,pattern={{version}},value=${{ env.VERSION }}
 

@@ -11,10 +11,10 @@ policyDefinitions:
     rateLimitBy: "ip"
     standardHeaders: "draft-7"
     skipSuccessfulRequests: true
-  jwt:
-    secret: "${JWT_SECRET}"
-    algorithms:
-      - "HS256"
+  apiKey:
+    hashes:
+      - "20ccb72ebb7ef6911958d8b22ab97821a15ae30fb9dd31c548a3184c06fc80c8"
+      - "b0fdc387a13a5ddd925214aac77a157ed5cf1cf8ebaca3cb056703b1af2b5891"
 
 endpoints:
   - path: "/todos"
@@ -24,7 +24,7 @@ endpoints:
       headers:
         test-header: "test"
     policies:
-      - jwt
+      - apiKey
   - path: "/giphy/trending"
     target:
       url: "https://api.giphy.com/v1/gifs/trending"

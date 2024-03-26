@@ -36,7 +36,7 @@ describe("apiKeyMiddleware", () => {
     const validApiKey = "valid-api-key";
 
     const policy = {
-      apiKeyHashes: [hashApiKey(validApiKey)],
+      hashes: [hashApiKey(validApiKey)],
     };
 
     return { req, res, next, policy };

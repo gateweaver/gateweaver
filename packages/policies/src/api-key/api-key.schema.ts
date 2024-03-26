@@ -1,18 +1,18 @@
 import { JSONSchemaType } from "ajv";
 
 export interface ApiKeyPolicy {
-  apiKeyHashes: string[];
+  hashes: string[];
 }
 
 export const apiKeySchema: JSONSchemaType<ApiKeyPolicy> = {
   type: "object",
   properties: {
-    apiKeyHashes: {
+    hashes: {
       type: "array",
       items: {
         type: "string",
       },
     },
   },
-  required: ["apiKeyHashes"],
+  required: ["hashes"],
 };

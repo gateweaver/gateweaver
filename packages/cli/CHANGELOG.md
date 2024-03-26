@@ -1,5 +1,14 @@
 # @gateweaver/cli
 
+## 0.0.19
+
+### Patch Changes
+
+- dddd096: Update packages
+- Updated dependencies [dddd096]
+  - @gateweaver/policies@0.0.19
+  - @gateweaver/server@0.0.19
+
 ## 0.0.18
 
 ### Patch Changes

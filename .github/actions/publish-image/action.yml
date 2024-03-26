@@ -7,9 +7,6 @@ inputs:
     required: true
   DOCKERHUB_TOKEN:
     required: true
-  IMAGE_NAME:
-    required: false
-    default: gateweaver/server
 
 runs:
   using: "composite"

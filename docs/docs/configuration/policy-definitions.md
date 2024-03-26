@@ -24,7 +24,7 @@ You can use the default configuration of a policy by setting it to an empty obje
 
 Gateweaver provides a set of built-in policies that you can use to secure and manage your APIs.
 
-- [CORS](/docs/configuration/policies/cors)
-- [Rate Limiting](/docs/configuration/policies/rate-limit)
-- [API Key](/docs/configuration/policies/api-key)
-- [JWT](/docs/configuration/policies/jwt)
+- [cors](/docs/configuration/policies/cors)
+- [rateLimit](/docs/configuration/policies/rate-limit)
+- [apiKey](/docs/configuration/policies/api-key)
+- [jwt](/docs/configuration/policies/jwt)

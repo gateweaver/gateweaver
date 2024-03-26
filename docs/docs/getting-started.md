@@ -95,7 +95,7 @@ You can also run the Gateweaver server using Docker:
 
 ```bash
 docker run \
---env-file ./env.gateweaver \
+--env-file $(pwd)/.env.gateweaver \
 -v $(pwd)/gateweaver.yml:/prod/server/gateweaver.yml \
 -p 8080:8080 \
 ghcr.io/gateweaver/server:0.0.18

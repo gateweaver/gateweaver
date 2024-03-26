@@ -53,10 +53,10 @@ Modifies the response before it is sent back to the client.
 
 An array of policies to apply to the request. The available policies include:
 
-- [cors](/docs/policies/cors)
-- [rateLimit](/docs/policies/rate-limiting)
-- [apiKey](/docs/policies/api-key)
-- [jwt](/docs/policies/jwt)
+- [cors](/docs/configuration/policies/cors)
+- [rateLimit](/docs/configuration/policies/rate-limit)
+- [apiKey](/docs/configuration/policies/api-key)
+- [jwt](/docs/configuration/policies/jwt)
 
 You must define the policy in the `policyDefinitions` section of the configuration file before you can reference it in the endpoint.
 

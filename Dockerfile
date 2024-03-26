@@ -11,7 +11,7 @@ RUN pnpm run -r build
 RUN pnpm deploy --filter=@gateweaver/server --prod /prod/server
 
 FROM base
-COPY --from=build /prod/server /prod/server
-WORKDIR /prod/server
+COPY --from=build /prod/server /app
+WORKDIR /app
 EXPOSE 8080
 CMD [ "pnpm", "start" ]

@@ -91,14 +91,14 @@ Visit the [CLI Commands](/docs/cli) reference page to learn more about the avail
 
 ## Usage with Docker
 
-You can also run the Gateweaver server using Docker:
+You can also run the Gateweaver server using the docker hub image ([gateweaver/server](https://hub.docker.com/r/gateweaver/server/tags)) or github container registry image ([ghcr.io/gateweaver/server](https://github.com/gateweaver/gateweaver/pkgs/container/server)).
+
+The following command mounts the `gateweaver.yml` configuration file and uses the environment variables defined in the `.env.gateweaver` file to start the Gateweaver server on port 8080.
 
 ```bash
 docker run \
 --env-file $(pwd)/.env.gateweaver \
--v $(pwd)/gateweaver.yml:/prod/server/gateweaver.yml \
+-v $(pwd)/gateweaver.yml:/app/gateweaver.yml \
 -p 8080:8080 \
-ghcr.io/gateweaver/server:0.0.18
+gateweaver/server
 ```
-
-This command mounts the `gateweaver.yml` configuration file and uses the environment variables defined in the `.env.gateweaver` file.

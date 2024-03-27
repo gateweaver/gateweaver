@@ -6,7 +6,7 @@ sidebar_position: 1
 
 The CORS (Cross-Origin Resource Sharing) policy allows you to tailor how endpoints on your gateway respond to cross-origin requests.
 
-## Configuration Options
+## Options
 
 ### origin
 

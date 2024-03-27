@@ -6,7 +6,7 @@ sidebar_position: 2
 
 The Rate limit policy allows you to control the rate at which requests to your gateway can be made, preventing abuse and ensuring fair use of resources.
 
-## Configuration Options
+## Options
 
 ### rateLimitBy
 

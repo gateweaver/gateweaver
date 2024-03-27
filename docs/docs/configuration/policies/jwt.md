@@ -6,7 +6,7 @@ sidebar_position: 3
 
 The JWT (JSON Web Token) Authentication policy enables secure access to your API by validating JWT tokens provided in the requests.
 
-## Configuration Options
+## Options
 
 ### secret (Optional)
 

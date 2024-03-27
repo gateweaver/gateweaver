@@ -13,7 +13,7 @@ export const apiKeyMiddleware = (policy: ApiKeyPolicy): RequestHandler => {
       return;
     }
 
-    if (!isValidApiKey(apiKey, policy.apiKeyHashes)) {
+    if (!isValidApiKey(apiKey, policy.hashes)) {
       res.status(401).send({
         error: "Invalid API Key",
       });

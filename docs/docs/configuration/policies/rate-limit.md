@@ -2,9 +2,9 @@
 sidebar_position: 2
 ---
 
-# Rate Limiting
+# Rate Limit
 
-The Rate Limiting policy allows you to control the rate at which requests to your gateway can be made, preventing abuse and ensuring fair use of resources.
+The Rate limit policy allows you to control the rate at which requests to your gateway can be made, preventing abuse and ensuring fair use of resources.
 
 ## Configuration Options
 
@@ -90,7 +90,7 @@ When set to true, successful requests won’t be counted.
 
 ## Usage
 
-Below are the default values for the Rate Limiting policy. You can use the defaults by setting `rateLimit: {}`, or you can customize the policy by specifying the values you want to change.
+Below are the default values for the Rate Limit policy. You can use the defaults by setting `rateLimit: {}`, or you can customize the policy by specifying the values you want to change.
 
 ```yaml title="gateweaver.yml"
 policyDefinitions:

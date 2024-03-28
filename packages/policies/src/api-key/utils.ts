@@ -11,7 +11,7 @@ export const hashApiKey = (apiKey: string): string => {
 export const isValidApiKey = (
   apiKey: string | string[],
   apiKeyHashes: string[],
-) => {
+): boolean => {
   if (typeof apiKey !== "string") return false;
 
   const apiKeyHash = hashApiKey(apiKey);

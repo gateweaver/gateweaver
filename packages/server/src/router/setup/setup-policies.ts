@@ -11,7 +11,7 @@ export const setupPolicies = (
   router: Router,
   endpoint: Endpoint,
   policyDefinitions: PolicyDefinitions,
-) => {
+): void => {
   if (policyDefinitions && endpoint.policies) {
     const { policies } = endpoint;
 

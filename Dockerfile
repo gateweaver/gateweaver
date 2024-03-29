@@ -7,7 +7,7 @@ FROM base AS build
 COPY . /usr/src/app
 WORKDIR /usr/src/app
 RUN --mount=type=cache,id=pnpm,target=/pnpm/store pnpm install --frozen-lockfile
-RUN pnpm run -r build
+RUN pnpm --filter=@gateweaver/server... run -r build
 RUN pnpm deploy --filter=@gateweaver/server --prod /prod/server
 
 FROM base

@@ -6,7 +6,7 @@ sidebar_position: 4
 
 The API Key Policy enables you to secure your endpoints by requiring a valid API key with each request. Gateweaver will verify the API key provided in the `x-api-key` header against a list of hashed API keys defined in the configuration file.
 
-## Configuration Options
+## Options
 
 ### hashes
 

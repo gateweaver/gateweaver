@@ -6,7 +6,7 @@ sidebar_position: 1
 
 The CORS (Cross-Origin Resource Sharing) policy allows you to tailor how endpoints on your gateway respond to cross-origin requests.
 
-## Configuration Options
+## Options
 
 ### origin
 
@@ -14,11 +14,11 @@ Configures the **Access-Control-Allow-Origin** CORS header.
 
 - `Boolean`: set origin to true to reflect the request origin, as defined by `req.header('Origin')`, or set it to false to disable CORS.
 
-- `String`: set origin to a specific origin. For example if you set it to "http://example.com" only requests from "http://example.com" will be allowed.
+- `String`: set origin to a specific origin. For example if you set it to "https://example.com/" only requests from "https://example.com/" will be allowed.
 
 - `RegExp`: set origin to a regular expression pattern which will be used to test request origin. If it's a match, the request origin will be reflected. For example the pattern `/example\\.com$/` will reflect any request that is coming from an origin ending with "example.com".
 
-- `Array`: set origin to an array of valid origins. Each origin can be a String or a RegExp. For example `["http://example1.com", /\\.example2\\.com$/]` will accept any request from "http://example1.com" or from a subdomain of "example2.com".
+- `Array`: set origin to an array of valid origins. Each origin can be a String or a RegExp. For example `["https://example1.com", /\\.example2\\.com$/]` will accept any request from "https://example1.com" or from a subdomain of "example2.com".
 
 **Default**: `"*"` (Allows all origins).
 

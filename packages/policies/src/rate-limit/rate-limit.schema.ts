@@ -51,7 +51,7 @@ export const rateLimitSchema: JSONSchemaType<RateLimitPolicy> = {
         { type: "boolean" },
         { type: "string", enum: ["draft-6", "draft-7"] },
       ],
-      default: "draft-7",
+      default: "draft-6",
     },
     skipFailedRequests: {
       type: "boolean",

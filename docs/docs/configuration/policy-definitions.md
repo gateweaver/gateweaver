@@ -9,7 +9,7 @@ Policies are reusable configurations that can be applied to multiple endpoints. 
 ```yaml title="gateweaver.yml"
 policyDefinitions:
   cors:
-    origin: "http://example.com"
+    origin: "https://example.com/"
     methods:
       - "GET"
       - "POST"

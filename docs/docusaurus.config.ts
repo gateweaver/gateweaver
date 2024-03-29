@@ -4,11 +4,11 @@ import type * as Preset from "@docusaurus/preset-classic";
 
 const config: Config = {
   title: "Gateweaver",
-  tagline: "Gateweaver Documentation",
-  favicon: "img/favicon.ico",
+  tagline: "An API Gateway for the frontend.",
+  favicon: "img/logo.png",
 
   // Set the production url of your site here
-  url: "https://your-docusaurus-site.example.com",
+  url: "https://gateweaver.io",
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub pages deployment, it is often '/<projectName>/'
   baseUrl: "/",
@@ -54,7 +54,7 @@ const config: Config = {
       title: "Gateweaver",
       logo: {
         alt: "Gateweaver Logo",
-        src: "img/logo.svg",
+        src: "img/logo.png",
       },
       items: [
         {
@@ -77,39 +77,51 @@ const config: Config = {
           title: "Docs",
           items: [
             {
-              label: "Tutorial",
-              to: "/docs/intro",
+              label: "Getting Started",
+              to: "/docs/getting-started",
+            },
+            {
+              label: "Configuration",
+              to: "/docs/configuration",
+            },
+            {
+              label: "CLI Reference",
+              to: "/docs/cli",
+            },
+            {
+              label: "Deployment",
+              to: "/docs/deployment",
             },
           ],
         },
-        {
-          title: "Community",
-          items: [
-            {
-              label: "Stack Overflow",
-              href: "https://stackoverflow.com/questions/tagged/docusaurus",
-            },
-            {
-              label: "Discord",
-              href: "https://discordapp.com/invite/docusaurus",
-            },
-            {
-              label: "Twitter",
-              href: "https://twitter.com/docusaurus",
-            },
-          ],
-        },
+        // {
+        //   title: "Community",
+        //   items: [
+        //     {
+        //       label: "Stack Overflow",
+        //       href: "https://stackoverflow.com/questions/tagged/gateweaver",
+        //     },
+        //     {
+        //       label: "Discord",
+        //       href: "https://discordapp.com/invite/gateweaver",
+        //     },
+        //     {
+        //       label: "Twitter",
+        //       href: "https://twitter.com/gateweaver",
+        //     },
+        //   ],
+        // },
         {
           title: "More",
           items: [
             {
               label: "GitHub",
-              href: "https://github.com/facebook/docusaurus",
+              href: "https://github.com/gateweaver/gateweaver",
             },
           ],
         },
       ],
-      copyright: `Copyright © ${new Date().getFullYear()} My Project, Inc. Built with Docusaurus.`,
+      copyright: `Copyright © ${new Date().getFullYear()} Gateweaver. Built with Docusaurus.`,
     },
     prism: {
       theme: prismThemes.github,

@@ -4,7 +4,7 @@ import { setupProxy } from "./setup-proxy";
 import { setupPolicies } from "./setup-policies";
 import { logger } from "../../logger";
 
-export const setupEndpoints = (router: Router, config: Config) => {
+export const setupEndpoints = (router: Router, config: Config): void => {
   const { endpoints, policyDefinitions } = config;
 
   endpoints.forEach((endpoint) => {

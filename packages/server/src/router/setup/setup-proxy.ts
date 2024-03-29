@@ -5,14 +5,14 @@ import { PolicyOption } from "@gateweaver/policies";
 import { Endpoint } from "../../config/config.types";
 import { logger } from "../../logger";
 
-const deleteHeaders = (res: IncomingMessage, headers: string[]) => {
+const deleteHeaders = (res: IncomingMessage, headers: string[]): void => {
   headers.forEach((header) => {
     delete res.headers[header];
     delete res.headers[header.toLowerCase()];
   });
 };
 
-export const setupProxy = (router: Router, endpoint: Endpoint) => {
+export const setupProxy = (router: Router, endpoint: Endpoint): void => {
   const buildTargetUrl = () => {
     let url = endpoint.target.url;
 

@@ -58,6 +58,6 @@ An array of policies to apply to the request. The available policies include:
 - [apiKey](/docs/configuration/policies/api-key)
 - [jwt](/docs/configuration/policies/jwt)
 
-You must define the policy in the `policyDefinitions` section of the configuration file before you can reference it in the endpoint.
+You must define the policy in the `policyDefinitions` section of the configuration file before you can reference it in an endpoint.
 
 Powered by [http-proxy-middleware](https://github.com/chimurai/http-proxy-middleware/tree/v2.0.4#readme)

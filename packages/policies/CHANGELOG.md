@@ -1,5 +1,11 @@
 # @gateweaver/policies
 
+## 0.0.22
+
+### Patch Changes
+
+- aa2580d: Update packages
+
 ## 0.0.21
 
 ### Patch Changes

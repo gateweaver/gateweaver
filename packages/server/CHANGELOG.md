@@ -1,5 +1,13 @@
 # @gateweaver/server
 
+## 0.0.22
+
+### Patch Changes
+
+- aa2580d: Update packages
+- Updated dependencies [aa2580d]
+  - @gateweaver/policies@0.0.22
+
 ## 0.0.21
 
 ### Patch Changes

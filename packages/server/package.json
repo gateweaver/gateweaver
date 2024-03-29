@@ -15,7 +15,7 @@
     "test:watch": "jest --watch"
   },
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
     "@gateweaver/policies": "workspace:*",
     "ajv": "^8.12.0",

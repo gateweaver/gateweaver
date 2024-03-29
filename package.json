@@ -14,6 +14,7 @@
     "release": "turbo run build && turbo run lint test && changeset publish",
     "docs:start": "cd docs && pnpm start",
     "docs:build": "cd docs && pnpm run build",
+    "docs:serve": "cd docs && pnpm run serve",
     "prepare": "husky"
   },
   "author": "",

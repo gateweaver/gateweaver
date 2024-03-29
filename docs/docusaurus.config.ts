@@ -4,11 +4,11 @@ import type * as Preset from "@docusaurus/preset-classic";
 
 const config: Config = {
   title: "Gateweaver",
-  tagline: "An API Gateway for the frontend.",
+  tagline: "An API Gateway for the frontend",
   favicon: "img/logo.png",
 
   // Set the production url of your site here
-  url: "https://gateweaver.io",
+  url: "https://gateweaver.netlify.app",
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub pages deployment, it is often '/<projectName>/'
   baseUrl: "/",
@@ -82,7 +82,7 @@ const config: Config = {
             },
             {
               label: "Configuration",
-              to: "/docs/configuration",
+              to: "/docs/category/configuration",
             },
             {
               label: "CLI Reference",

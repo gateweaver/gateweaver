@@ -7,7 +7,7 @@ import TabItem from "@theme/TabItem";
 
 # Getting Started
 
-Welcome to the beginning of your journey with Gateweaver!
+Welcome to Gateweaver, the open-source API gateway that seamlessly secures your frontend applications' integration with external APIs. Designed with simplicity and protection in mind, Gateweaver enables developers to utilize APIs requiring sensitive keys and tokens without risking exposure on the frontend. Through a straightforward YAML configuration file, users can define endpoints and apply essential policies like CORS, rate limiting, API key management, and JWT authentication, ensuring robust security measures are in place. Start quickly with the Gateweaver CLI or Docker image to streamline your API usage while safeguarding your application.
 
 ## Installation
 
@@ -81,11 +81,7 @@ Run the following command where your `gateweaver.yml` file is located to start t
 npx gateweaver start -w
 ```
 
-If you would like to use a configuration file with a different name or path, you can specify it using the `--config` or `-c` option:
-
-```bash
-npx gateweaver start -w -c path/to/config.yml
-```
+This command will start the Gateweaver server on port 8080 by default. You can specify a different port by setting the `PORT` environment variable in the `.env.gateweaver` file.
 
 Visit the [CLI Commands](/docs/cli) reference page to learn more about the available commands.
 
@@ -93,7 +89,7 @@ Visit the [CLI Commands](/docs/cli) reference page to learn more about the avail
 
 You can also run the Gateweaver server using the docker hub image ([gateweaver/server](https://hub.docker.com/r/gateweaver/server/tags)) or github container registry image ([ghcr.io/gateweaver/server](https://github.com/gateweaver/gateweaver/pkgs/container/server)).
 
-The following command mounts the `gateweaver.yml` configuration file and uses the environment variables defined in the `.env.gateweaver` file to start the Gateweaver server on port 8080.
+The following command mounts the `gateweaver.yml` configuration file and uses the environment variables defined in `.env.gateweaver` to start the Gateweaver server on port 8080.
 
 ```bash
 docker run \

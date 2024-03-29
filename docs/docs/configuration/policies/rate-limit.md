@@ -18,6 +18,8 @@ Determines what method to use for rate limiting.
 
 **Default**: `"ip"`.
 
+**Important:** When selecting either the jwt or apiKey options, ensure that you have also set up the corresponding [jwt](/docs/configuration/policies/jwt) or [apiKey](/docs/configuration/policies/api-key) policies, respectively, to prevent any unexpected issues.
+
 ### windowMs
 
 Time frame for which requests are checked/remembered in milliseconds.
@@ -70,7 +72,7 @@ Whether to enable support for headers conforming to the [RateLimit header fields
 
 If set to any truthy value, the `Retry-After` header will also be sent on all blocked requests.
 
-**Default**: `"draft-7"`.
+**Default**: `"draft-6"`.
 
 ### skipFailedRequests
 
@@ -101,7 +103,7 @@ policyDefinitions:
     message: "Too many requests, please try again later."
     statusCode: 429
     legacyHeaders: false
-    standardHeaders: "draft-7"
+    standardHeaders: "draft-6"
     skipFailedRequests: false
     skipSuccessfulRequests: false
 

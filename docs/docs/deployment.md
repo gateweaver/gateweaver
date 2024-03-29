@@ -14,7 +14,9 @@ ENV NODE_ENV=production
 
 This Dockerfile uses the official Gateweaver server image as the base image and copies your `gateweaver.yaml` configuration file into the container. The `NODE_ENV` environment variable is set to `production` to ensure that Gateweaver runs in production mode.
 
-**Note:** Ensure to replace `<version>` with the specific version of Gateweaver you are using. If you have been developing locally using the CLI, it is best to use the same version of `@gateweaver/cli` from your project's `package.json` to maintain compatibility. You can also find the latest version of the Gateweaver server image on the [Docker Hub page](https://hub.docker.com/r/gateweaver/server).
+:::note
+Ensure to replace `<version>` with the specific version of Gateweaver you are using. If you have been developing locally using the CLI, it is best to use the same version of `@gateweaver/cli` from your project's `package.json` to maintain compatibility. You can also find the latest version of the Gateweaver server image on the [Docker Hub page](https://hub.docker.com/r/gateweaver/server).
+:::
 
 ## Deploying with Cloud Services
 
@@ -32,7 +34,7 @@ For an even smoother deployment experience, consider using a cloud service like 
 
 4. **Deploy:** Follow the service's instructions to deploy your application. These platforms take care of the complexities of container building and deployment, allowing you to focus on development.
 
-:::tip
+:::note
 Make sure to set the `NODE_ENV` environment variable to `production` to ensure that Gateweaver runs in production mode.
 :::
 

@@ -58,17 +58,19 @@ To use environment variables in your configuration file, you can use the `${VAR_
 endpoints:
   - path: "/todos"
     target:
-      url: "${API_URL}/todos"
+      url: "https://example.com/todos"
+    transformedRequest:
+      headers:
+        Authorization: "Bearer ${API_TOKEN}"
     policies:
       - cors
 ```
 
-You can set environment variables in a `.env.gateweaver` file in the root of your project:
+You can set environment variables locally in a `.env.gateweaver` file in the root of your project:
 
 ```bash title=".env.gateweaver"
 NODE_ENV=development
-PORT=8080
-API_URL=https://example.com
+API_TOKEN=your-api-token
 ```
 
 Remember to add the `.env.gateweaver` file to your `.gitignore` file to prevent it from being committed to your repository.

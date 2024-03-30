@@ -2,7 +2,7 @@
 
 Welcome to Gateweaver, the open-source API gateway that seamlessly secures your frontend applications' integration with external APIs. Designed with simplicity and protection in mind, Gateweaver enables developers to utilize APIs requiring sensitive keys and tokens without risking exposure on the frontend. Through a straightforward YAML configuration file, users can define endpoints and apply essential policies like CORS, rate limiting, API key management, and JWT authentication, ensuring robust security measures are in place. Start quickly with the Gateweaver CLI or Docker image to streamline your API usage while safeguarding your application.
 
-[Read the full documentation](https://gateweaver.io/docs)
+[Read the full documentation](https://gateweaver.io/docs/getting-started)
 
 ## Getting Started
 

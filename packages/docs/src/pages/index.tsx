@@ -32,7 +32,7 @@ function HomepageHeader() {
 export default function Home(): JSX.Element {
   return (
     <Layout
-      title="An API Gateway for the frontend"
+      title="Gateweaver, An API Gateway for the frontend"
       description="An API Gateway for the frontend"
     >
       <HomepageHeader />

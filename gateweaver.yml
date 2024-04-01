@@ -10,7 +10,6 @@ policyDefinitions:
   rateLimit:
     rateLimitBy: "ip"
     standardHeaders: "draft-7"
-    skipSuccessfulRequests: true
   apiKey:
     hashes:
       - "20ccb72ebb7ef6911958d8b22ab97821a15ae30fb9dd31c548a3184c06fc80c8"
@@ -24,7 +23,15 @@ endpoints:
       headers:
         test-header: "test"
     policies:
-      - apiKey
+      - rateLimit
+  - path: "/short"
+    target:
+      url: "https://shorturl.at/acS78"
+    transformedResponse:
+      headers:
+        test-header: "test"
+    policies:
+      - rateLimit
   - path: "/giphy/trending"
     target:
       url: "https://api.giphy.com/v1/gifs/trending"

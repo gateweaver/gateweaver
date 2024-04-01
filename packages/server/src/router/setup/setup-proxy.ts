@@ -26,8 +26,8 @@ export const setupProxy = (router: Router, endpoint: Endpoint): void => {
 
   const onProxyRes = (
     proxyRes: IncomingMessage,
-    req: Request,
-    res: Response,
+    _req: Request,
+    _res: Response,
   ) => {
     proxyRes.headers = {
       ...proxyRes.headers,
@@ -63,13 +63,6 @@ export const setupProxy = (router: Router, endpoint: Endpoint): void => {
         "Access-Control-Max-Age",
       ]);
     }
-
-    logger.info({
-      message: "Proxy response",
-      path: endpoint.path,
-      target: endpoint.target.url,
-      status: res.statusCode,
-    });
   };
 
   const logProvider = () => {

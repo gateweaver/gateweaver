@@ -2,15 +2,14 @@ import { Request, Response, NextFunction } from "express";
 import { logger } from "../logger";
 
 export const httpLogger = (req: Request, res: Response, next: NextFunction) => {
-  const query = Object.keys(req.query).length ? req.query : undefined;
-  const body = Object.keys(req.body).length ? req.body : undefined;
+  const start = Date.now();
+  const { method, originalUrl } = req;
 
-  logger.info({
-    message: "Incoming request",
-    method: req.method,
-    path: req.path,
-    query,
-    body,
+  res.on("finish", () => {
+    const { statusCode } = res;
+    const duration = Date.now() - start;
+
+    logger.info(`${method} ${originalUrl} ${statusCode} ${duration}ms`);
   });
   next();
 };

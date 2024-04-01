@@ -4,20 +4,20 @@ export interface Target {
   url: string;
 }
 
-export interface TransformedRequest {
+export interface CustomRequest {
   headers?: Record<string, string>;
   query?: Record<string, string>;
 }
 
-export interface TransformedResponse {
+export interface CustomResponse {
   headers?: Record<string, string>;
 }
 
 export interface Endpoint {
   path: string;
   target: Target;
-  transformedRequest?: TransformedRequest;
-  transformedResponse?: TransformedResponse;
+  request?: CustomRequest;
+  response?: CustomResponse;
   policies?: PolicyOption[];
 }
 

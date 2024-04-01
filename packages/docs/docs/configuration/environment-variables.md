@@ -15,7 +15,7 @@ endpoints:
   - path: "/todos"
     target:
       url: "${API_URL}/todos"
-    transformedRequest:
+    request:
       headers:
         Authorization: "Bearer ${API_TOKEN}"
 ```

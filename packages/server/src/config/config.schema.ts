@@ -4,8 +4,8 @@ import {
   Target,
   Endpoint,
   Config,
-  TransformedRequest,
-  TransformedResponse,
+  CustomRequest,
+  CustomResponse,
 } from "./config.types";
 
 const targetSchema: JSONSchemaType<Target> = {
@@ -25,7 +25,7 @@ const keyValueSchema: JSONSchemaType<Record<string, string>> = {
   required: [],
 };
 
-const transformedRequestSchema: JSONSchemaType<TransformedRequest> = {
+const requestSchema: JSONSchemaType<CustomRequest> = {
   type: "object",
   properties: {
     headers: { ...keyValueSchema, nullable: true },
@@ -33,7 +33,7 @@ const transformedRequestSchema: JSONSchemaType<TransformedRequest> = {
   },
 };
 
-const transformedResponseSchema: JSONSchemaType<TransformedResponse> = {
+const responseSchema: JSONSchemaType<CustomResponse> = {
   type: "object",
   properties: {
     headers: { ...keyValueSchema, nullable: true },
@@ -45,8 +45,8 @@ const endpointSchema: JSONSchemaType<Endpoint> = {
   properties: {
     path: { type: "string" },
     target: targetSchema,
-    transformedRequest: { ...transformedRequestSchema, nullable: true },
-    transformedResponse: { ...transformedResponseSchema, nullable: true },
+    request: { ...requestSchema, nullable: true },
+    response: { ...responseSchema, nullable: true },
     policies: {
       type: "array",
       items: { type: "string", enum: Object.values(PolicyOption) },

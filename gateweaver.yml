@@ -10,7 +10,6 @@ policyDefinitions:
   rateLimit:
     rateLimitBy: "ip"
     standardHeaders: "draft-7"
-    skipSuccessfulRequests: true
   apiKey:
     hashes:
       - "20ccb72ebb7ef6911958d8b22ab97821a15ae30fb9dd31c548a3184c06fc80c8"
@@ -20,15 +19,23 @@ endpoints:
   - path: "/todos"
     target:
       url: "https://jsonplaceholder.typicode.com/todos"
-    transformedResponse:
+    response:
       headers:
         test-header: "test"
     policies:
-      - apiKey
+      - rateLimit
+  - path: "/short"
+    target:
+      url: "https://shorturl.at/acS78"
+    response:
+      headers:
+        test-header: "test"
+    policies:
+      - rateLimit
   - path: "/giphy/trending"
     target:
       url: "https://api.giphy.com/v1/gifs/trending"
-    transformedRequest:
+    request:
       query:
         api_key: "${GIPHY_API_KEY}"
         limit: "1"
@@ -38,6 +45,6 @@ endpoints:
   - path: "/spotify/artist"
     target:
       url: "https://api.spotify.com/v1/artists/4Z8W4fKeB5YxbusRsdQVPb"
-    transformedRequest:
+    request:
       headers:
         Authorization: "Bearer ${SPOTIFY_TOKEN}"

@@ -17,12 +17,16 @@ endpoints:
       url: "https://example.com/target_path"
     request:
       headers:
-        Custom-Header: "value"
+        Add-Header: "value"
+        Remove-Header: ""
+        Replace-Header: "new value"
       query:
         key: "value"
     response:
       headers:
-        Custom-Response-Header: "value"
+        Add-Header: "value"
+        Remove-Header: ""
+        Replace-Header: "new value"
     policies:
       - cors
       - rateLimit
@@ -49,13 +53,7 @@ Modifies the request before it is sent to the target.
 
 - `headers`: Key-value pairs representing headers to add, remove or replace in the request. Each key represents the header name, and its value represents the header value. (Optional)
 
-```
-request:
-  headers:
-    Add-Header: "value"
-    Remove-Header: ""
-    Replace-Header: "new value"
-```
+**Note:** If you want to remove a header, set its value to an empty string (`""`). If you want to replace a header, set its value to the new header value.
 
 - `query`: Key-value pairs representing query parameters to add to the request. Each key represents the query parameter name, and its value represents the query parameter value. (Optional)
 
@@ -65,13 +63,7 @@ Modifies the response before it is sent back to the client.
 
 - `headers`: Key-value pairs representing headers to add, remove or replace in the response. Each key represents the header name, and its value represents the header value. (Optional)
 
-```
-request:
-  headers:
-    Add-Header: "value"
-    Remove-Header: ""
-    Replace-Header: "new value"
-```
+**Note:** If you want to remove a header, set its value to an empty string (`""`). If you want to replace a header, set its value to the new header value.
 
 ### policies (Optional)
 

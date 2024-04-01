@@ -1,5 +1,4 @@
 import Ajv from "ajv";
-import addFormats from "ajv-formats";
 import { PolicyDefinitions, PolicyOption } from "@gateweaver/policies";
 import { configSchema } from "./config.schema";
 import { Endpoint, Config } from "./config.types";
@@ -98,7 +97,6 @@ const validateEndpointPolicies = (
 
 export const validateConfig = (config: Config): Config => {
   const ajv = new Ajv({ useDefaults: true, allowUnionTypes: true });
-  addFormats(ajv, ["url"]);
 
   const validate = ajv.compile(configSchema);
   const validationErrors: string[] = [];

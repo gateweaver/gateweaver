@@ -18,6 +18,8 @@
     },
     "clean": {
       "cache": false
-    }
+    },
+    "start": {},
+    "serve": {}
   }
 }

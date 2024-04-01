@@ -1,0 +1,18 @@
+{
+  "name": "e2e",
+  "version": "0.0.0",
+  "main": "index.js",
+  "private": true,
+  "scripts": {
+    "test": "jest"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "@gateweaver/server": "*",
+    "@types/superagent": "^8.1.6",
+    "mockttp": "^3.10.1",
+    "superagent": "^8.1.2"
+  }
+}

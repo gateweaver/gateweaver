@@ -1,5 +1,11 @@
 # @gateweaver/policies
 
+## 0.0.24
+
+### Patch Changes
+
+- d393f8b: Add graceful shutdown
+
 ## 0.0.23
 
 ### Patch Changes

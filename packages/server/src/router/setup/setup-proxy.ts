@@ -16,8 +16,8 @@ export const setupProxy = (router: Router, endpoint: Endpoint): void => {
   const buildTargetUrl = () => {
     let url = endpoint.target.url;
 
-    if (endpoint.transformedRequest?.query) {
-      const query = new URLSearchParams(endpoint.transformedRequest.query);
+    if (endpoint.request?.query) {
+      const query = new URLSearchParams(endpoint.request.query);
       url += `?${query}`;
     }
 
@@ -31,7 +31,7 @@ export const setupProxy = (router: Router, endpoint: Endpoint): void => {
   ) => {
     proxyRes.headers = {
       ...proxyRes.headers,
-      ...endpoint.transformedResponse?.headers,
+      ...endpoint.response?.headers,
     };
 
     Object.keys(proxyRes.headers).forEach((key) => {
@@ -79,7 +79,7 @@ export const setupProxy = (router: Router, endpoint: Endpoint): void => {
     target: buildTargetUrl(),
     changeOrigin: true,
     pathRewrite: { [`^${endpoint.path}`]: "" },
-    headers: endpoint.transformedRequest?.headers,
+    headers: endpoint.request?.headers,
     xfwd: true,
     onProxyRes,
     logProvider,

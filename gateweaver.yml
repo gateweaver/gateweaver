@@ -19,7 +19,7 @@ endpoints:
   - path: "/todos"
     target:
       url: "https://jsonplaceholder.typicode.com/todos"
-    transformedResponse:
+    response:
       headers:
         test-header: "test"
     policies:
@@ -27,7 +27,7 @@ endpoints:
   - path: "/short"
     target:
       url: "https://shorturl.at/acS78"
-    transformedResponse:
+    response:
       headers:
         test-header: "test"
     policies:
@@ -35,7 +35,7 @@ endpoints:
   - path: "/giphy/trending"
     target:
       url: "https://api.giphy.com/v1/gifs/trending"
-    transformedRequest:
+    request:
       query:
         api_key: "${GIPHY_API_KEY}"
         limit: "1"
@@ -45,6 +45,6 @@ endpoints:
   - path: "/spotify/artist"
     target:
       url: "https://api.spotify.com/v1/artists/4Z8W4fKeB5YxbusRsdQVPb"
-    transformedRequest:
+    request:
       headers:
         Authorization: "Bearer ${SPOTIFY_TOKEN}"

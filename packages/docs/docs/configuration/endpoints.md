@@ -15,12 +15,12 @@ endpoints:
   - path: "/example_path"
     target:
       url: "https://example.com/target_path"
-    transformedRequest:
+    request:
       headers:
         Custom-Header: "value"
       query:
         key: "value"
-    transformedResponse:
+    response:
       headers:
         Custom-Response-Header: "value"
     policies:
@@ -35,7 +35,7 @@ Defines the target URL where the request will be forwarded.
 
 - `url`: The URL to which the request will be sent. Must be a valid URL.
 
-### TransformedRequest (Optional)
+### Request (Optional)
 
 Modifies the request before it is sent to the target.
 
@@ -43,7 +43,7 @@ Modifies the request before it is sent to the target.
 
 - `query`: An object representing query parameters to add to the request. Each key represents the parameter name, and its value represents the parameter value. (Optional)
 
-### TransformedResponse (Optional)
+### Response (Optional)
 
 Modifies the response before it is sent back to the client.
 

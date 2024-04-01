@@ -59,7 +59,7 @@ endpoints:
   - path: "/todos"
     target:
       url: "https://example.com/todos"
-    transformedRequest:
+    request:
       headers:
         Authorization: "Bearer ${API_TOKEN}"
     policies:

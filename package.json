@@ -12,11 +12,12 @@
     "clean": "turbo clean",
     "purge:node_modules": "rimraf node_modules packages/*/node_modules",
     "purge:turbo": "rimraf .turbo packages/*/.turbo",
-    "release": "turbo run build --filter=@gateweaver/* && turbo run lint test --filter=@gateweaver/* && changeset publish",
     "docs:start": "pnpm --filter docs run start",
     "docs:build": "pnpm --filter docs run build",
     "docs:serve": "pnpm --filter docs run serve",
-    "prepare": "husky"
+    "server:start": "pnpm --filter @gateweaver/server run start",
+    "prepare": "husky",
+    "release": "turbo run build --filter=@gateweaver/* && turbo run lint test --filter=@gateweaver/* && changeset publish"
   },
   "author": "",
   "license": "MIT",

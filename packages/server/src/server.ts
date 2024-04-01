@@ -69,4 +69,13 @@ export const startServer = (filePath = "gateweaver", watch = false) => {
     });
     logger.info(`Watching for file changes on ${filePath}`);
   }
+
+  process.on("SIGTERM", () => {
+    logger.info("SIGTERM signal received: closing server");
+    if (server) {
+      server.close(() => {
+        logger.info("Server closed");
+      });
+    }
+  });
 };

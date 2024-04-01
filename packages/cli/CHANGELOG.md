@@ -1,5 +1,14 @@
 # @gateweaver/cli
 
+## 0.0.24
+
+### Patch Changes
+
+- d393f8b: Add graceful shutdown
+- Updated dependencies [d393f8b]
+  - @gateweaver/server@0.0.24
+  - @gateweaver/policies@0.0.24
+
 ## 0.0.23
 
 ### Patch Changes

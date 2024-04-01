@@ -29,27 +29,51 @@ endpoints:
       - jwt
 ```
 
-### Target
+### path
+
+Defines the path of the endpoint. Requests to this path will be forwarded to the target URL.
+
+- `String`: The path of the endpoint. For example, `"/todos"`.
+
+**Note:** The path must start with a `/` and then only contain alphanumeric characters, hyphens, and underscores.
+
+### target
 
 Defines the target URL where the request will be forwarded.
 
 - `url`: The URL to which the request will be sent. Must be a valid URL.
 
-### Request (Optional)
+### request (Optional)
 
 Modifies the request before it is sent to the target.
 
-- `headers`: An object representing headers to add, remove or replace in the request. Each key represents the header name, and its value represents the header value. (Optional)
+- `headers`: Key-value pairs representing headers to add, remove or replace in the request. Each key represents the header name, and its value represents the header value. (Optional)
 
-- `query`: An object representing query parameters to add to the request. Each key represents the parameter name, and its value represents the parameter value. (Optional)
+```
+request:
+  headers:
+    Add-Header: "value"
+    Remove-Header: ""
+    Replace-Header: "new value"
+```
 
-### Response (Optional)
+- `query`: Key-value pairs representing query parameters to add to the request. Each key represents the query parameter name, and its value represents the query parameter value. (Optional)
+
+### response (Optional)
 
 Modifies the response before it is sent back to the client.
 
-- `headers`: An object representing headers to add, remove or replace in the response. Each key represents the header name, and its value represents the header value. (Optional)
+- `headers`: Key-value pairs representing headers to add, remove or replace in the response. Each key represents the header name, and its value represents the header value. (Optional)
 
-### Policies (Optional)
+```
+request:
+  headers:
+    Add-Header: "value"
+    Remove-Header: ""
+    Replace-Header: "new value"
+```
+
+### policies (Optional)
 
 An array of policies to apply to the request. The available policies include:
 

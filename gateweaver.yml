@@ -9,7 +9,7 @@ policyDefinitions:
       - "another-header"
   rateLimit:
     rateLimitBy: "ip"
-    standardHeaders: "draft-7"
+    standardHeaders: "draft-6"
   apiKey:
     hashes:
       - "20ccb72ebb7ef6911958d8b22ab97821a15ae30fb9dd31c548a3184c06fc80c8"
@@ -18,12 +18,13 @@ policyDefinitions:
 endpoints:
   - path: "/todos"
     target:
-      url: "https://jsonplaceholder.typicode.com/todos"
+      url: "${TARGET_URL}/todos"
     response:
       headers:
         test-header: "test"
     policies:
       - rateLimit
+      - cors
   - path: "/short"
     target:
       url: "https://shorturl.at/acS78"

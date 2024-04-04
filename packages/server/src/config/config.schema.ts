@@ -11,7 +11,7 @@ import {
 const targetSchema: JSONSchemaType<Target> = {
   type: "object",
   properties: {
-    url: { type: "string" },
+    url: { type: "string", format: "uri" },
   },
   required: ["url"],
 };

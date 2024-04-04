@@ -1,0 +1,34 @@
+policyDefinitions:
+  cors:
+    origin: "example.com"
+  rateLimit:
+    rateLimitBy: "ip"
+    standardHeaders: "draft-6"
+    limit: 2
+
+endpoints:
+  - path: "/public/mock"
+    target:
+      url: "https://example.com/api"
+    request:
+      headers:
+        Authorization: "Bearer mock-server-token"
+      query:
+        message: "Message from gateway query"
+    response:
+      headers:
+        remove-header: ""
+        replace-header: "New value"
+    policies:
+      - cors
+
+  - path: "/public/rate-limited"
+    target:
+      url: "https://example.com/api"
+    request:
+      headers:
+        Authorization: "Bearer mock-server-token"
+      query:
+        message: "Message from gateway query"
+    policies:
+      - rateLimit

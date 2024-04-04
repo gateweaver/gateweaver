@@ -27,7 +27,7 @@ export const jwtSchema: JSONSchemaType<JwtPolicy> = {
   type: "object",
   properties: {
     secret: { type: "string", nullable: true },
-    jwksUri: { type: "string", nullable: true },
+    jwksUri: { type: "string", nullable: true, format: "uri" },
     audience: { type: "string", nullable: true },
     issuer: { type: "string", nullable: true },
     algorithms: {

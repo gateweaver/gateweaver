@@ -4,15 +4,15 @@
   "main": "index.js",
   "private": true,
   "scripts": {
-    "test": "jest"
+    "test": "jest --runInBand"
   },
   "keywords": [],
   "author": "",
   "license": "MIT",
   "devDependencies": {
     "@gateweaver/server": "*",
-    "@types/superagent": "^8.1.6",
-    "mockttp": "^3.10.1",
-    "superagent": "^8.1.2"
+    "@types/supertest": "^6.0.2",
+    "msw": "^2.2.13",
+    "supertest": "^6.3.4"
   }
 }

@@ -14,6 +14,7 @@ export const isValidApiKey = (
 ): boolean => {
   if (typeof apiKey !== "string") return false;
 
-  const apiKeyHash = hashApiKey(apiKey);
-  return apiKeyHashes.includes(apiKeyHash);
+  const apiKeyHash = hashApiKey(apiKey).toLowerCase();
+
+  return apiKeyHashes.map((hash) => hash.toLowerCase()).includes(apiKeyHash);
 };

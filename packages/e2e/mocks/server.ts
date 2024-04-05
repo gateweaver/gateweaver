@@ -12,11 +12,11 @@ const getBodyMessage = async (request: Request) => {
   return `Hello, ${name}!`;
 };
 
-const successResponse = (message: string) => {
+const successResponse = (message: string, status: number = 200) => {
   return HttpResponse.json(
     { message },
     {
-      status: 200,
+      status,
       headers: {
         "remove-header": "Header to remove",
         "replace-header": "Header to replace",
@@ -44,7 +44,7 @@ const handlers = [
 
     const message = await getBodyMessage(request);
 
-    return successResponse(message);
+    return successResponse(message, 201);
   }),
 
   http.put("https://example.com/api", async ({ request }) => {

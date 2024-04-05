@@ -1,6 +1,6 @@
 import { Response } from "supertest";
 
-export const checkHeaders = (response: Response) => {
+export const checkResponseHeaders = (response: Response) => {
   const EXPECTED_HEADERS = {
     "remove-header": undefined,
     "replace-header": "New value",

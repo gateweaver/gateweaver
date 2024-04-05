@@ -2,12 +2,12 @@ import path from "path";
 import { Server } from "http";
 import request from "supertest";
 import { startServer } from "@gateweaver/server";
-import { checkHeaders } from "../../utils/check-headers";
+import { checkResponseHeaders } from "../../utils/check-response-headers";
 
 const MOCK_PATH = "/public/mock";
 const RATE_LIMITED_PATH = "/public/rate-limited";
 
-describe.only("e2e - Public Endpoint", () => {
+describe("e2e - Public Endpoint", () => {
   let gateway: Server;
 
   beforeAll(async () => {
@@ -19,27 +19,27 @@ describe.only("e2e - Public Endpoint", () => {
     gateway?.close();
   });
 
-  it("should return a 200 status and correct body and headers when proxying a public GET endpoint", async () => {
+  it("should return a 200 status, correct body and headers when proxying a public GET endpoint", async () => {
     const response = await request(gateway).get(MOCK_PATH);
 
     expect(response.status).toBe(200);
     expect(response.body).toEqual({ message: "Message from gateway query" });
 
-    checkHeaders(response);
+    checkResponseHeaders(response);
   });
 
-  it("should return a 200 status and correct body and headers when proxying a public POST endpoint", async () => {
+  it("should return a 200 status, correct body and headers when proxying a public POST endpoint", async () => {
     const response = await request(gateway)
       .post(MOCK_PATH)
       .send({ name: "Gateweaver" });
 
-    expect(response.status).toBe(200);
+    expect(response.status).toBe(201);
     expect(response.body).toEqual({ message: "Hello, Gateweaver!" });
 
-    checkHeaders(response);
+    checkResponseHeaders(response);
   });
 
-  it("should return a 200 status and correct body and headers when proxying a public PUT endpoint", async () => {
+  it("should return a 200 status, correct body and headers when proxying a public PUT endpoint", async () => {
     const response = await request(gateway)
       .put(MOCK_PATH)
       .send({ name: "Gateweaver" });
@@ -47,10 +47,10 @@ describe.only("e2e - Public Endpoint", () => {
     expect(response.status).toBe(200);
     expect(response.body).toEqual({ message: "Hello, Gateweaver!" });
 
-    checkHeaders(response);
+    checkResponseHeaders(response);
   });
 
-  it("should return a 200 status and correct body and headers when proxying a public PATCH endpoint", async () => {
+  it("should return a 200 status, correct body and headers when proxying a public PATCH endpoint", async () => {
     const response = await request(gateway)
       .patch(MOCK_PATH)
       .send({ name: "Gateweaver" });
@@ -58,10 +58,10 @@ describe.only("e2e - Public Endpoint", () => {
     expect(response.status).toBe(200);
     expect(response.body).toEqual({ message: "Hello, Gateweaver!" });
 
-    checkHeaders(response);
+    checkResponseHeaders(response);
   });
 
-  it("should return a 200 status and correct body and headers when proxying a public DELETE endpoint", async () => {
+  it("should return a 200 status, correct body and headers when proxying a public DELETE endpoint", async () => {
     const response = await request(gateway).delete(MOCK_PATH);
 
     expect(response.status).toBe(200);
@@ -69,7 +69,7 @@ describe.only("e2e - Public Endpoint", () => {
       message: "Delete message from mock server",
     });
 
-    checkHeaders(response);
+    checkResponseHeaders(response);
   });
 
   it("should return a 429 status when a public endpoint is rate limited", async () => {

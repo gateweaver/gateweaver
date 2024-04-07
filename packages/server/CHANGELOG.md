@@ -1,5 +1,12 @@
 # @gateweaver/server
 
+## 0.0.25
+
+### Patch Changes
+
+- 4816c3e: Update parse env and docker image
+  - @gateweaver/policies@0.0.25
+
 ## 0.0.24
 
 ### Patch Changes

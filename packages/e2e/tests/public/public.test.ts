@@ -19,7 +19,7 @@ describe("e2e - Public Endpoint", () => {
     gateway?.close();
   });
 
-  it("should return a 200 status, correct body and headers when proxying a public GET endpoint", async () => {
+  it("should return a 200 status, correct body and headers when accessing a public GET endpoint", async () => {
     const response = await request(gateway).get(MOCK_PATH);
 
     expect(response.status).toBe(200);
@@ -28,7 +28,7 @@ describe("e2e - Public Endpoint", () => {
     checkResponseHeaders(response);
   });
 
-  it("should return a 200 status, correct body and headers when proxying a public POST endpoint", async () => {
+  it("should return a 200 status, correct body and headers when accessing a public POST endpoint", async () => {
     const response = await request(gateway)
       .post(MOCK_PATH)
       .send({ name: "Gateweaver" });
@@ -39,7 +39,7 @@ describe("e2e - Public Endpoint", () => {
     checkResponseHeaders(response);
   });
 
-  it("should return a 200 status, correct body and headers when proxying a public PUT endpoint", async () => {
+  it("should return a 200 status, correct body and headers when accessing a public PUT endpoint", async () => {
     const response = await request(gateway)
       .put(MOCK_PATH)
       .send({ name: "Gateweaver" });
@@ -50,7 +50,7 @@ describe("e2e - Public Endpoint", () => {
     checkResponseHeaders(response);
   });
 
-  it("should return a 200 status, correct body and headers when proxying a public PATCH endpoint", async () => {
+  it("should return a 200 status, correct body and headers when accessing a public PATCH endpoint", async () => {
     const response = await request(gateway)
       .patch(MOCK_PATH)
       .send({ name: "Gateweaver" });
@@ -61,7 +61,7 @@ describe("e2e - Public Endpoint", () => {
     checkResponseHeaders(response);
   });
 
-  it("should return a 200 status, correct body and headers when proxying a public DELETE endpoint", async () => {
+  it("should return a 200 status, correct body and headers when accessing a public DELETE endpoint", async () => {
     const response = await request(gateway).delete(MOCK_PATH);
 
     expect(response.status).toBe(200);

@@ -1,5 +1,11 @@
 # @gateweaver/policies
 
+## 0.0.26
+
+### Patch Changes
+
+- 2cdad02: Update docker image
+
 ## 0.0.25
 
 ## 0.0.24

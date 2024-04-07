@@ -3,10 +3,9 @@ policyDefinitions:
     origin: "example.com"
   rateLimit:
     rateLimitBy: "jwt"
-    standardHeaders: "draft-6"
     limit: 2
   jwt:
-    secret: "${JWT_SECRET}"
+    secret: "test-jwt-secret"
     audience: "test-audience"
     issuer: "test-issuer"
     algorithms:

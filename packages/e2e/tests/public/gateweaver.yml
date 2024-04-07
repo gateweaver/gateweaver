@@ -3,7 +3,6 @@ policyDefinitions:
     origin: "example.com"
   rateLimit:
     rateLimitBy: "ip"
-    standardHeaders: "draft-6"
     limit: 2
 
 endpoints:

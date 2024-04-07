@@ -9,6 +9,11 @@ const MOCK_PATH = "/jwt/mock";
 const RATE_LIMITED_PATH = "/jwt/rate-limited";
 
 describe("e2e - JWT Protected Endpoint", () => {
+  const token = jwt.sign({}, "test-jwt-secret", {
+    audience: "test-audience",
+    issuer: "test-issuer",
+  });
+
   let gateway: Server;
 
   beforeAll(async () => {
@@ -18,11 +23,6 @@ describe("e2e - JWT Protected Endpoint", () => {
 
   afterAll(() => {
     gateway?.close();
-  });
-
-  const token = jwt.sign({}, "test-jwt-secret", {
-    audience: "test-audience",
-    issuer: "test-issuer",
   });
 
   it("should return a 200 status, correct body and headers when proxying a JWT protected endpoint with a correct Token", async () => {

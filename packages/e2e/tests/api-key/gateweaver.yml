@@ -3,7 +3,6 @@ policyDefinitions:
     origin: "example.com"
   rateLimit:
     rateLimitBy: "apiKey"
-    standardHeaders: "draft-6"
     limit: 2
   apiKey:
     hashes:

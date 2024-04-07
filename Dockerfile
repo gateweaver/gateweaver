@@ -14,4 +14,4 @@ FROM base
 COPY --from=build /prod/server /app
 WORKDIR /app
 EXPOSE 8080
-CMD [ "pnpm", "start" ]
+CMD [ "node", "./dist/main.js" ]

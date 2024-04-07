@@ -1,7 +1,15 @@
 import fs from "fs";
 import YAML from "yaml";
-import { validateConfig } from "./validate-config";
+import { InvalidConfigError, validateConfig } from "./validate-config";
 import { Config } from "./config.types";
+
+export const parseEnv = (value: string): string => {
+  if (!process.env[value]) {
+    throw new InvalidConfigError(`Environment variable "${value}" not found.`);
+  }
+
+  return process.env[value]!;
+};
 
 export const parseConfig = (filePath: string): Config => {
   const extensions = [".yml", ".yaml"];
@@ -24,7 +32,7 @@ export const parseConfig = (filePath: string): Config => {
 
   const file = fs
     .readFileSync(finalPath, "utf8")
-    .replace(/\$\{(.+?)\}/g, (match, name) => process.env[name] || match);
+    .replace(/\$\{(.+?)\}/g, (_, value) => parseEnv(value));
 
   const config = YAML.parse(file);
 

@@ -9,7 +9,9 @@ export const errorHandler = (
   res: Response,
   _next: NextFunction,
 ) => {
-  logger.error(err);
+  if (process.env.NODE_ENV !== "test") {
+    logger.error(err);
+  }
 
   if (err instanceof UnauthorizedError) {
     res.status(401).send({

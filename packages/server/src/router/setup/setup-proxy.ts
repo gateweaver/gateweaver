@@ -1,6 +1,10 @@
 import { IncomingMessage } from "http";
 import { Request, Response, Router } from "express";
-import { createProxyMiddleware, type Options } from "http-proxy-middleware";
+import {
+  createProxyMiddleware,
+  fixRequestBody,
+  type Options,
+} from "http-proxy-middleware";
 import { PolicyOption } from "@gateweaver/policies";
 import { Endpoint } from "../../config/config.types";
 import { logger } from "../../logger";
@@ -81,6 +85,7 @@ export const setupProxy = (router: Router, endpoint: Endpoint): void => {
     pathRewrite: { [`^${endpoint.path}`]: "" },
     headers: endpoint.request?.headers,
     xfwd: true,
+    onProxyReq: fixRequestBody,
     onProxyRes,
     logProvider,
     logLevel: "error",

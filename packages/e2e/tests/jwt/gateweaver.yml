@@ -1,0 +1,41 @@
+policyDefinitions:
+  cors:
+    origin: "example.com"
+  rateLimit:
+    rateLimitBy: "jwt"
+    limit: 2
+  jwt:
+    secret: "test-jwt-secret"
+    audience: "test-audience"
+    issuer: "test-issuer"
+    algorithms:
+      - "HS256"
+
+endpoints:
+  - path: "/jwt/mock"
+    target:
+      url: "https://example.com/api"
+    request:
+      headers:
+        Authorization: "Bearer mock-server-token"
+      query:
+        message: "Message from gateway query"
+    response:
+      headers:
+        remove-header: ""
+        replace-header: "New value"
+    policies:
+      - cors
+      - jwt
+
+  - path: "/jwt/rate-limited"
+    target:
+      url: "https://example.com/api"
+    request:
+      headers:
+        Authorization: "Bearer mock-server-token"
+      query:
+        message: "Message from gateway query"
+    policies:
+      - rateLimit
+      - jwt

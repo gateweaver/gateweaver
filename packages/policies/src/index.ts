@@ -1,4 +1,4 @@
-export * from "./policyDefinitions.schema";
+export * from "./policy-definitions.schema";
 export * from "./policy.middleware";
 export * from "./cors";
 export * from "./jwt";

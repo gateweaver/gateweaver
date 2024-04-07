@@ -98,7 +98,7 @@ const validateEndpointPolicies = (
 
 export const validateConfig = (config: Config): Config => {
   const ajv = new Ajv({ useDefaults: true, allowUnionTypes: true });
-  addFormats(ajv, ["url"]);
+  addFormats(ajv, ["uri"]);
 
   const validate = ajv.compile(configSchema);
   const validationErrors: string[] = [];

@@ -1,0 +1,38 @@
+policyDefinitions:
+  cors:
+    origin: "example.com"
+  rateLimit:
+    rateLimitBy: "apiKey"
+    limit: 2
+  apiKey:
+    hashes:
+      - "4c806362b613f7496abf284146efd31da90e4b16169fe001841ca17290f427c4"
+
+endpoints:
+  - path: "/api-key/mock"
+    target:
+      url: "https://example.com/api"
+    request:
+      headers:
+        Authorization: "Bearer mock-server-token"
+      query:
+        message: "Message from gateway query"
+    response:
+      headers:
+        remove-header: ""
+        replace-header: "New value"
+    policies:
+      - cors
+      - apiKey
+
+  - path: "/api-key/rate-limited"
+    target:
+      url: "https://example.com/api"
+    request:
+      headers:
+        Authorization: "Bearer mock-server-token"
+      query:
+        message: "Message from gateway query"
+    policies:
+      - rateLimit
+      - apiKey

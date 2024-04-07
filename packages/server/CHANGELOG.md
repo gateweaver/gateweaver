@@ -1,5 +1,13 @@
 # @gateweaver/server
 
+## 0.0.26
+
+### Patch Changes
+
+- 2cdad02: Update docker image
+- Updated dependencies [2cdad02]
+  - @gateweaver/policies@0.0.26
+
 ## 0.0.25
 
 ### Patch Changes

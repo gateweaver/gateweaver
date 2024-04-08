@@ -9,7 +9,7 @@ import { errorHandler, httpLogger } from "./middleware";
 import { logger } from "./logger";
 
 export const startServer = (
-  filePath = "gateweaver",
+  filePath = "gateweaver.yml",
   watch = false,
 ): Promise<Server> => {
   let server: Server | null = null;
@@ -81,7 +81,7 @@ export const startServer = (
     logger.info("SIGTERM signal received: closing server");
     if (server) {
       server.close(() => {
-        logger.info("Server closed!");
+        logger.info("Server closed");
       });
     }
   });

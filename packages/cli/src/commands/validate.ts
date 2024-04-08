@@ -1,20 +1,19 @@
 import { Command } from "commander";
 import { parseConfig, InvalidConfigError } from "@gateweaver/server";
+import { getConfigPath } from "@gateweaver/server";
 
 export const validateConfigCommand = (program: Command) => {
   program
     .command("validate")
     .description("Validate a gateweaver config file")
-    .option(
-      "-c, --config <configPath>",
-      "Path to the config file",
-      "gateweaver",
-    )
+    .option("-c, --config <configPath>", "Path to the config file")
     .action((options) => {
       const { config } = options;
 
       try {
-        parseConfig(config);
+        const filePath = getConfigPath(config);
+
+        parseConfig(filePath);
         console.log("✅ Config file is valid");
       } catch (error) {
         if (error instanceof InvalidConfigError) {

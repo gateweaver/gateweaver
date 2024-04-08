@@ -12,6 +12,10 @@ export const parseEnv = (value: string): string => {
 };
 
 export const parseConfig = (filePath: string): Config => {
+  if (!fs.existsSync(filePath)) {
+    throw new Error(`Gateweaver config file not found at path: ${filePath}`);
+  }
+
   const file = fs
     .readFileSync(filePath, "utf8")
     .replace(/\$\{(.+?)\}/g, (_, value) => parseEnv(value));

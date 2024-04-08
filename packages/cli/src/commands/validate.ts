@@ -1,6 +1,6 @@
 import { Command } from "commander";
 import { parseConfig, InvalidConfigError } from "@gateweaver/server";
-import { getConfigPath } from "@gateweaver/server";
+import { getConfigDefaultPath } from "@gateweaver/server";
 
 export const validateConfigCommand = (program: Command) => {
   program
@@ -11,7 +11,7 @@ export const validateConfigCommand = (program: Command) => {
       const { config } = options;
 
       try {
-        const filePath = getConfigPath(config);
+        const filePath = config || getConfigDefaultPath();
 
         parseConfig(filePath);
         console.log("✅ Config file is valid");

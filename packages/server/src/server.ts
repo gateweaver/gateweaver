@@ -2,6 +2,7 @@ import { createServer, Server } from "http";
 import express, { Express } from "express";
 import chokidar from "chokidar";
 import helmet from "helmet";
+import fs from "fs";
 import { parseConfig } from "./config/parse-config";
 import { InvalidConfigError } from "./config/validate-config";
 import { createRouter } from "./router";
@@ -12,6 +13,10 @@ export const startServer = (
   filePath = "gateweaver.yml",
   watch = false,
 ): Promise<Server> => {
+  if (!fs.existsSync(filePath)) {
+    throw new Error(`Gateweaver config file not found at path: ${filePath}`);
+  }
+
   let server: Server | null = null;
 
   const runServer = (app: Express, PORT: number | string): Server => {

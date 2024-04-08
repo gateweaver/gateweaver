@@ -12,8 +12,7 @@ describe("parseConfig", () => {
   });
 
   it("should correctly identify and parse a file with .yaml extension", () => {
-    const configPath = "config";
-    const fullPath = `${configPath}.yml`;
+    const configPath = "config.yml";
     const mockConfig = { endpoints: "value" };
 
     (fs.existsSync as jest.Mock).mockReturnValue(true);
@@ -22,8 +21,8 @@ describe("parseConfig", () => {
 
     const result = parseConfig(configPath);
 
-    expect(fs.existsSync).toHaveBeenCalledWith(fullPath);
-    expect(fs.readFileSync).toHaveBeenCalledWith(fullPath, "utf8");
+    expect(fs.existsSync).toHaveBeenCalledWith(configPath);
+    expect(fs.readFileSync).toHaveBeenCalledWith(configPath, "utf8");
     expect(validateConfig).toHaveBeenCalledWith(mockConfig);
     expect(result).toEqual(mockConfig);
   });
@@ -31,14 +30,13 @@ describe("parseConfig", () => {
   it("should throw an error if the config file does not exist", () => {
     (fs.existsSync as jest.Mock).mockReturnValue(false);
 
-    expect(() => parseConfig("missingConfig")).toThrow(
-      /not found with .yml or .yaml extension/,
+    expect(() => parseConfig("missingConfig.yml")).toThrow(
+      "Gateweaver config file not found at path: missingConfig.yml",
     );
   });
 
   it("should replace environment variables in the file content before validating", () => {
-    const configPath = "config";
-    const fullPath = `${configPath}.yml`;
+    const configPath = "config.yml";
     const mockConfig = { endpoints: "test value" };
 
     (fs.existsSync as jest.Mock).mockReturnValue(true);
@@ -46,7 +44,7 @@ describe("parseConfig", () => {
 
     parseConfig(configPath);
 
-    expect(fs.readFileSync).toHaveBeenCalledWith(fullPath, "utf8");
+    expect(fs.readFileSync).toHaveBeenCalledWith(configPath, "utf8");
     expect(validateConfig).toHaveBeenCalledWith(mockConfig);
   });
 

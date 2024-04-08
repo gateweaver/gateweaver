@@ -18,6 +18,7 @@ export const errorHandler = (
   }
 
   if (err instanceof RateLimitPolicyError) {
+    logger.error(err.message);
     res.status(401).send({
       error: err.message,
     });

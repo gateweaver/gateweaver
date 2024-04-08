@@ -1,6 +1,7 @@
 import fs from "fs";
 import YAML from "yaml";
-import { InvalidConfigError, validateConfig } from "./validate-config";
+import { InvalidConfigError, MissingConfigError } from "../errors";
+import { validateConfig } from "./validate-config";
 import { Config } from "./config.types";
 
 export const parseEnv = (value: string): string => {
@@ -12,26 +13,14 @@ export const parseEnv = (value: string): string => {
 };
 
 export const parseConfig = (filePath: string): Config => {
-  const extensions = [".yml", ".yaml"];
-
-  let finalPath;
-
-  for (const ext of extensions) {
-    const pathWithExt = filePath.endsWith(ext) ? filePath : `${filePath}${ext}`;
-    if (fs.existsSync(pathWithExt)) {
-      finalPath = pathWithExt;
-      break;
-    }
-  }
-
-  if (!finalPath) {
-    throw new Error(
-      `Config file "${filePath}" not found with .yml or .yaml extension.`,
+  if (!fs.existsSync(filePath)) {
+    throw new MissingConfigError(
+      `Gateweaver config file not found at path: ${filePath}`,
     );
   }
 
   const file = fs
-    .readFileSync(finalPath, "utf8")
+    .readFileSync(filePath, "utf8")
     .replace(/\$\{(.+?)\}/g, (_, value) => parseEnv(value));
 
   const config = YAML.parse(file);

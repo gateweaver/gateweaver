@@ -1,9 +1,16 @@
 import { config } from "dotenv";
 config({ path: ".env.gateweaver" });
-import { logger, startServer } from ".";
+import { getDefaultConfigPath } from "./config/get-default-config-path";
+import { startServer } from "./server";
+import { handleServerError } from "./errors";
 
-try {
-  startServer();
-} catch (error) {
-  logger.error(error);
-}
+const main = async () => {
+  try {
+    const filePath = getDefaultConfigPath();
+    await startServer(filePath, true);
+  } catch (error) {
+    handleServerError(error);
+  }
+};
+
+main();

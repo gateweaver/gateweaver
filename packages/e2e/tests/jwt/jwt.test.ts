@@ -25,7 +25,7 @@ describe("e2e - JWT Protected Endpoint", () => {
     gateway?.close();
   });
 
-  it("should return a 200 status, correct body and headers when proxying a JWT protected endpoint with a correct Token", async () => {
+  it("should return a 200 status, correct body and headers when accessing a JWT protected endpoint with a correct Token", async () => {
     const response = await request(gateway)
       .get(MOCK_PATH)
       .set("Authorization", `Bearer ${token}`);

@@ -20,7 +20,7 @@ describe("e2e - API Key Protected Endpoint", () => {
     gateway?.close();
   });
 
-  it("should return a 200 status, correct body and headers when proxying an API Key protected endpoint with a correct API Key", async () => {
+  it("should return a 200 status, correct body and headers when accessing an API Key protected endpoint with a correct API Key", async () => {
     const response = await request(gateway)
       .get(MOCK_PATH)
       .set("x-api-key", TEST_API_KEY);

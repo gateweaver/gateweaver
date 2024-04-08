@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from "express";
 import { UnauthorizedError } from "express-jwt";
-import { RateLimitUnauthorizedError } from "@gateweaver/policies";
+import { RateLimitPolicyError } from "@gateweaver/policies";
 import { logger } from "../logger";
 
 export const errorHandler = (
@@ -9,23 +9,23 @@ export const errorHandler = (
   res: Response,
   _next: NextFunction,
 ) => {
-  if (process.env.NODE_ENV !== "test") {
-    logger.error(err);
-  }
-
   if (err instanceof UnauthorizedError) {
+    logger.error(err.message);
     res.status(401).send({
       error: "Invalid Authorization Token",
     });
     return;
   }
 
-  if (err instanceof RateLimitUnauthorizedError) {
+  if (err instanceof RateLimitPolicyError) {
+    logger.error(err.message);
     res.status(401).send({
       error: err.message,
     });
     return;
   }
+
+  logger.error(err);
 
   return res.status(500).send({
     error: "Internal Server Error",

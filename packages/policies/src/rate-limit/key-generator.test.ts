@@ -1,6 +1,7 @@
 import { Request } from "express";
-import { RateLimitUnauthorizedError, keyGenerator } from "./key-generator";
+import { keyGenerator } from "./key-generator";
 import { RateLimitBy } from "./rate-limit.schema";
+import { RateLimitPolicyError } from "./rate-limit.errors";
 
 describe("keyGenerator", () => {
   let req: Request;
@@ -24,7 +25,7 @@ describe("keyGenerator", () => {
 
   it("should throw an error if API key is missing and rate limiting by API key", () => {
     expect(() => keyGenerator(RateLimitBy.API_KEY)(req)).toThrow(
-      new RateLimitUnauthorizedError("API Key Required"),
+      new RateLimitPolicyError("API Key Required"),
     );
   });
 
@@ -41,7 +42,7 @@ describe("keyGenerator", () => {
 
   it("should throw an error if JWT is missing and rate limiting by JWT", () => {
     expect(() => keyGenerator(RateLimitBy.JWT)(req)).toThrow(
-      new RateLimitUnauthorizedError("No authorization token was found"),
+      new RateLimitPolicyError("No authorization token was found"),
     );
   });
 

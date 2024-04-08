@@ -1,11 +1,11 @@
 import { config } from "dotenv";
 config({ path: ".env.gateweaver" });
-import { getConfigDefaultPath } from "./config/get-config-default-path";
+import { getDefaultConfigPath } from "./config/get-default-config-path";
 import { startServer } from "./server";
 import { logger } from "./logger";
 
 try {
-  const filePath = getConfigDefaultPath();
+  const filePath = getDefaultConfigPath();
 
   startServer(filePath);
 } catch (error) {

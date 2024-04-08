@@ -1,5 +1,5 @@
 import { Command } from "commander";
-import { getConfigDefaultPath, startServer } from "@gateweaver/server";
+import { getDefaultConfigPath, startServer } from "@gateweaver/server";
 
 export const startServerCommand = (program: Command) => {
   program
@@ -14,7 +14,7 @@ export const startServerCommand = (program: Command) => {
       const { config, watch } = options;
 
       try {
-        const filePath = config || getConfigDefaultPath();
+        const filePath = config || getDefaultConfigPath();
 
         startServer(filePath, watch);
       } catch (error) {

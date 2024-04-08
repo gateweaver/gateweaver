@@ -1,6 +1,6 @@
 import fs from "fs";
 
-export const getConfigDefaultPath = (): string => {
+export const getDefaultConfigPath = (): string => {
   const defaultPathOptions = ["./gateweaver.yml", "./gateweaver.yaml"];
 
   const defaultPath = defaultPathOptions.find(fs.existsSync);

@@ -1,4 +1,5 @@
 import fs from "fs";
+import { MissingConfigError } from "../errors";
 
 export const getDefaultConfigPath = (): string => {
   const defaultPathOptions = ["./gateweaver.yml", "./gateweaver.yaml"];
@@ -6,7 +7,9 @@ export const getDefaultConfigPath = (): string => {
   const defaultPath = defaultPathOptions.find(fs.existsSync);
 
   if (!defaultPath) {
-    throw new Error("Gateweaver config file not found in current directory");
+    throw new MissingConfigError(
+      "Gateweaver config file not found in current directory",
+    );
   }
 
   return defaultPath;

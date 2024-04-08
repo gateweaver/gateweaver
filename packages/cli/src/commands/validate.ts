@@ -1,6 +1,10 @@
 import { Command } from "commander";
-import { parseConfig, InvalidConfigError } from "@gateweaver/server";
-import { getDefaultConfigPath } from "@gateweaver/server";
+import {
+  parseConfig,
+  InvalidConfigError,
+  MissingConfigError,
+  getDefaultConfigPath,
+} from "@gateweaver/server";
 
 export const validateConfigCommand = (program: Command) => {
   program
@@ -21,9 +25,16 @@ export const validateConfigCommand = (program: Command) => {
 
           console.log("❌ Config file validation errors:");
           validationErrors.forEach((error) => console.log(`- ${error}`));
-        } else {
-          console.log(error);
+          return;
         }
+
+        if (error instanceof MissingConfigError) {
+          console.log(`❌ ${error.message}`);
+          return;
+        }
+
+        console.error("❌ Failed to validate config file:");
+        console.error(error);
       }
     });
 };

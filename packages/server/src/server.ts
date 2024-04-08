@@ -4,17 +4,19 @@ import chokidar from "chokidar";
 import helmet from "helmet";
 import fs from "fs";
 import { parseConfig } from "./config/parse-config";
-import { InvalidConfigError } from "./config/validate-config";
 import { createRouter } from "./router";
 import { errorHandler, httpLogger } from "./middleware";
 import { logger } from "./logger";
+import { handleServerError, MissingConfigError } from "./errors";
 
 export const startServer = (
   filePath = "gateweaver.yml",
   watch = false,
 ): Promise<Server> => {
   if (!fs.existsSync(filePath)) {
-    throw new Error(`Gateweaver config file not found at path: ${filePath}`);
+    throw new MissingConfigError(
+      `Gateweaver config file not found at path: ${filePath}`,
+    );
   }
 
   let server: Server | null = null;
@@ -51,17 +53,6 @@ export const startServer = (
         }
       } catch (error) {
         logger.error("Failed to start server due to errors...");
-
-        if (error instanceof InvalidConfigError) {
-          const validationErrors = error.message.split("\n");
-          logger.error({
-            message: "Invalid config file",
-            errors: validationErrors,
-          });
-        } else {
-          logger.error(error);
-        }
-
         reject(error);
       }
     });
@@ -73,10 +64,10 @@ export const startServer = (
       logger.info(`Restarting server due to changes...`);
       if (server) {
         server.close(() => {
-          setupServer();
+          setupServer().catch(handleServerError);
         });
       } else {
-        setupServer();
+        setupServer().catch(handleServerError);
       }
     });
     logger.info(`Watching for file changes on ${filePath}`);
@@ -91,7 +82,6 @@ export const startServer = (
     }
   });
 
-  // The server promise is returned so that the server can be closed in tests
   const serverPromise = setupServer();
   return serverPromise;
 };

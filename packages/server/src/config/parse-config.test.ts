@@ -1,6 +1,7 @@
 import fs from "fs";
+import { InvalidConfigError } from "../errors";
 import { parseConfig } from "./parse-config";
-import { InvalidConfigError, validateConfig } from "./validate-config";
+import { validateConfig } from "./validate-config";
 
 jest.mock("fs");
 jest.mock("./validate-config");

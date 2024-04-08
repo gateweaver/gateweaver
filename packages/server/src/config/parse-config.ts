@@ -1,6 +1,7 @@
 import fs from "fs";
 import YAML from "yaml";
-import { InvalidConfigError, validateConfig } from "./validate-config";
+import { InvalidConfigError, MissingConfigError } from "../errors";
+import { validateConfig } from "./validate-config";
 import { Config } from "./config.types";
 
 export const parseEnv = (value: string): string => {
@@ -13,7 +14,9 @@ export const parseEnv = (value: string): string => {
 
 export const parseConfig = (filePath: string): Config => {
   if (!fs.existsSync(filePath)) {
-    throw new Error(`Gateweaver config file not found at path: ${filePath}`);
+    throw new MissingConfigError(
+      `Gateweaver config file not found at path: ${filePath}`,
+    );
   }
 
   const file = fs

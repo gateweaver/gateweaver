@@ -1,15 +1,9 @@
 import Ajv from "ajv";
 import addFormats from "ajv-formats";
 import { PolicyDefinitions, PolicyOption } from "@gateweaver/policies";
+import { InvalidConfigError } from "../errors";
 import { configSchema } from "./config.schema";
 import { Endpoint, Config } from "./config.types";
-
-export class InvalidConfigError extends Error {
-  constructor(message: string) {
-    super(message);
-    this.name = "InvalidConfigError";
-  }
-}
 
 const checkPathUniqueness = (
   endpoint: Endpoint,

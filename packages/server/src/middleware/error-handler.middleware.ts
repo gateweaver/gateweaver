@@ -10,7 +10,7 @@ export const errorHandler = (
   _next: NextFunction,
 ) => {
   if (err instanceof UnauthorizedError) {
-    logger.error(err.message);
+    logger.error(`JWT Unauthorized Error: ${err.message}`);
     res.status(401).send({
       error: "Invalid Authorization Token",
     });
@@ -18,7 +18,7 @@ export const errorHandler = (
   }
 
   if (err instanceof RateLimitPolicyError) {
-    logger.error(err.message);
+    logger.error(`Rate Limit Policy Error: ${err.message}`);
     res.status(401).send({
       error: err.message,
     });

@@ -1,0 +1,14 @@
+policyDefinitions:
+  jwt:
+    jwksUri: "https://www.googleapis.com/service_accounts/v1/jwk/securetoken@system.gserviceaccount.com"
+    audience: "${PROJECT_ID}"
+    issuer: "https://securetoken.google.com/${PROJECT_ID}"
+    algorithms:
+      - "RS256"
+
+endpoints:
+  - path: "/example"
+    target:
+      url: "https://httpbin.org/get"
+    policies:
+      - jwt

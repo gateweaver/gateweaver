@@ -1,0 +1,16 @@
+{
+  "name": "jwt-firebase",
+  "version": "0.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "gateweaver start",
+    "dev": "gateweaver start -w"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@gateweaver/cli": "^0.0.27"
+  }
+}

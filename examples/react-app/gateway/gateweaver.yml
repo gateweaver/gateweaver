@@ -1,0 +1,13 @@
+policyDefinitions:
+  cors:
+    origin: "${CLIENT_URL}"
+
+endpoints:
+  - path: "/example"
+    target:
+      url: "https://httpbin.org/bearer"
+    request:
+      headers:
+        Authorization: "Bearer ${AUTH_TOKEN}"
+    policies:
+      - cors

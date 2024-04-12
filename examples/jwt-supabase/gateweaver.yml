@@ -1,0 +1,12 @@
+policyDefinitions:
+  jwt:
+    secret: ${SUPABASE_JWT_SECRET}
+    algorithms:
+      - "HS256"
+
+endpoints:
+  - path: "/example"
+    target:
+      url: "https://httpbin.org/get"
+    policies:
+      - jwt

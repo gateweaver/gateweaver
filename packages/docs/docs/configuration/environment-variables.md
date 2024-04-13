@@ -20,7 +20,7 @@ endpoints:
         Authorization: "Bearer ${API_TOKEN}"
 ```
 
-To use environment variables in your local development environment, you can create a `.env.gateweaver` file in the root of your project:
+To use environment variables in your local development environment, you can create a `.env.gateweaver` file. This must be created where you run the Gateweaver CLI start command.
 
 ```bash title=".env.gateweaver"
 NODE_ENV=development

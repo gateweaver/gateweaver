@@ -33,7 +33,7 @@ Install the Gateweaver CLI in your project:
 
 ## Configuration
 
-Create a `gateweaver.yml` file in the root of your project:
+Create a `gateweaver.yml` file in your project:
 
 ```yaml title="gateweaver.yml"
 policyDefinitions:
@@ -48,7 +48,7 @@ endpoints:
       - cors
 ```
 
-You can define policies and endpoints in the configuration file. Policies are reusable configurations that can be applied to multiple endpoints. Visit the [Configuration](/docs/category/configuration) page to learn more.
+Visit the [Configuration](/docs/category/configuration) docs to learn more about the available options.
 
 ## Environment Variables
 
@@ -66,7 +66,7 @@ endpoints:
       - cors
 ```
 
-You can set environment variables locally in a `.env.gateweaver` file in the root of your project:
+To set environment variables locally during development, create a `.env.gateweaver` file:
 
 ```bash title=".env.gateweaver"
 NODE_ENV=development
@@ -77,13 +77,13 @@ Remember to add the `.env.gateweaver` file to your `.gitignore` file to prevent 
 
 ## Usage
 
-Run the following command where your `gateweaver.yml` file is located to start the Gateweaver server in watch mode. This will automatically reload the server when the configuration file changes:
+Run the following command where your `gateweaver.yml` and `.env.gateweaver` files are located to start the Gateweaver server in watch mode. This will automatically reload the server when the configuration file changes:
 
 ```bash
 npx gateweaver start -w
 ```
 
-This command will start the Gateweaver server on port 8080 by default. You can specify a different port by setting the `PORT` environment variable in the `.env.gateweaver` file.
+This command will start the Gateweaver server on port 8080 by default. You can specify a different port by setting the `PORT` environment variable in your `.env.gateweaver` file.
 
 Visit the [CLI Commands](/docs/cli) reference page to learn more about the available commands.
 

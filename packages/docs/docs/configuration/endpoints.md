@@ -17,16 +17,16 @@ endpoints:
       url: "https://example.com/target_path"
     request:
       headers:
-        Add-Header: "value"
-        Remove-Header: ""
-        Replace-Header: "new value"
+        add-header: "value"
+        remove-header: ""
+        replace-header: "new value"
       query:
         key: "value"
     response:
       headers:
-        Add-Header: "value"
-        Remove-Header: ""
-        Replace-Header: "new value"
+        add-header: "value"
+        remove-header: ""
+        replace-header: "new value"
     policies:
       - cors
       - rateLimit

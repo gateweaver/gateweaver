@@ -7,7 +7,7 @@ import TabItem from "@theme/TabItem";
 
 # Getting Started
 
-Welcome to Gateweaver, the open-source API gateway that seamlessly secures your frontend applications' integration with external APIs. Designed with simplicity and protection in mind, Gateweaver enables developers to utilize APIs requiring sensitive keys and tokens without risking exposure on the frontend. Through a straightforward YAML configuration file, users can define endpoints and apply essential policies like CORS, rate limiting, API key management, and JWT authentication, ensuring robust security measures are in place. Start quickly with the Gateweaver CLI or Docker image to streamline your API usage while safeguarding your application.
+Gateweaver is an API gateway tailored for frontend applications, enabling secure integration with external APIs that require sensitive keys and tokens. Through a simple YAML configuration file, users can define endpoints and apply essential policies like CORS, rate limiting, API key management, and JWT authentication, ensuring robust security measures are in place. Get started quickly with the CLI or Docker image, or take a look at some [examples](https://github.com/gateweaver/gateweaver/tree/main/examples) to see how you can leverage Gateweaver in your projects.
 
 ## Installation
 

@@ -1,5 +1,14 @@
 # @gateweaver/cli
 
+## 0.0.28
+
+### Patch Changes
+
+- 01adeed: Update packages
+- Updated dependencies [01adeed]
+  - @gateweaver/policies@0.0.28
+  - @gateweaver/server@0.0.28
+
 ## 0.0.27
 
 ### Patch Changes

@@ -46,3 +46,7 @@ Here are some resources to help you get started with popular deployment services
 - [Google Cloud Run Documentation](https://cloud.google.com/run/docs/continuous-deployment-with-cloud-build)
 
 While this guide highlights deployment using Docker and specific cloud services, it's important to note that the Dockerfile provided can be utilized in a variety of deployment environments. Whether you prefer to deploy your application on a bare-metal server, a different cloud provider, or even a Kubernetes cluster, the flexibility of Docker ensures you can easily adapt the deployment process to fit your preferred infrastructure. Choose the deployment method that best aligns with your operational requirements and expertise.
+
+:::note
+If you choose not to use Docker, you can still deploy the Gateweaver server, but it's advisable for Gateweaver to have its own package.json file to avoid installing unnecessary dependencies from the rest of your project. Once set up, you can start the server using the `gateweaver start` command.
+:::

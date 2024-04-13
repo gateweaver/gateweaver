@@ -11,6 +11,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@gateweaver/cli": "^0.0.27"
+    "@gateweaver/cli": "^0.1.0"
   }
 }

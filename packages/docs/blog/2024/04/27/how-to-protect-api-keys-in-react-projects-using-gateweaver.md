@@ -1,7 +1,7 @@
 ---
-title: How to hide API Keys in react apps using Gateweaver
-description: Learn how to hide API keys in react apps using Gateweaver
-slug: how-to-hide-api-keys-in-react-apps-using-gateweaver
+title: How to protect API Keys in React projects using Gateweaver
+description: Learn how to protect API keys in React projects using Gateweaver
+slug: how-to-protect-api-keys-in-react-projects-using-gateweaver
 tags: [api-key, react, gateweaver, security, tutorial]
 hide_table_of_contents: false
 ---
@@ -14,7 +14,7 @@ While some API keys, like those for Google Maps, can be safely used in client-si
 
 For applications without a dedicated server component, developers can use a proxy server or an API Gateway to securely make API calls while hiding API keys from the client. An API Gateway serves as a middleman between the client and the external API, allowing developers to handle the API key on the server side and proxy requests to the external API.
 
-In this article, we explore how to protect API keys in React apps using [Gateweaver](https://github.com/gateweaver/gateweaver), an open-source API Gateway designed to help developers securely manage API keys and sensitive data.
+In this article, we explore how to protect API keys in React projects using [Gateweaver](https://github.com/gateweaver/gateweaver), an open-source API Gateway designed to help developers securely manage API keys and sensitive data.
 
 The complete source code for this guide is available on [GitHub](https://github.com/gateweaver/gateweaver/tree/main/examples/react-app).
 
@@ -201,7 +201,7 @@ Now, when you click the button in your React app, it should make a request to th
 
 ## Conclusion
 
-In this tutorial, we learned how to hide API keys in react apps using Gateweaver. We set up a simple API Gateway and configured it to proxy requests to an external API. We then used the Gateway to make requests from our React app to the external API without exposing the API key to the client.
+In this tutorial, we learned how to protect API keys in React projects using Gateweaver. We set up a simple API Gateway and configured it to proxy requests to an external API. We then used the Gateway to make requests from our React app to the external API without exposing the API key to the client.
 
 Gateweaver provides additional policies such as rate limiting and jwt validation that you can use to further secure your application. You can find out more about Gateweaver and its features in the [documentation](https://gateweaver.io/docs/getting-started). There you can also find information on how to deploy Gateweaver to production.
 

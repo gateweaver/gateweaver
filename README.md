@@ -1,6 +1,8 @@
 # Gateweaver
 
-Gateweaver is an open-source API gateway designed for front-end applications, enabling secure integration with third party APIs that require sensitive keys and tokens. Through a simple YAML configuration file, users can define endpoints and apply essential policies like CORS, rate limiting, API key management, and JWT authentication, ensuring robust security measures are in place. Get started quickly with the CLI or Docker image, or take a look at some [examples](https://github.com/gateweaver/gateweaver/tree/main/examples) to see how you can leverage Gateweaver in your projects.
+Gateweaver is an open-source API gateway designed for front-end applications, enabling secure integration with third party APIs that require sensitive keys and tokens. Through a simple YAML configuration file, users can define endpoints and apply essential policies like CORS, rate limiting, API key management, and JWT authentication, ensuring robust security measures are in place.
+
+Get started quickly with the CLI or Docker image, or take a look at some [examples](https://github.com/gateweaver/gateweaver/tree/main/examples) to see how you can leverage Gateweaver in your projects.
 
 [Read the full documentation](https://gateweaver.io/docs/getting-started)
 

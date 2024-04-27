@@ -4,7 +4,7 @@ import type * as Preset from "@docusaurus/preset-classic";
 
 const config: Config = {
   title: "Gateweaver",
-  tagline: "An API Gateway for the frontend",
+  tagline: "A simple open-source API Gateway for frontend applications",
   favicon: "img/logo.png",
 
   // Set the production url of your site here
@@ -63,7 +63,7 @@ const config: Config = {
           position: "left",
           label: "Docs",
         },
-        // { to: "blog", label: "Blog", position: "left" },
+        { to: "blog", label: "Blog", position: "left" },
         {
           href: "https://github.com/gateweaver/gateweaver",
           label: "GitHub",

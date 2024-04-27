@@ -6,9 +6,11 @@ tags: [api-key, react, gateweaver, security, tutorial]
 hide_table_of_contents: false
 ---
 
-APIs are essential in modern web development, as they enable developers to integrate external data into their applications. However, when using APIs, developers must be cautious when handling API keys. These keys authenticate requests to an API, and if they fall into the wrong hands, they can be used to make unauthorized requests and potentially incur costs or expose sensitive data.
+APIs are essential in modern web development as they enable developers to integrate external data into their applications. However, when using APIs, developers must be cautious when handling API keys. These keys authenticate requests to an API, and if they fall into the wrong hands, they can be used to make unauthorized requests and potentially incur costs or expose sensitive data.
 
-While some API keys, like those for Google Maps, can be safely used in client-side applications due to restrictions that limit their use to specific apps, many should never be exposed to the client and should be handled on the server side.
+<!--truncate-->
+
+While some API keys, like those for Google Maps, can be safely used in client-side applications due to restrictions that limit their use to specific apps, many should never be exposed to the client and should be handled securely on the server side.
 
 For applications without a dedicated server component, developers can use a proxy server or an API Gateway to securely make API calls while hiding API keys from the client. An API Gateway serves as a middleman between the client and the external API, allowing developers to handle the API key on the server side and proxy requests to the external API.
 
@@ -16,9 +18,9 @@ In this article, we explore how to protect API keys in React apps using [Gatewea
 
 The complete source code for this guide is available on [GitHub](https://github.com/gateweaver/gateweaver/tree/main/examples/react-app).
 
-## Set up React App
+## Set up the React App
 
-### Create new React app using Vite
+### Create a new React app using Vite
 
 First, let's create a new react app using vite. We'll be using vite's typescript template for this tutorial. We will also be using pnpm as the package manager, but you can use npm or yarn if you prefer.
 
@@ -26,7 +28,7 @@ First, let's create a new react app using vite. We'll be using vite's typescript
 pnpm create vite@latest react-app --template react-ts
 ```
 
-### Start React development server
+### Start the React development server
 
 Next, navigate to the newly created `react-app` folder and start the development server.
 
@@ -36,7 +38,7 @@ pnpm install
 pnpm dev
 ```
 
-You should now see the react app running at [http://localhost:5173](http://localhost:5173).
+You should now see the react app running on [http://localhost:5173](http://localhost:5173).
 
 ## Set up Gateweaver
 
@@ -89,7 +91,7 @@ CLIENT_URL=http://localhost:5173
 
 In this file, we define the `API_KEY` environment variable with our example API key and the `CLIENT_URL` environment variable with the URL of our react app.
 
-### Start Gateweaver development server
+### Start the Gateweaver development server
 
 Before we start the Gateweaver development server, we need to add a script to our `package.json` file to run the Gateweaver server.
 
@@ -118,9 +120,9 @@ You should be able to test the `/example` endpoint by making a request to [http:
 }
 ```
 
-## Update React app to use the API Gateway
+## Update the React app to use the API Gateway
 
-Now that we have set up Gateweaver, let's update our React app to use the API Gateway to make requests to the httpbin `/bearer` endpoint.
+Now that we have set up Gateweaver, let's update our React app to use the API Gateway to make requests to `https://httpbin.org/bearer` without exposing the API key to the client.
 
 ### Add client environment variables
 
@@ -130,9 +132,9 @@ First, let's add the gateway URL as an environment variable in our react project
 VITE_GATEWAY_URL=http://localhost:8080
 ```
 
-### Update React app
+### Update the React app
 
-Next, let's update the `App.tsx` file to make requests to the API Gateway. We will add a button that fetches data from the Gateways `/example` endpoint and displays the response on the page.
+Next, let's update the `App.tsx` file to make requests to the API Gateway. We will add a button that fetches data from the Gateway's `/example` endpoint and displays the response on the page.
 
 ```tsx title="src/App.tsx"
 import { useState } from "react";
@@ -193,14 +195,14 @@ function App() {
 export default App;
 ```
 
-Now, when you click the button in your React app, it should make a request to the `/example` endpoint on the API Gateway. This will proxy the request to the httpbin `/bearer` endpoint using the API key defined in the `.env.gateweaver` file. The response from the httpbin API should be displayed on the page.
+Now, when you click the button in your React app, it should make a request to the `/example` endpoint on the API Gateway. This will proxy the request to `https://httpbin.org/bearer` using the API key defined in the `.env.gateweaver` file. The response from the httpbin API should be displayed on the page.
 
 ![React App](./react-app-screenshot.png)
 
 ## Conclusion
 
-In this tutorial, we learned how to hide API keys in react apps using Gateweaver. We set up a simple API Gateway and configured it to proxy requests to an external API. We then updated our React app to make requests to the API Gateway and display the response on the page.
+In this tutorial, we learned how to hide API keys in react apps using Gateweaver. We set up a simple API Gateway and configured it to proxy requests to an external API. We then used the Gateway to make requests from our React app to the external API without exposing the API key to the client.
 
-Gateweaver also provides additional policies such as rate limiting and jwt validation that you can use to further secure your application. You can find out more about Gateweaver and its features in the [documentation](https://gateweaver.io/docs/getting-started). There you can also find information on how to deploy Gateweaver to production.
+Gateweaver provides additional policies such as rate limiting and jwt validation that you can use to further secure your application. You can find out more about Gateweaver and its features in the [documentation](https://gateweaver.io/docs/getting-started). There you can also find information on how to deploy Gateweaver to production.
 
 If you have found this tutorial helpful, please consider giving the [Gateweaver repo](https://github.com/gateweaver/gateweaver) a star!

@@ -6,6 +6,8 @@ Get started quickly with the CLI or Docker image, or take a look at some [exampl
 
 [Read the full documentation](https://gateweaver.io/docs/getting-started)
 
+[Have a question or found a bug?](https://github.com/gateweaver/gateweaver/issues/new)
+
 ## Getting Started
 
 ### Installation
@@ -86,7 +88,7 @@ Visit the [CLI Commands](https://gateweaver.io/docs/cli) reference page to learn
 
 ### Usage with Docker
 
-You can also run the Gateweaver server using the docker hub image ([gateweaver/server](https://hub.docker.com/r/gateweaver/server/tags)) or github container registry image ([ghcr.io/gateweaver/server](https://github.com/gateweaver/gateweaver/pkgs/container/server)).
+You can also run the Gateweaver server using the docker hub image ([gateweaver/server](https://hub.docker.com/r/gateweaver/server)) or github container registry image ([ghcr.io/gateweaver/server](https://github.com/gateweaver/gateweaver/pkgs/container/server)).
 
 The following command mounts the `gateweaver.yml` configuration file and uses the environment variables defined in `.env.gateweaver` to start the Gateweaver server on port 8080.
 

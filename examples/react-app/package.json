@@ -4,8 +4,8 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "gateway:start": "cd gateway && gateweaver start -w",
-    "dev": "npm run gateway:start & vite",
+    "gateway": "cd gateway && gateweaver start -w",
+    "dev": "npm run gateway & vite",
     "build": "tsc && vite build",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"

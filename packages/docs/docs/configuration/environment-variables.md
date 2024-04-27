@@ -17,7 +17,7 @@ endpoints:
       url: "${API_URL}/todos"
     request:
       headers:
-        Authorization: "Bearer ${API_TOKEN}"
+        Authorization: "Bearer ${API_KEY}"
 ```
 
 To use environment variables in your local development environment, you can create a `.env.gateweaver` file. This must be created where you run the Gateweaver CLI start command.
@@ -25,7 +25,7 @@ To use environment variables in your local development environment, you can crea
 ```bash title=".env.gateweaver"
 NODE_ENV=development
 API_URL=https://example.com
-API_TOKEN=your-api-token
+API_KEY=your-api-key
 ```
 
 Remember to add the `.env.gateweaver` file to your `.gitignore` file to prevent it from being committed to your repository.

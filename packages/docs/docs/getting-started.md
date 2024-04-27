@@ -7,7 +7,7 @@ import TabItem from "@theme/TabItem";
 
 # Getting Started
 
-Gateweaver is an open-source API gateway designed for front-end applications, enabling secure integration with third party APIs that require sensitive keys and tokens. Through a simple YAML configuration file, users can define endpoints and apply essential policies like CORS, rate limiting, API key management, and JWT authentication, ensuring robust security measures are in place.
+Gateweaver is an open-source API gateway designed for front-end applications, enabling secure integration with APIs that require sensitive keys. Through a simple YAML configuration file, users can define endpoints and apply essential policies like CORS, rate limiting, API key management, and JWT authentication, ensuring robust security measures are in place.
 
 Get started quickly with the CLI or Docker image, or take a look at some [examples](https://github.com/gateweaver/gateweaver/tree/main/examples) to see how you can leverage Gateweaver in your projects.
 
@@ -63,7 +63,7 @@ endpoints:
       url: "https://example.com/todos"
     request:
       headers:
-        Authorization: "Bearer ${API_TOKEN}"
+        Authorization: "Bearer ${API_KEY}"
     policies:
       - cors
 ```
@@ -72,7 +72,7 @@ To set environment variables locally during development, create a `.env.gateweav
 
 ```bash title=".env.gateweaver"
 NODE_ENV=development
-API_TOKEN=your-api-token
+API_KEY=your-api-key
 ```
 
 Remember to add the `.env.gateweaver` file to your `.gitignore` file to prevent it from being committed to your repository.
@@ -91,7 +91,7 @@ Visit the [CLI Commands](/docs/cli) reference page to learn more about the avail
 
 ## Usage with Docker
 
-You can also run the Gateweaver server using the docker hub image ([gateweaver/server](https://hub.docker.com/r/gateweaver/server/tags)) or github container registry image ([ghcr.io/gateweaver/server](https://github.com/gateweaver/gateweaver/pkgs/container/server)).
+You can also run the Gateweaver server using the docker hub image ([gateweaver/server](https://hub.docker.com/r/gateweaver/server)) or github container registry image ([ghcr.io/gateweaver/server](https://github.com/gateweaver/gateweaver/pkgs/container/server)).
 
 The following command mounts the `gateweaver.yml` configuration file and uses the environment variables defined in `.env.gateweaver` to start the Gateweaver server on port 8080.
 

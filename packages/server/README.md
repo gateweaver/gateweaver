@@ -60,7 +60,7 @@ endpoints:
       url: "https://example.com/todos"
     request:
       headers:
-        Authorization: "Bearer ${API_TOKEN}"
+        Authorization: "Bearer ${API_KEY}"
     policies:
       - cors
 ```
@@ -69,7 +69,7 @@ To set environment variables locally during development, create a `.env.gateweav
 
 ```bash title=".env.gateweaver"
 NODE_ENV=development
-API_TOKEN=your-api-token
+API_KEY=your-api-key
 ```
 
 Remember to add the `.env.gateweaver` file to your `.gitignore` file to prevent it from being committed to your repository.

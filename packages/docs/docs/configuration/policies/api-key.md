@@ -38,7 +38,7 @@ Hashed API Key: b0fdc387a13a5ddd925214aac77a157ed5cf1cf8ebaca3cb056703b1af2b5891
 ### Security Practices
 
 - **API Key**: Must be kept securely and not widely shared. While it serves as a private credential for accessing the API, there are use cases, such as in client-side applications, where the API Key may be exposed. In such scenarios, it's essential to understand the risks involved. Exposing an API Key can lead to unauthorized use of your API. It's recommended to implement additional security measures, such as rate limiting, to mitigate potential abuse.
-- **Hashed API Key**: Can be safely stored in the API gateway's configuration file. The hash is used to verify the authenticity of the API Key without exposing the key itself. Storing the hash instead of the actual key mitigates risk, as the hash cannot be used to derive the original API Key.
+- **Hashed API Key**: Can be safely stored in the configuration file. The hash is used to verify the authenticity of the API Key without exposing the key itself. Storing the hash instead of the actual key mitigates risk, as the hash cannot be used to derive the original API Key.
 
 ## Usage
 

@@ -14,37 +14,37 @@ describe("e2e - JWT Protected Endpoint", () => {
     issuer: "test-issuer",
   });
 
-  let gateway: Server;
+  let gateweaver: Server;
 
   beforeAll(async () => {
     const configPath = path.join(__dirname, "gateweaver.yml");
-    gateway = await startServer(configPath, false);
+    gateweaver = await startServer(configPath, false);
   });
 
   afterAll(() => {
-    gateway?.close();
+    gateweaver?.close();
   });
 
   it("should return a 200 status, correct body and headers when accessing a JWT protected endpoint with a correct Token", async () => {
-    const response = await request(gateway)
+    const response = await request(gateweaver)
       .get(MOCK_PATH)
       .set("Authorization", `Bearer ${token}`);
 
     expect(response.status).toBe(200);
-    expect(response.body).toEqual({ message: "Message from gateway query" });
+    expect(response.body).toEqual({ message: "Message from gateweaver query" });
 
     checkResponseHeaders(response);
   });
 
   it("should return a 401 status when a JWT protected endpoint is accessed without a Token", async () => {
-    const response = await request(gateway).get(MOCK_PATH);
+    const response = await request(gateweaver).get(MOCK_PATH);
 
     expect(response.status).toBe(401);
     expect(response.body).toEqual({ error: "Invalid Authorization Token" });
   });
 
   it("should return a 401 status when a JWT protected endpoint is accessed with an invalid Token", async () => {
-    const response = await request(gateway)
+    const response = await request(gateweaver)
       .get(MOCK_PATH)
       .set("Authorization", `Bearer invalid-token`);
 
@@ -53,13 +53,13 @@ describe("e2e - JWT Protected Endpoint", () => {
   });
 
   it("should return a 429 status when a JWT protected endpoint is rate limited", async () => {
-    await request(gateway)
+    await request(gateweaver)
       .get(RATE_LIMITED_PATH)
       .set("Authorization", `Bearer ${token}`);
-    await request(gateway)
+    await request(gateweaver)
       .get(RATE_LIMITED_PATH)
       .set("Authorization", `Bearer ${token}`);
-    const rateLimitedResponse = await request(gateway)
+    const rateLimitedResponse = await request(gateweaver)
       .get(RATE_LIMITED_PATH)
       .set("Authorization", `Bearer ${token}`);
 

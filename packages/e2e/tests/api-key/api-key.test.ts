@@ -9,37 +9,37 @@ const RATE_LIMITED_PATH = "/api-key/rate-limited";
 const TEST_API_KEY = "test-api-key";
 
 describe("e2e - API Key Protected Endpoint", () => {
-  let gateway: Server;
+  let gateweaver: Server;
 
   beforeAll(async () => {
     const configPath = path.join(__dirname, "gateweaver.yml");
-    gateway = await startServer(configPath, false);
+    gateweaver = await startServer(configPath, false);
   });
 
   afterAll(() => {
-    gateway?.close();
+    gateweaver?.close();
   });
 
   it("should return a 200 status, correct body and headers when accessing an API Key protected endpoint with a correct API Key", async () => {
-    const response = await request(gateway)
+    const response = await request(gateweaver)
       .get(MOCK_PATH)
       .set("x-api-key", TEST_API_KEY);
 
     expect(response.status).toBe(200);
-    expect(response.body).toEqual({ message: "Message from gateway query" });
+    expect(response.body).toEqual({ message: "Message from gateweaver query" });
 
     checkResponseHeaders(response);
   });
 
   it("should return a 401 status when an API Key protected endpoint is accessed without an API Key", async () => {
-    const response = await request(gateway).get(MOCK_PATH);
+    const response = await request(gateweaver).get(MOCK_PATH);
 
     expect(response.status).toBe(401);
     expect(response.body).toEqual({ error: "API Key Required" });
   });
 
   it("should return a 401 status when an API Key protected endpoint is accessed with an invalid API Key", async () => {
-    const response = await request(gateway)
+    const response = await request(gateweaver)
       .get(MOCK_PATH)
       .set("x-api-key", "invalid-api-key");
 
@@ -48,13 +48,13 @@ describe("e2e - API Key Protected Endpoint", () => {
   });
 
   it("should return a 429 status when an API Key protected endpoint is rate limited", async () => {
-    await request(gateway)
+    await request(gateweaver)
       .get(RATE_LIMITED_PATH)
       .set("x-api-key", TEST_API_KEY);
-    await request(gateway)
+    await request(gateweaver)
       .get(RATE_LIMITED_PATH)
       .set("x-api-key", TEST_API_KEY);
-    const rateLimitedResponse = await request(gateway)
+    const rateLimitedResponse = await request(gateweaver)
       .get(RATE_LIMITED_PATH)
       .set("x-api-key", TEST_API_KEY);
 

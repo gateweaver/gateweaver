@@ -8,28 +8,28 @@ const MOCK_PATH = "/public/mock";
 const RATE_LIMITED_PATH = "/public/rate-limited";
 
 describe("e2e - Public Endpoint", () => {
-  let gateway: Server;
+  let gateweaver: Server;
 
   beforeAll(async () => {
     const configPath = path.join(__dirname, "gateweaver.yml");
-    gateway = await startServer(configPath, false);
+    gateweaver = await startServer(configPath, false);
   });
 
   afterAll(() => {
-    gateway?.close();
+    gateweaver?.close();
   });
 
   it("should return a 200 status, correct body and headers when accessing a public GET endpoint", async () => {
-    const response = await request(gateway).get(MOCK_PATH);
+    const response = await request(gateweaver).get(MOCK_PATH);
 
     expect(response.status).toBe(200);
-    expect(response.body).toEqual({ message: "Message from gateway query" });
+    expect(response.body).toEqual({ message: "Message from gateweaver query" });
 
     checkResponseHeaders(response);
   });
 
   it("should return a 200 status, correct body and headers when accessing a public POST endpoint", async () => {
-    const response = await request(gateway)
+    const response = await request(gateweaver)
       .post(MOCK_PATH)
       .send({ name: "Gateweaver" });
 
@@ -40,7 +40,7 @@ describe("e2e - Public Endpoint", () => {
   });
 
   it("should return a 200 status, correct body and headers when accessing a public PUT endpoint", async () => {
-    const response = await request(gateway)
+    const response = await request(gateweaver)
       .put(MOCK_PATH)
       .send({ name: "Gateweaver" });
 
@@ -51,7 +51,7 @@ describe("e2e - Public Endpoint", () => {
   });
 
   it("should return a 200 status, correct body and headers when accessing a public PATCH endpoint", async () => {
-    const response = await request(gateway)
+    const response = await request(gateweaver)
       .patch(MOCK_PATH)
       .send({ name: "Gateweaver" });
 
@@ -62,7 +62,7 @@ describe("e2e - Public Endpoint", () => {
   });
 
   it("should return a 200 status, correct body and headers when accessing a public DELETE endpoint", async () => {
-    const response = await request(gateway).delete(MOCK_PATH);
+    const response = await request(gateweaver).delete(MOCK_PATH);
 
     expect(response.status).toBe(200);
     expect(response.body).toEqual({
@@ -73,9 +73,10 @@ describe("e2e - Public Endpoint", () => {
   });
 
   it("should return a 429 status when a public endpoint is rate limited", async () => {
-    await request(gateway).get(RATE_LIMITED_PATH);
-    await request(gateway).get(RATE_LIMITED_PATH);
-    const rateLimitedResponse = await request(gateway).get(RATE_LIMITED_PATH);
+    await request(gateweaver).get(RATE_LIMITED_PATH);
+    await request(gateweaver).get(RATE_LIMITED_PATH);
+    const rateLimitedResponse =
+      await request(gateweaver).get(RATE_LIMITED_PATH);
 
     expect(rateLimitedResponse.status).toBe(429);
     expect(rateLimitedResponse.text).toBe(

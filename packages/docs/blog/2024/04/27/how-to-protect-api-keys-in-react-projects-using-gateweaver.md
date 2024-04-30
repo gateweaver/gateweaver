@@ -12,7 +12,7 @@ APIs are essential in modern web development as they enable developers to integr
 
 While some API keys, like those for Google Maps, can be safely used in client-side applications due to restrictions that limit their use to specific apps, many should never be exposed to the client and should be handled securely on the server side.
 
-For applications without a dedicated server component, developers can use an API Proxy to securely make API calls while hiding API keys from the client. An API Proxy serves as a middleman between the client and the external API, allowing developers to handle the API key on the server side and proxy requests to the API.
+For applications without a dedicated server component, developers can use an API Proxy Server to securely make API calls while hiding API keys from the client. An API Proxy Server acts as an intermediary between the client and the external API, allowing developers to make requests to the Proxy, which then forwards the requests to the external API with the necessary authentication. This way, the API key is never exposed to the client, and developers can safely make requests to the external API.
 
 In this article, we explore how to protect API keys in React projects using [Gateweaver](https://github.com/gateweaver/gateweaver), an open-source API Proxy designed to help developers securely manage API keys and sensitive data.
 

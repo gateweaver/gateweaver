@@ -16,7 +16,7 @@ endpoints:
       headers:
         Authorization: "Bearer mock-server-token"
       query:
-        message: "Message from gateway query"
+        message: "Message from gateweaver query"
     response:
       headers:
         remove-header: ""
@@ -32,7 +32,7 @@ endpoints:
       headers:
         Authorization: "Bearer mock-server-token"
       query:
-        message: "Message from gateway query"
+        message: "Message from gateweaver query"
     policies:
       - rateLimit
       - apiKey

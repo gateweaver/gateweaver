@@ -12,7 +12,7 @@ const FeatureList: FeatureItem[] = [
     title: "Easy Configuration",
     description: (
       <>
-        Set up your API gateway with ease using a simple YAML file. Get started
+        Set up your API Proxy with ease using a simple YAML file. Get started
         quickly, letting you focus on development.
       </>
     ),

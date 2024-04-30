@@ -1,23 +1,24 @@
 import { useState } from "react";
 import "./App.css";
 
-interface GatewayResponse {
+interface ProxyResponse {
   authenticated: boolean;
   token: string;
 }
 
 function App() {
-  const [gatewayResponse, setGatewayResponse] =
-    useState<GatewayResponse | null>(null);
+  const [proxyResponse, setProxyResponse] = useState<ProxyResponse | null>(
+    null,
+  );
 
   const handleClick = async () => {
-    if (gatewayResponse) {
-      setGatewayResponse(null);
+    if (proxyResponse) {
+      setProxyResponse(null);
       return;
     }
 
     try {
-      const BASE_URL = import.meta.env.VITE_GATEWAY_URL;
+      const BASE_URL = import.meta.env.VITE_PROXY_URL;
 
       const response = await fetch(`${BASE_URL}/example`);
 
@@ -28,13 +29,13 @@ function App() {
 
       const data = await response.json();
 
-      setGatewayResponse(data);
+      setProxyResponse(data);
     } catch (error) {
       console.error(error);
     }
   };
 
-  const buttonText = gatewayResponse ? "Clear" : "Fetch data";
+  const buttonText = proxyResponse ? "Clear" : "Fetch data";
 
   return (
     <>
@@ -42,10 +43,10 @@ function App() {
       <div className="card">
         <button onClick={handleClick}>{buttonText}</button>
 
-        {gatewayResponse && (
+        {proxyResponse && (
           <>
-            <h4>Response from Gateway:</h4>
-            <pre>{JSON.stringify(gatewayResponse, null, 2)}</pre>
+            <h4>Response from Proxy:</h4>
+            <pre>{JSON.stringify(proxyResponse, null, 2)}</pre>
           </>
         )}
       </div>

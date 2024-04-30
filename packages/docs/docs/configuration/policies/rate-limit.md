@@ -4,7 +4,7 @@ sidebar_position: 2
 
 # Rate Limit
 
-The Rate limit policy allows you to control the rate at which requests to your gateway can be made, preventing abuse and ensuring fair use of resources.
+The Rate limit policy allows you to control the rate at which requests to your API Proxy can be made, preventing abuse and ensuring fair use of resources.
 
 ## Options
 

@@ -12,7 +12,7 @@ APIs are essential in modern web development as they enable developers to integr
 
 While some API keys, like those for Google Maps, can be safely used in client-side applications due to restrictions that limit their use to specific apps, many should never be exposed to the client and should be handled securely on the server side.
 
-For applications without a dedicated server component, developers can use an API Proxy Server to securely make API calls while hiding API keys from the client. An API Proxy Server acts as an intermediary between the client and the external API, allowing developers to make requests to the Proxy, which then forwards the requests to the external API with the necessary authentication. This way, the API key is never exposed to the client, and developers can safely make requests to the external API.
+For applications without a dedicated server component, developers can use an API Proxy to securely make API calls while hiding their API keys from the client. An API Proxy acts as an intermediary between the client and the external API, allowing developers to make requests to the Proxy, which then forwards the requests to the external API with the necessary authentication. This way, the API key is never exposed to the client, and developers can safely make requests to the external API.
 
 In this article, we explore how to protect API keys in React projects using [Gateweaver](https://github.com/gateweaver/gateweaver), an open-source API Proxy designed to help developers securely manage API keys and sensitive data.
 
@@ -22,10 +22,10 @@ The complete source code for this guide is available on [GitHub](https://github.
 
 ### Create a new React app using Vite
 
-First, let's create a new react app using vite. We'll be using vite's typescript template for this tutorial. We will also be using pnpm as the package manager, but you can use npm or yarn if you prefer.
+First, let's create a new react app using vite. We'll be using vite's typescript template for this tutorial.
 
 ```bash
-pnpm create vite@latest react-app --template react-ts
+npm create vite@latest react-app -- --template react-ts
 ```
 
 ### Start the React development server
@@ -34,8 +34,8 @@ Next, navigate to the newly created `react-app` folder and start the development
 
 ```bash
 cd react-app
-pnpm install
-pnpm dev
+npm install
+npm run dev
 ```
 
 You should now see the react app running on [http://localhost:5173](http://localhost:5173).
@@ -47,7 +47,7 @@ You should now see the react app running on [http://localhost:5173](http://local
 Next, let's install the Gateweaver CLI tool, which we will use to configure and run the API Proxy.
 
 ```bash
-pnpm add -D @gateweaver/cli
+npm install -D @gateweaver/cli
 ```
 
 We install the CLI tool as a dev dependency as we only need it during development. For production, you will most likely want to use the [Gateweaver Docker image](https://hub.docker.com/r/gateweaver/server). You can find out more about deploying Gateweaver to production in the [Deployment Documentation](https://gateweaver.io/docs/deployment).
@@ -108,7 +108,7 @@ This script changes the directory to the `proxy` folder and runs the `gateweaver
 Now, let's start the Gateweaver development server by running the following command:
 
 ```bash
-pnpm run proxy
+npm run proxy
 ```
 
 You should be able to test the `/example` endpoint by making a request to [http://localhost:8080/example](http://localhost:8080/example). The request will be proxied to [https://httpbin.org/bearer](https://httpbin.org/bearer) with the `Authorization` header set to the API key defined in the `.env.gateweaver` file. The response should be the following JSON:
@@ -198,7 +198,7 @@ function App() {
 export default App;
 ```
 
-Now, when you click the button in your React app, it will make a request to the `/example` endpoint on the API Proxy. This will proxy the request to [https://httpbin.org/bearer](https://httpbin.org/bearer) using the API key defined in the `.env.gateweaver` file. Then the response from the httpbin API will be displayed on the page:
+Now, when you click the button in your React app, it will make a request to the `/example` endpoint on the API Proxy. This will forward the request to [https://httpbin.org/bearer](https://httpbin.org/bearer) using the API key defined in the `.env.gateweaver` file. Then the response from the httpbin API will be displayed on the page:
 
 ![React App](./react-app-screenshot.png)
 

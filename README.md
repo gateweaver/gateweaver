@@ -1,8 +1,8 @@
 # Gateweaver
 
-Gateweaver is an open-source API Proxy designed for front-end applications, enabling secure integration with APIs that require sensitive keys. Through a simple YAML configuration file, users can define endpoints and apply essential policies like CORS, rate limiting, API key management, and JWT authentication, ensuring robust security measures are in place.
+Gateweaver is a lightweight open-source API Proxy tailor-made for front-end applications. It allows you to securely make API calls while hiding your API keys and sensitive data from the client. Through a simple YAML configuration file, you can define endpoints and apply policies such as CORS, rate limiting, API key management, and JWT validation.
 
-Get started quickly with the CLI or Docker image, or take a look at some [examples](https://github.com/gateweaver/gateweaver/tree/main/examples) to see how you can leverage Gateweaver in your projects.
+Get started quickly with the CLI or Docker image, or take a look at some [examples](https://github.com/gateweaver/gateweaver/tree/main/examples) to see how you can use Gateweaver in your projects.
 
 [Read the full documentation](https://gateweaver.io/docs/getting-started)
 

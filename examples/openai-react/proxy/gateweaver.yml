@@ -1,0 +1,14 @@
+policyDefinitions:
+  cors:
+    origin: "${CLIENT_URL}"
+
+endpoints:
+  - path: "/openai"
+    target:
+      url: "https://api.openai.com/v1"
+    request:
+      headers:
+        Content-Type: "application/json"
+        Authorization: "Bearer ${OPENAI_API_KEY}"
+    policies:
+      - cors

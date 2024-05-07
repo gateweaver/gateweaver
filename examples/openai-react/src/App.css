@@ -1,0 +1,46 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.question-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 500px;
+  width: 100%;
+}
+
+.input {
+  width: 100%;
+}
+
+.submit-button {
+  margin-top: 1rem;
+  background-color: #2e8555;
+  color: white;
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.submit-button:enabled {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.reset-button {
+  background-color: #2e8555;
+  color: white;
+}
+
+.error-message {
+  color: red;
+}

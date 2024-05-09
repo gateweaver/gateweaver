@@ -32,8 +32,8 @@ const generateMessage = async (userInput: string): Promise<string | null> => {
 const App = () => {
   const [userInput, setUserInput] = useState("");
   const [message, setMessage] = useState("");
-  const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();

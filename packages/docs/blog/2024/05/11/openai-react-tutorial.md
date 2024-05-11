@@ -1,5 +1,5 @@
 ---
-title: Using OpenAIs API in React without exposing your API key with Gateweaver
+title: Using OpenAI's API in React without exposing your API key with Gateweaver
 description: Learn how to use OpenAI's API in a React app without exposing your API key by using Gateweaver to proxy requests to the API.
 slug: using-openai-api-in-react-without-exposing-api-key
 tags: [api-key, react, gateweaver, security, tutorial, openai]

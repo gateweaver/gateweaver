@@ -132,8 +132,6 @@ First, let's add the proxy URL as an environment variable in our react project. 
 VITE_PROXY_URL=http://localhost:8080
 ```
 
-Make sure to also add this file to your `.gitignore` file.
-
 ### Update the React app
 
 Next, let's update the `App.tsx` file to make requests to the API Proxy. We will add a button that fetches data from the Proxy's `/example` endpoint and display the response on the page.

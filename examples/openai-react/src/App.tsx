@@ -5,8 +5,8 @@ import "./App.css";
 const PROXY_URL = import.meta.env.VITE_PROXY_URL;
 
 const openai = new OpenAI({
-  apiKey: "",
   baseURL: `${PROXY_URL}/openai`,
+  apiKey: "",
   dangerouslyAllowBrowser: true,
 });
 

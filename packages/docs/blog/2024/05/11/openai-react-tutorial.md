@@ -12,7 +12,7 @@ OpenAI's API is a powerful tool for building AI-powered applications. However, u
 
 If you don't have a backend server or prefer not to set one up just to handle requests to the OpenAI API, you can use [Gateweaver](https://github.com/gateweaver/gateweaver). This API Proxy allows you to route requests through a secure server without writing any backend code.
 
-In this tutorial, we'll show you how to use OpenAI's API in a React app without exposing your API key by using Gateweaver to proxy requests to the API. We will build a simple React app where users can ask questions and receive answers from the OpenAI API, utilizing the OpenAI Node.js library client-side while securely routing API requests through Gateweaver to protect your API key.
+In this tutorial, we'll show you how to use OpenAI's API in a React app without exposing your API key by using Gateweaver to proxy requests to the API. We will build a simple React app where users can ask questions and receive answers, utilizing the OpenAI Node.js library client-side while securely routing API requests through Gateweaver to protect your API key.
 
 The complete source code for this tutorial is available on [GitHub](https://github.com/gateweaver/gateweaver/tree/main/examples/openai-react).
 
@@ -119,11 +119,11 @@ Now, let's start the Gateweaver development server by running the following comm
 npm run proxy
 ```
 
-You should see the Gateweaver server running on [http://localhost:8080](http://localhost:8080). The server is now ready to proxy requests to the OpenAI API.
+The Gateweaver server should now be running on [http://localhost:8080](http://localhost:8080), and be ready to proxy requests to the OpenAI API.
 
 ## Use OpenAI API in React
 
-Now that we have Gateweaver set up to proxy requests to the OpenAI API, let's use the OpenAI API in our React app.
+Now that we have Gateweaver set up to proxy requests to the OpenAI API, let's update our React app to use the API through the proxy.
 
 ### Set up client environment variables
 
@@ -132,8 +132,6 @@ First, let's add the API Proxy URL to our React app as an environment variable s
 ```bash title=".env.local"
 VITE_PROXY_URL=http://localhost:8080
 ```
-
-Make sure to also add this file to your `.gitignore` file.
 
 ### Install the OpenAI Node.js client library
 
@@ -157,8 +155,8 @@ import "./App.css";
 const PROXY_URL = import.meta.env.VITE_PROXY_URL;
 
 const openai = new OpenAI({
-  apiKey: "",
   baseURL: `${PROXY_URL}/openai`,
+  apiKey: "",
   dangerouslyAllowBrowser: true,
 });
 
@@ -242,9 +240,9 @@ export default App;
 
 In this updated `App.tsx` file, we define a function called `generateMessage` that sends a user's input to the OpenAI API through the API Proxy and returns the response. We then use this function in the `handleSubmit` function to generate a response to the user's question and display it on the page.
 
-Note that we set the `apiKey` property of the `OpenAI` client to an empty string and set the `baseURL` to `${PROXY_URL}/openai`. This configuration allows the OpenAI client to send requests to the API Proxy, which will forward them to the OpenAI API with the API key included in the request headers.
+Note that we set the `baseURL` property of the `OpenAI` client to the URL of the API Proxy. We also set the `apiKey` property to an empty string, as we are not using the API key in the front end. Instead, we are sending requests through the API Proxy, which includes the API key in the request headers. We also set `dangerouslyAllowBrowser` to `true` to allow the client to be used in the browser, but this is okay since we are using the API Proxy to secure the API key.
 
-Let's also update the `App.css` file to add some basic styling to our app:
+Next, let's update the `App.css` file to add some basic styling to our React app:
 
 ```css title="src/App.css"
 #root {
@@ -301,12 +299,12 @@ Here is what the React app should look like now:
 
 ## Further Improvements
 
-Even though the API key is no longer exposed, attackers could still abuse the API by sending a large number of requests through the proxy server. To mitigate this risk, you can add rate limiting to the proxy server to prevent abuse. Gateweaver supports rate limiting out of the box, and you can find more information on how to configure it in the [Rate Limiting Documentation](https://gateweaver.io/docs/configuration/policies/rate-limit).
+Even though the API key is no longer exposed, attackers could still abuse the API by sending a large number of requests through the proxy server. To mitigate this risk, you can add rate limiting to the proxy server to prevent abuse. To configure rate limiting in Gateweaver, refer to the [Rate Limiting Documentation](https://gateweaver.io/docs/configuration/policies/rate-limit).
 
-Another way to secure your application further is to add JWT validation to the proxy server, and only allow requests from authenticated users. You can find more information on how to configure this in the [JWT Documentation](https://gateweaver.io/docs/configuration/policies/jwt). This will ensure that only authorized users can access the OpenAI API through the proxy server.
+Another way to further secure your application is by adding JWT validation to the proxy server, ensuring that only authenticated users can access the API. To configure this, refer to the [JWT Documentation](https://gateweaver.io/docs/configuration/policies/jwt). You can also explore some [example configurations](https://github.com/gateweaver/gateweaver/tree/main/examples) of popular providers like Auth0, Firebase, and Supabase for guidance.
 
 ## Conclusion
 
-In this tutorial, we learned how to use OpenAI's API in a React app without exposing the API key by using Gateweaver to proxy requests to the API. We set up a simple API Proxy and configured it to forward requests to the OpenAI API with the API key included in the request headers. We then built a React app that allows users to ask questions and receive answers from the OpenAI API securely through the API Proxy.
+In this tutorial, we learned how to use OpenAI's API in a React app without exposing the API key by using Gateweaver to proxy requests to the API. We set up a simple API Proxy and configured it to forward requests to the OpenAI API, with the API key included in the request headers. We then built a React app that allows users to ask questions and receive answers from the OpenAI API securely through the API Proxy.
 
 To find out how to deploy Gateweaver to production and learn more about its features, check out the [Gateweaver Documentation](https://gateweaver.io/docs/getting-started). If you found this tutorial helpful, please consider giving the [Gateweaver repo a star](https://github.com/gateweaver/gateweaver)!

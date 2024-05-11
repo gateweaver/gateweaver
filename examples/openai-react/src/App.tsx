@@ -5,8 +5,8 @@ import "./App.css";
 const PROXY_URL = import.meta.env.VITE_PROXY_URL;
 
 const openai = new OpenAI({
-  apiKey: "",
   baseURL: `${PROXY_URL}/openai`,
+  apiKey: "",
   dangerouslyAllowBrowser: true,
 });
 
@@ -32,8 +32,8 @@ const generateMessage = async (userInput: string): Promise<string | null> => {
 const App = () => {
   const [userInput, setUserInput] = useState("");
   const [message, setMessage] = useState("");
-  const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();

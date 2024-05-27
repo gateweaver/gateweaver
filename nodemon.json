@@ -1,4 +1,4 @@
 {
-  "ext": ".ts .json, .yaml .yml",
+  "ext": ".js .ts .json .yaml .yml",
   "ignore": ["dist/*"]
 }

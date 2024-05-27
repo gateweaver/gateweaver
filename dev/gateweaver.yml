@@ -1,3 +1,4 @@
+# TODO: Move dev config files to dev folder or package
 # Configuration file for local development
 policyDefinitions:
   cors:
@@ -12,3 +13,6 @@ endpoints:
         Authorization: "Bearer ${API_KEY}"
     policies:
       - cors
+    middleware:
+      - path: "./middleware/example.ts"
+        function: "example"

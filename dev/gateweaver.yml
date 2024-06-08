@@ -1,5 +1,3 @@
-# TODO: Move dev config files to dev folder or package
-# Configuration file for local development
 policyDefinitions:
   cors:
     origin: "*"
@@ -16,3 +14,25 @@ endpoints:
     middleware:
       - path: "./middleware/example.ts"
         function: "example"
+  - path: "/hello"
+    target:
+      url: "https://httpbin.org/bearer"
+    request:
+      headers:
+        Authorization: "Bearer ${API_KEY}"
+    policies:
+      - cors
+    middleware:
+      - path: "./middleware/hello.js"
+        function: "hello"
+  - path: "/test"
+    target:
+      url: "https://httpbin.org/bearer"
+    request:
+      headers:
+        Authorization: "Bearer ${API_KEY}"
+    policies:
+      - cors
+    middleware:
+      - path: "./middleware/test.ts"
+        function: "test"

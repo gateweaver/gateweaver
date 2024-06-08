@@ -13,12 +13,18 @@ export interface CustomResponse {
   headers?: Record<string, string>;
 }
 
+export interface CustomMiddleware {
+  path: string;
+  function: string;
+}
+
 export interface Endpoint {
   path: string;
   target: Target;
   request?: CustomRequest;
   response?: CustomResponse;
   policies?: PolicyOption[];
+  middleware?: CustomMiddleware[];
 }
 
 export interface Config {

@@ -29,19 +29,20 @@ export const startServer = (
     return newServer;
   };
 
-  const setupServer = (): Promise<Server> => {
-    return new Promise((resolve, reject) => {
-      try {
-        const PORT = process.env.PORT || 8080;
-        const config = parseConfig(filePath);
-        const app = express();
+  const setupServer = async (): Promise<Server> => {
+    try {
+      const PORT = process.env.PORT || 8080;
+      const config = parseConfig(filePath);
+      const app = express();
 
-        app.use(helmet());
-        app.use(express.json());
-        app.use(httpLogger);
-        app.use(createRouter(config));
-        app.use(errorHandler);
+      app.use(helmet());
+      app.use(express.json());
+      app.use(httpLogger);
+      const router = await createRouter(config);
+      app.use(router);
+      app.use(errorHandler);
 
+      return new Promise((resolve, _) => {
         if (server) {
           server.close(() => {
             server = runServer(app, PORT);
@@ -51,11 +52,11 @@ export const startServer = (
           server = runServer(app, PORT);
           resolve(server);
         }
-      } catch (error) {
-        logger.error("Failed to start server due to errors...");
-        reject(error);
-      }
-    });
+      });
+    } catch (error) {
+      logger.error("Failed to start server due to errors...");
+      throw error;
+    }
   };
 
   if (watch) {

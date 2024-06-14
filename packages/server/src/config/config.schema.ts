@@ -6,6 +6,7 @@ import {
   Config,
   CustomRequest,
   CustomResponse,
+  CustomMiddleware,
 } from "./config.types";
 
 const targetSchema: JSONSchemaType<Target> = {
@@ -40,6 +41,15 @@ const responseSchema: JSONSchemaType<CustomResponse> = {
   },
 };
 
+const middlewareSchema: JSONSchemaType<CustomMiddleware> = {
+  type: "object",
+  properties: {
+    path: { type: "string" },
+    function: { type: "string" },
+  },
+  required: ["path", "function"],
+};
+
 const endpointSchema: JSONSchemaType<Endpoint> = {
   type: "object",
   properties: {
@@ -50,6 +60,11 @@ const endpointSchema: JSONSchemaType<Endpoint> = {
     policies: {
       type: "array",
       items: { type: "string", enum: Object.values(PolicyOption) },
+      nullable: true,
+    },
+    middleware: {
+      type: "array",
+      items: middlewareSchema,
       nullable: true,
     },
   },

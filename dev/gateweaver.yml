@@ -1,0 +1,24 @@
+policyDefinitions:
+  cors:
+    origin: "*"
+
+endpoints:
+  - path: "/example"
+    target:
+      url: "https://httpbin.org/bearer"
+    request:
+      headers:
+        Authorization: "Bearer ${API_KEY}"
+    policies:
+      - cors
+  - path: "/test"
+    target:
+      url: "https://httpbin.org/bearer"
+    request:
+      headers:
+        Authorization: "Bearer ${API_KEY}"
+    policies:
+      - cors
+    middleware:
+      - path: "./middleware/test.ts"
+        function: "test"

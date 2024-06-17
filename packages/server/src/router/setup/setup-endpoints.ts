@@ -2,8 +2,9 @@ import { Router } from "express";
 import { Config } from "../../config/config.types";
 import { setupProxy } from "./setup-proxy";
 import { setupPolicies } from "./setup-policies";
-import { loadCustomMiddleware } from "./setup-middleware";
 import { logger } from "../../logger";
+import { setupMiddleware } from "./setup-middleware";
+import { setupHandler } from "./setup-handler";
 
 export const setupEndpoints = async (
   router: Router,
@@ -11,15 +12,22 @@ export const setupEndpoints = async (
 ): Promise<void> => {
   const { endpoints, policyDefinitions } = config;
 
-  endpoints.forEach(async (endpoint) => {
+  for (const endpoint of endpoints) {
     if (policyDefinitions) {
       setupPolicies(router, endpoint, policyDefinitions);
     }
 
-    await loadCustomMiddleware(router, endpoint);
+    await setupMiddleware(router, endpoint);
 
-    setupProxy(router, endpoint);
-
-    logger.info(`Created endpoint ${endpoint.path} -> ${endpoint.target.url}`);
-  });
+    if (endpoint.target?.url) {
+      setupProxy(router, endpoint);
+      logger.info(
+        `Created proxy endpoint ${endpoint.path} -> ${endpoint.target.url}`,
+      );
+    } else if (endpoint.target?.handler) {
+      await setupHandler(router, endpoint.path, endpoint.target.handler);
+    } else {
+      logger.error(`No valid target specified for endpoint ${endpoint.path}`);
+    }
+  }
 };

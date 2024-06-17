@@ -1,21 +1,13 @@
 import { JSONSchemaType } from "ajv";
 import { PolicyOption, policyDefinitionsSchema } from "@gateweaver/policies";
 import {
-  Target,
   Endpoint,
   Config,
   CustomRequest,
   CustomResponse,
-  CustomMiddleware,
+  PathFunction,
+  Target,
 } from "./config.types";
-
-const targetSchema: JSONSchemaType<Target> = {
-  type: "object",
-  properties: {
-    url: { type: "string", format: "uri" },
-  },
-  required: ["url"],
-};
 
 const keyValueSchema: JSONSchemaType<Record<string, string>> = {
   type: "object",
@@ -41,13 +33,21 @@ const responseSchema: JSONSchemaType<CustomResponse> = {
   },
 };
 
-const middlewareSchema: JSONSchemaType<CustomMiddleware> = {
+const pathFunctionSchema: JSONSchemaType<PathFunction> = {
   type: "object",
   properties: {
     path: { type: "string" },
     function: { type: "string" },
   },
   required: ["path", "function"],
+};
+
+const targetSchema: JSONSchemaType<Target> = {
+  type: "object",
+  properties: {
+    url: { type: "string", nullable: true },
+    handler: { ...pathFunctionSchema, nullable: true },
+  },
 };
 
 const endpointSchema: JSONSchemaType<Endpoint> = {
@@ -64,7 +64,7 @@ const endpointSchema: JSONSchemaType<Endpoint> = {
     },
     middleware: {
       type: "array",
-      items: middlewareSchema,
+      items: pathFunctionSchema,
       nullable: true,
     },
   },

@@ -20,5 +20,10 @@ endpoints:
     policies:
       - cors
     middleware:
-      - path: "./middleware/test.ts"
-        function: "test"
+      - path: "./middleware/test-middleware.ts"
+        function: "testMiddleware"
+  - path: "/handler"
+    target:
+      handler:
+        path: "./handlers/test-handler.ts"
+        function: "testHandler"

@@ -27,6 +27,21 @@ const validatePathFormat = (endpoint: Endpoint): string | null => {
   return null;
 };
 
+const validateTarget = (
+  target: Endpoint["target"],
+  path: string,
+): string | null => {
+  if (!target.url && !target.handler) {
+    return `Endpoint ${path} must have a target url or handler`;
+  }
+
+  if (target.url && target.handler) {
+    return `Endpoint ${path} cannot have both a target url and handler`;
+  }
+
+  return null;
+};
+
 const validateEndpoints = (endpoints: Endpoint[]): string[] => {
   const errors: string[] = [];
 
@@ -41,6 +56,11 @@ const validateEndpoints = (endpoints: Endpoint[]): string[] => {
     const pathError = validatePathFormat(endpoint);
     if (pathError) {
       errors.push(pathError);
+    }
+
+    const targetError = validateTarget(endpoint.target, endpoint.path);
+    if (targetError) {
+      errors.push(targetError);
     }
   });
 

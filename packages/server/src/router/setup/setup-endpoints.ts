@@ -26,6 +26,9 @@ export const setupEndpoints = async (
       );
     } else if (endpoint.target?.handler) {
       await setupHandler(router, endpoint.path, endpoint.target.handler);
+      logger.info(
+        `Created custom handler endpoint ${endpoint.path} -> ${endpoint.target.handler.path}:${endpoint.target.handler.function}`,
+      );
     } else {
       logger.error(`No valid target specified for endpoint ${endpoint.path}`);
     }

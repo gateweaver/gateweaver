@@ -20,9 +20,6 @@ export const setupHandler = async (
 
     if (typeof handlerFunction === "function") {
       router.use(endpointPath, handlerFunction);
-      logger.info(
-        `Applied custom handler ${handlerConfig.function} from ${handlerConfig.path} to ${endpointPath}`,
-      );
     } else {
       logger.error(
         `Function ${handlerConfig.function} not found in ${handlerConfig.path}`,

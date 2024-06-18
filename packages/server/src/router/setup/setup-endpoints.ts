@@ -1,3 +1,4 @@
+import fs from "fs";
 import { Router } from "express";
 import { Config } from "../../config/config.types";
 import { setupProxy } from "./setup-proxy";
@@ -6,11 +7,17 @@ import { logger } from "../../logger";
 import { setupMiddleware } from "./setup-middleware";
 import { setupHandler } from "./setup-handler";
 
+const removeBuildFolder = (): void => {
+  fs.rmSync(".gateweaver", { recursive: true, force: true });
+};
+
 export const setupEndpoints = async (
   router: Router,
   config: Config,
 ): Promise<void> => {
   const { endpoints, policyDefinitions } = config;
+
+  removeBuildFolder();
 
   for (const endpoint of endpoints) {
     if (policyDefinitions) {
@@ -26,6 +33,9 @@ export const setupEndpoints = async (
       );
     } else if (endpoint.target?.handler) {
       await setupHandler(router, endpoint.path, endpoint.target.handler);
+      logger.info(
+        `Created custom handler endpoint ${endpoint.path} -> ${endpoint.target.handler.path}:${endpoint.target.handler.function}`,
+      );
     } else {
       logger.error(`No valid target specified for endpoint ${endpoint.path}`);
     }

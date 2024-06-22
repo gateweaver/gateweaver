@@ -7,7 +7,7 @@ import {
 } from "http-proxy-middleware";
 import { PolicyOption } from "@gateweaver/policies";
 import { Endpoint } from "../../../config/config.types";
-import { logger } from "../../../logger";
+import { logger } from "../../../utils/logger";
 
 const RATE_LIMIT_HEADERS = [
   "X-Ratelimit-Limit",

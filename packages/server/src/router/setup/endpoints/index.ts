@@ -2,7 +2,7 @@ import { Router } from "express";
 import { Config } from "../../../config/config.types";
 import { setupProxy } from "./proxy";
 import { setupEndpointPolicies } from "./policies";
-import { logger } from "../../../logger";
+import { logger } from "../../../utils/logger";
 import { setupEndpointMiddleware } from "./middleware";
 import { setupHandler } from "./handler";
 

@@ -1,8 +1,8 @@
 import path from "path";
 import { Router } from "express";
 import { Endpoint } from "../../../config/config.types";
-import { logger } from "../../../logger";
-import { bundleFile } from "../bundle-file";
+import { logger } from "../../../utils/logger";
+import { bundleFile } from "../../../utils/bundle-file";
 
 export const setupEndpointMiddleware = async (
   router: Router,

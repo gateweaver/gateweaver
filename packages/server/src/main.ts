@@ -2,7 +2,7 @@ import { config } from "dotenv";
 config({ path: ".env.gateweaver" });
 import { getDefaultConfigPath } from "./config/get-default-config-path";
 import { startServer } from "./server";
-import { handleServerError } from "./errors";
+import { handleServerError } from "./utils/errors";
 
 const main = async () => {
   try {

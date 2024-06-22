@@ -1,8 +1,8 @@
 import fs from "fs";
 import { Router } from "express";
 import { Config } from "../config/config.types";
-import { setupGlobalConfig } from "./setup/global/setup-global";
-import { setupEndpoints } from "./setup/endpoints/setup-endpoints";
+import { setupGlobalConfig } from "./setup/global";
+import { setupEndpoints } from "./setup/endpoints";
 
 const removeBuildFolder = (): void => {
   fs.rmSync(".gateweaver", { recursive: true, force: true });

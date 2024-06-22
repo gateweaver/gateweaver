@@ -2,7 +2,7 @@ import { IncomingMessage } from "http";
 import { Router, Request, Response } from "express";
 import { createProxyMiddleware, fixRequestBody } from "http-proxy-middleware";
 import { PolicyOption } from "@gateweaver/policies";
-import { setupProxy, buildTargetUrl, onProxyRes } from "./setup-proxy";
+import { setupProxy, buildTargetUrl, onProxyRes } from "./proxy";
 import { Endpoint } from "../../../config/config.types";
 
 jest.mock("express", () => ({

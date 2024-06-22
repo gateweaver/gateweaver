@@ -1,10 +1,10 @@
 import { Router } from "express";
 import { Config } from "../../../config/config.types";
-import { setupProxy } from "./setup-proxy";
-import { setupEndpointPolicies } from "./setup-policies";
+import { setupProxy } from "./proxy";
+import { setupEndpointPolicies } from "./policies";
 import { logger } from "../../../logger";
-import { setupEndpointMiddleware } from "./setup-middleware";
-import { setupHandler } from "./setup-handler";
+import { setupEndpointMiddleware } from "./middleware";
+import { setupHandler } from "./handler";
 
 export const setupEndpoints = async (
   router: Router,

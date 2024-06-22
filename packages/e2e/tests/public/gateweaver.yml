@@ -5,6 +5,10 @@ policyDefinitions:
     rateLimitBy: "ip"
     limit: 2
 
+global:
+  policies:
+    - cors
+
 endpoints:
   - path: "/public/mock"
     target:
@@ -18,8 +22,6 @@ endpoints:
       headers:
         remove-header: ""
         replace-header: "New value"
-    policies:
-      - cors
 
   - path: "/public/rate-limited"
     target:
@@ -31,3 +33,12 @@ endpoints:
         message: "Message from gateweaver query"
     policies:
       - rateLimit
+
+  - path: "/public/handler"
+    target:
+      handler:
+        path: "./tests/public/handlers/test-handler.ts"
+        function: "testHandler"
+    middleware:
+      - path: "./tests/public/middleware/test-middleware.ts"
+        function: "testMiddleware"

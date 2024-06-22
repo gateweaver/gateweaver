@@ -4,8 +4,7 @@ import {
   policyMiddleware,
 } from "@gateweaver/policies";
 import { Router } from "express";
-import { Endpoint } from "../../config/config.types";
-import { logger } from "../../logger";
+import { Endpoint } from "../../../config/config.types";
 
 export const setupPolicies = (
   router: Router,
@@ -30,24 +29,6 @@ export const setupPolicies = (
     }
 
     if (rateLimit && policies.includes(PolicyOption.RateLimit)) {
-      if (
-        rateLimit.rateLimitBy === "jwt" &&
-        !policies.includes(PolicyOption.Jwt)
-      ) {
-        logger.warn(
-          `rateLimitBy is set to jwt, but jwt policy is not enabled for endpoint ${endpoint.path}`,
-        );
-      }
-
-      if (
-        rateLimit.rateLimitBy === "apiKey" &&
-        !policies.includes(PolicyOption.ApiKey)
-      ) {
-        logger.warn(
-          `rateLimitBy is set to apiKey, but apiKey policy is not enabled for endpoint ${endpoint.path}`,
-        );
-      }
-
       router.use(endpoint.path, policyMiddleware.rateLimit(rateLimit));
     }
   }

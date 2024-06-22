@@ -1,6 +1,7 @@
 import path from "path";
 import { existsSync } from "fs";
 import { build } from "tsup";
+import { logger } from "../../logger";
 
 export const bundleFile = async (
   filePath: string,
@@ -17,6 +18,7 @@ export const bundleFile = async (
 
   if (!existsSync(bundlePath)) {
     await build({
+      silent: true,
       entry: [entry],
       outDir,
       format: ["cjs"],
@@ -28,6 +30,8 @@ export const bundleFile = async (
         };
       },
     });
+
+    logger.info(`Bundled ${entry} to ${bundlePath}`);
   }
 
   return bundlePath;

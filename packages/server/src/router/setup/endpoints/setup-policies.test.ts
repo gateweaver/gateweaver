@@ -8,7 +8,7 @@ import {
   PolicyOption,
   policyMiddleware,
 } from "@gateweaver/policies";
-import { Endpoint } from "../../config/config.types";
+import { Endpoint } from "../../../config/config.types";
 import { setupPolicies } from "./setup-policies";
 
 jest.mock("express", () => ({

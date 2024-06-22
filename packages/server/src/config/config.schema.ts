@@ -7,6 +7,7 @@ import {
   CustomResponse,
   PathFunction,
   Target,
+  GlobalConfig,
 } from "./config.types";
 
 const keyValueSchema: JSONSchemaType<Record<string, string>> = {
@@ -71,11 +72,31 @@ const endpointSchema: JSONSchemaType<Endpoint> = {
   required: ["path", "target"],
 };
 
+export const globalConfigSchema: JSONSchemaType<GlobalConfig> = {
+  type: "object",
+  properties: {
+    policies: {
+      type: "array",
+      items: { type: "string", enum: Object.values(PolicyOption) },
+      nullable: true,
+    },
+    middleware: {
+      type: "array",
+      items: pathFunctionSchema,
+      nullable: true,
+    },
+  },
+};
+
 export const configSchema: JSONSchemaType<Config> = {
   type: "object",
   properties: {
     policyDefinitions: {
       ...policyDefinitionsSchema,
+      nullable: true,
+    },
+    global: {
+      ...globalConfigSchema,
       nullable: true,
     },
     endpoints: {

@@ -1,8 +1,8 @@
 import path from "path";
 import { Router } from "express";
-import { logger } from "../../logger";
-import { bundleFile } from "./bundle-file";
-import { PathFunction } from "../../config/config.types";
+import { logger } from "../../../logger";
+import { bundleFile } from "../bundle-file";
+import { PathFunction } from "../../../config/config.types";
 
 export const setupHandler = async (
   router: Router,

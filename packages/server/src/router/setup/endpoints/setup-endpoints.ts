@@ -1,23 +1,16 @@
-import fs from "fs";
 import { Router } from "express";
-import { Config } from "../../config/config.types";
+import { Config } from "../../../config/config.types";
 import { setupProxy } from "./setup-proxy";
 import { setupPolicies } from "./setup-policies";
-import { logger } from "../../logger";
+import { logger } from "../../../logger";
 import { setupMiddleware } from "./setup-middleware";
 import { setupHandler } from "./setup-handler";
-
-const removeBuildFolder = (): void => {
-  fs.rmSync(".gateweaver", { recursive: true, force: true });
-};
 
 export const setupEndpoints = async (
   router: Router,
   config: Config,
 ): Promise<void> => {
   const { endpoints, policyDefinitions } = config;
-
-  removeBuildFolder();
 
   for (const endpoint of endpoints) {
     if (policyDefinitions) {

@@ -3,7 +3,7 @@ import { Router, Request, Response } from "express";
 import { createProxyMiddleware, fixRequestBody } from "http-proxy-middleware";
 import { PolicyOption } from "@gateweaver/policies";
 import { setupProxy, buildTargetUrl, onProxyRes } from "./setup-proxy";
-import { Endpoint } from "../../config/config.types";
+import { Endpoint } from "../../../config/config.types";
 
 jest.mock("express", () => ({
   Router: () => ({

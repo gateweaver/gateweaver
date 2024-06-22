@@ -1,8 +1,3 @@
-policyDefinitions:
-  cors:
-    origin: "*"
-    methods: ["GET", "POST"]
-
 global:
   policies:
     - cors
@@ -28,3 +23,5 @@ endpoints:
       handler:
         path: "./handlers/test-handler.ts"
         function: "testHandler"
+    policies:
+      - rateLimit

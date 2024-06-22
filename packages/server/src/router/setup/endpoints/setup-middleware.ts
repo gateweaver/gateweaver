@@ -4,7 +4,7 @@ import { Endpoint } from "../../../config/config.types";
 import { logger } from "../../../logger";
 import { bundleFile } from "../bundle-file";
 
-export const setupMiddleware = async (
+export const setupEndpointMiddleware = async (
   router: Router,
   endpoint: Endpoint,
 ): Promise<void> => {

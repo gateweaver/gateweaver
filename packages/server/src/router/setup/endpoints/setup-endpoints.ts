@@ -1,9 +1,9 @@
 import { Router } from "express";
 import { Config } from "../../../config/config.types";
 import { setupProxy } from "./setup-proxy";
-import { setupPolicies } from "./setup-policies";
+import { setupEndpointPolicies } from "./setup-policies";
 import { logger } from "../../../logger";
-import { setupMiddleware } from "./setup-middleware";
+import { setupEndpointMiddleware } from "./setup-middleware";
 import { setupHandler } from "./setup-handler";
 
 export const setupEndpoints = async (
@@ -14,10 +14,10 @@ export const setupEndpoints = async (
 
   for (const endpoint of endpoints) {
     if (policyDefinitions) {
-      setupPolicies(router, endpoint, policyDefinitions);
+      setupEndpointPolicies({ router, endpoint, policyDefinitions });
     }
 
-    await setupMiddleware(router, endpoint);
+    await setupEndpointMiddleware(router, endpoint);
 
     if (endpoint.target?.url) {
       setupProxy(router, endpoint);

@@ -5,6 +5,7 @@ import { startServer } from "@gateweaver/server";
 import { checkResponseHeaders } from "../../utils/check-response-headers";
 
 const MOCK_PATH = "/public/mock";
+const HANDLER_PATH = "/public/handler";
 const RATE_LIMITED_PATH = "/public/rate-limited";
 
 describe("e2e - Public Endpoint", () => {
@@ -70,6 +71,13 @@ describe("e2e - Public Endpoint", () => {
     });
 
     checkResponseHeaders(response);
+  });
+
+  it("should return a 200 status, correct body and headers when accessing a public endpoint with a custom handler", async () => {
+    const response = await request(gateweaver).get(HANDLER_PATH);
+
+    expect(response.status).toBe(200);
+    expect(response.text).toBe("This is a custom handler response");
   });
 
   it("should return a 429 status when a public endpoint is rate limited", async () => {

@@ -28,7 +28,13 @@ export interface Endpoint {
   middleware?: PathFunction[];
 }
 
+export interface GlobalConfig {
+  policies?: PolicyOption[];
+  middleware?: PathFunction[];
+}
+
 export interface Config {
-  endpoints: Endpoint[];
   policyDefinitions?: PolicyDefinitions;
+  global?: GlobalConfig;
+  endpoints: Endpoint[];
 }

@@ -6,8 +6,8 @@ import fs from "fs";
 import { parseConfig } from "./config/parse-config";
 import { createRouter } from "./router";
 import { errorHandler, httpLogger } from "./middleware";
-import { logger } from "./logger";
-import { handleServerError, MissingConfigError } from "./errors";
+import { logger } from "./utils/logger";
+import { handleServerError, MissingConfigError } from "./utils/errors";
 
 export const startServer = (
   filePath = "gateweaver.yml",

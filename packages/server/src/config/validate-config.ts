@@ -1,7 +1,7 @@
 import Ajv from "ajv";
 import addFormats from "ajv-formats";
 import { PolicyDefinitions, PolicyOption } from "@gateweaver/policies";
-import { InvalidConfigError } from "../errors";
+import { InvalidConfigError } from "../utils/errors";
 import { configSchema } from "./config.schema";
 import { Endpoint, Config } from "./config.types";
 

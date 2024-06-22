@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from "express";
 import { UnauthorizedError } from "express-jwt";
 import { RateLimitPolicyError } from "@gateweaver/policies";
-import { logger } from "../logger";
+import { logger } from "../utils/logger";
 
 export const errorHandler = (
   err: Error,

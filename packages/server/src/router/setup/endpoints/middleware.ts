@@ -1,10 +1,10 @@
 import path from "path";
 import { Router } from "express";
-import { Endpoint } from "../../config/config.types";
-import { logger } from "../../logger";
-import { bundleFile } from "./bundle-file";
+import { Endpoint } from "../../../config/config.types";
+import { logger } from "../../../utils/logger";
+import { bundleFile } from "../../../utils/bundle-file";
 
-export const setupMiddleware = async (
+export const setupEndpointMiddleware = async (
   router: Router,
   endpoint: Endpoint,
 ): Promise<void> => {

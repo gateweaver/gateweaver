@@ -1,15 +1,10 @@
-import fs from "fs";
 import { Router } from "express";
-import { Config } from "../../config/config.types";
-import { setupProxy } from "./setup-proxy";
-import { setupPolicies } from "./setup-policies";
-import { logger } from "../../logger";
-import { setupMiddleware } from "./setup-middleware";
-import { setupHandler } from "./setup-handler";
-
-const removeBuildFolder = (): void => {
-  fs.rmSync(".gateweaver", { recursive: true, force: true });
-};
+import { Config } from "../../../config/config.types";
+import { setupProxy } from "./proxy";
+import { setupEndpointPolicies } from "./policies";
+import { logger } from "../../../utils/logger";
+import { setupEndpointMiddleware } from "./middleware";
+import { setupHandler } from "./handler";
 
 export const setupEndpoints = async (
   router: Router,
@@ -17,14 +12,12 @@ export const setupEndpoints = async (
 ): Promise<void> => {
   const { endpoints, policyDefinitions } = config;
 
-  removeBuildFolder();
-
   for (const endpoint of endpoints) {
     if (policyDefinitions) {
-      setupPolicies(router, endpoint, policyDefinitions);
+      setupEndpointPolicies({ router, endpoint, policyDefinitions });
     }
 
-    await setupMiddleware(router, endpoint);
+    await setupEndpointMiddleware(router, endpoint);
 
     if (endpoint.target?.url) {
       setupProxy(router, endpoint);

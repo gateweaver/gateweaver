@@ -8,8 +8,8 @@ import {
   PolicyOption,
   policyMiddleware,
 } from "@gateweaver/policies";
-import { Endpoint } from "../../config/config.types";
-import { setupPolicies } from "./setup-policies";
+import { Endpoint } from "../../../config/config.types";
+import { setupEndpointPolicies } from "./policies";
 
 jest.mock("express", () => ({
   Router: () => ({
@@ -30,7 +30,7 @@ jest.mock("@gateweaver/policies", () => {
   };
 });
 
-describe("setupPolicies", () => {
+describe("setupEndpointPolicies", () => {
   let router: Router;
 
   beforeEach(() => {
@@ -67,7 +67,7 @@ describe("setupPolicies", () => {
       ],
     };
 
-    setupPolicies(router, endpoint, policyDefinitions);
+    setupEndpointPolicies({ router, endpoint, policyDefinitions });
 
     expect(policyMiddleware.cors).toHaveBeenCalledWith(policyDefinitions.cors);
     expect(policyMiddleware.jwt).toHaveBeenCalledWith(policyDefinitions.jwt);
@@ -88,7 +88,7 @@ describe("setupPolicies", () => {
       policies: [],
     };
 
-    setupPolicies(router, endpoint, policyDefinitions);
+    setupEndpointPolicies({ router, endpoint, policyDefinitions });
 
     expect(policyMiddleware.cors).not.toHaveBeenCalled();
     expect(policyMiddleware.jwt).not.toHaveBeenCalled();
@@ -110,7 +110,7 @@ describe("setupPolicies", () => {
       ],
     };
 
-    setupPolicies(router, endpoint, {});
+    setupEndpointPolicies({ router, endpoint, policyDefinitions: {} });
 
     expect(policyMiddleware.cors).not.toHaveBeenCalled();
     expect(policyMiddleware.jwt).not.toHaveBeenCalled();

@@ -1,6 +1,6 @@
 import fs from "fs";
 import YAML from "yaml";
-import { InvalidConfigError, MissingConfigError } from "../errors";
+import { InvalidConfigError, MissingConfigError } from "../utils/errors";
 import { validateConfig } from "./validate-config";
 import { Config } from "./config.types";
 

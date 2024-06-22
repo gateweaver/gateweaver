@@ -1,5 +1,5 @@
 import fs from "fs";
-import { MissingConfigError } from "../errors";
+import { MissingConfigError } from "../utils/errors";
 
 export const getDefaultConfigPath = (): string => {
   const defaultPathOptions = ["./gateweaver.yml", "./gateweaver.yaml"];

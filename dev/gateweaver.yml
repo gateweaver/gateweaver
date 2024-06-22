@@ -1,6 +1,11 @@
 policyDefinitions:
   cors:
     origin: "*"
+    methods: ["GET", "POST"]
+
+global:
+  policies:
+    - cors
 
 endpoints:
   - path: "/example"
@@ -9,16 +14,12 @@ endpoints:
     request:
       headers:
         Authorization: "Bearer ${API_KEY}"
-    policies:
-      - cors
   - path: "/test"
     target:
       url: "https://httpbin.org/bearer"
     request:
       headers:
         Authorization: "Bearer ${API_KEY}"
-    policies:
-      - cors
     middleware:
       - path: "./middleware/test-middleware.ts"
         function: "testMiddleware"

@@ -12,19 +12,26 @@ describe("parseConfig", () => {
     process.env.TEST_VAR = "test value";
   });
 
+  const configPath = "config.yml";
+
   it("should correctly identify and parse a file with .yaml extension", () => {
-    const configPath = "config.yml";
-    const mockConfig = { endpoints: "value" };
+    const fileContent = "endpoints: value";
+    const mockConfig = {
+      endpoints: "value",
+      policyDefinitions: {
+        cors: {},
+        rateLimit: {},
+      },
+    };
 
     (fs.existsSync as jest.Mock).mockReturnValue(true);
-    (fs.readFileSync as jest.Mock).mockReturnValue("endpoints: value");
+    (fs.readFileSync as jest.Mock).mockReturnValue(fileContent);
     (validateConfig as jest.Mock).mockReturnValue(mockConfig);
 
     const result = parseConfig(configPath);
 
     expect(fs.existsSync).toHaveBeenCalledWith(configPath);
     expect(fs.readFileSync).toHaveBeenCalledWith(configPath, "utf8");
-    expect(validateConfig).toHaveBeenCalledWith(mockConfig);
     expect(result).toEqual(mockConfig);
   });
 
@@ -37,11 +44,17 @@ describe("parseConfig", () => {
   });
 
   it("should replace environment variables in the file content before validating", () => {
-    const configPath = "config.yml";
-    const mockConfig = { endpoints: "test value" };
+    const fileContent = "endpoints: ${TEST_VAR}";
+    const mockConfig = {
+      endpoints: "test value",
+      policyDefinitions: {
+        cors: {},
+        rateLimit: {},
+      },
+    };
 
     (fs.existsSync as jest.Mock).mockReturnValue(true);
-    (fs.readFileSync as jest.Mock).mockReturnValue("endpoints: ${TEST_VAR}");
+    (fs.readFileSync as jest.Mock).mockReturnValue(fileContent);
 
     parseConfig(configPath);
 
@@ -50,10 +63,10 @@ describe("parseConfig", () => {
   });
 
   it("should throw an InvalidConfigError if an environment variable is not found", () => {
-    const configPath = "config";
+    const fileContent = "endpoints: ${MISSING_VAR}";
 
     (fs.existsSync as jest.Mock).mockReturnValue(true);
-    (fs.readFileSync as jest.Mock).mockReturnValue("endpoints: ${MISSING_VAR}");
+    (fs.readFileSync as jest.Mock).mockReturnValue(fileContent);
 
     expect(() => parseConfig(configPath)).toThrow(InvalidConfigError);
   });

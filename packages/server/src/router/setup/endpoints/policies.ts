@@ -5,6 +5,7 @@ import {
   policyMiddleware,
 } from "@gateweaver/policies";
 import { Endpoint } from "../../../config/config.types";
+import { logger } from "../../../utils/logger";
 
 interface SetupEndpointPoliciesParams {
   router: Router;
@@ -24,18 +25,22 @@ export const setupEndpointPolicies = ({
 
     if (cors && policies.includes(PolicyOption.Cors)) {
       router.use(endpoint.path, policyMiddleware.cors(cors));
+      logger.info(`Applied CORS policy to ${endpoint.path}`);
     }
 
     if (jwt && policies.includes(PolicyOption.Jwt)) {
       router.use(endpoint.path, policyMiddleware.jwt(jwt));
+      logger.info(`Applied JWT policy to ${endpoint.path}`);
     }
 
     if (apiKey && policies.includes(PolicyOption.ApiKey)) {
       router.use(endpoint.path, policyMiddleware.apiKey(apiKey));
+      logger.info(`Applied API key policy to ${endpoint.path}`);
     }
 
     if (rateLimit && policies.includes(PolicyOption.RateLimit)) {
       router.use(endpoint.path, policyMiddleware.rateLimit(rateLimit));
+      logger.info(`Applied rate limit policy to ${endpoint.path}`);
     }
   }
 };

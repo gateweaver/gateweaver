@@ -23,7 +23,19 @@ export const parseConfig = (filePath: string): Config => {
     .readFileSync(filePath, "utf8")
     .replace(/\$\{(.+?)\}/g, (_, value) => parseEnv(value));
 
-  const config = YAML.parse(file);
+  let config = YAML.parse(file);
+
+  // This allows the cors and rateLimit policies to be be used with their default values without being defined in policyDefinitions
+  const policyDefinitions = {
+    cors: config.policyDefinitions?.cors || {},
+    rateLimit: config.policyDefinitions?.rateLimit || {},
+    ...config.policyDefinitions,
+  };
+
+  config = {
+    ...config,
+    policyDefinitions,
+  };
 
   return validateConfig(config);
 };

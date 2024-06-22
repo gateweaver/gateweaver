@@ -29,6 +29,7 @@ export const parseConfig = (filePath: string): Config => {
   const policyDefinitions = {
     cors: config.policyDefinitions?.cors || {},
     rateLimit: config.policyDefinitions?.rateLimit || {},
+    ...config.policyDefinitions,
   };
 
   config = {

@@ -23,12 +23,6 @@ endpoints:
         remove-header: ""
         replace-header: "New value"
 
-  - path: "/public/handler"
-    target:
-      handler:
-        path: "./tests/public/handlers/test-handler.ts"
-        function: "testHandler"
-
   - path: "/public/rate-limited"
     target:
       url: "https://example.com/api"
@@ -39,3 +33,12 @@ endpoints:
         message: "Message from gateweaver query"
     policies:
       - rateLimit
+
+  - path: "/public/handler"
+    target:
+      handler:
+        path: "./tests/public/handlers/test-handler.ts"
+        function: "testHandler"
+    middleware:
+      - path: "./tests/public/middleware/test-middleware.ts"
+        function: "testMiddleware"

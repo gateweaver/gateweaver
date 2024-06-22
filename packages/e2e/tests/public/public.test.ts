@@ -5,8 +5,8 @@ import { startServer } from "@gateweaver/server";
 import { checkResponseHeaders } from "../../utils/check-response-headers";
 
 const MOCK_PATH = "/public/mock";
-const HANDLER_PATH = "/public/handler";
 const RATE_LIMITED_PATH = "/public/rate-limited";
+const HANDLER_PATH = "/public/handler";
 
 describe("e2e - Public Endpoint", () => {
   let gateweaver: Server;
@@ -73,14 +73,7 @@ describe("e2e - Public Endpoint", () => {
     checkResponseHeaders(response);
   });
 
-  it("should return a 200 status, correct body and headers when accessing a public endpoint with a custom handler", async () => {
-    const response = await request(gateweaver).get(HANDLER_PATH);
-
-    expect(response.status).toBe(200);
-    expect(response.text).toBe("This is a custom handler response");
-  });
-
-  it("should return a 429 status when a public endpoint is rate limited", async () => {
+  it("should return a 429 status when an endpoint is rate limited", async () => {
     await request(gateweaver).get(RATE_LIMITED_PATH);
     await request(gateweaver).get(RATE_LIMITED_PATH);
     const rateLimitedResponse =
@@ -90,5 +83,21 @@ describe("e2e - Public Endpoint", () => {
     expect(rateLimitedResponse.text).toBe(
       "Too many requests, please try again later.",
     );
+  });
+
+  it("should return a 200 status and correct response when accessing an endpoint with a custom handler and middleware", async () => {
+    const response = await request(gateweaver)
+      .get(HANDLER_PATH)
+      .set("x-test", "test");
+
+    expect(response.status).toBe(200);
+    expect(response.text).toBe("This is a custom handler response");
+  });
+
+  it("should return a 403 status when accessing an endpoint with the custom test middleware without the required header", async () => {
+    const response = await request(gateweaver).get(HANDLER_PATH);
+
+    expect(response.status).toBe(403);
+    expect(response.text).toBe("Forbidden");
   });
 });

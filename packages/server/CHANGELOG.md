@@ -1,5 +1,16 @@
 # @gateweaver/server
 
+## 0.2.0
+
+### Minor Changes
+
+- Allow Gateweaver to be extended using custom express.js handlers and middleware
+- Add Global Configuration
+
+### Patch Changes
+
+- @gateweaver/policies@0.2.0
+
 ## 0.1.0
 
 ### Minor Changes

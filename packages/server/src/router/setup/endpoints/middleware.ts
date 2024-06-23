@@ -22,7 +22,7 @@ export const setupEndpointMiddleware = async (
         if (typeof middlewareFunction === "function") {
           router.use(endpoint.path, middlewareFunction);
           logger.info(
-            `Applied custom middleware ${middlewareConfig.function} from ${middlewareConfig.path} to ${endpoint.path}`,
+            `Applied custom middleware ${middlewareConfig.function} to endpoint ${endpoint.path}`,
           );
         } else {
           logger.error(

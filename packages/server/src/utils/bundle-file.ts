@@ -8,9 +8,7 @@ export const bundleFile = async (
   outDirPath: string,
 ): Promise<string> => {
   const entry = path.resolve(filePath);
-
   const outDir = path.resolve(outDirPath);
-
   const bundlePath = path.join(
     outDir,
     path.basename(filePath).replace(/\.[jt]s?$/, ".cjs"),
@@ -31,7 +29,9 @@ export const bundleFile = async (
       },
     });
 
-    logger.info(`Bundled ${entry} to ${bundlePath}`);
+    const relativeEntry = path.relative(process.cwd(), entry);
+    const relativeBundlePath = path.relative(process.cwd(), bundlePath);
+    logger.info(`Bundled ${relativeEntry} to ${relativeBundlePath}`);
   }
 
   return bundlePath;

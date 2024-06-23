@@ -4,7 +4,8 @@
 
 ### Minor Changes
 
-- bc4161e: Allow Gateweaver to be extended using custom express.js handlers and middleware
+- Allow Gateweaver to be extended using custom express.js handlers and middleware
+- Add Global Configuration
 
 ### Patch Changes
 

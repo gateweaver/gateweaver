@@ -70,14 +70,10 @@ Configures the status code to be sent in response to a preflight request.
 
 ## Usage
 
-Below are the default values for the CORS policy. You can use the defaults by setting `cors: {}`, or you can customize the policy by specifying the values you want to change.
-
 ```yaml title="gateweaver.yml"
 policyDefinitions:
   cors:
-    origin: "*"
-    methods: ["GET", "HEAD", "PUT", "PATCH", "POST", "DELETE"]
-    optionsSuccessStatus: 204
+    origin: "https://example-origin.com"
 
 endpoints:
   - path: "/todos"

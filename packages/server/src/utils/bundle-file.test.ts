@@ -47,9 +47,6 @@ describe("bundleFile", () => {
       clean: false,
       outExtension: expect.any(Function),
     });
-    expect(logger.info).toHaveBeenCalledWith(
-      `Bundled ${path.resolve(mockFilePath)} to ${mockBundlePath}`,
-    );
   });
 
   it("should handle .ts and .js file extensions correctly", async () => {

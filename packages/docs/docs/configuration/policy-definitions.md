@@ -1,24 +1,23 @@
 ---
-sidebar_position: 1
+sidebar_position: 3
 ---
 
 # Policy Definitions
 
-Policies are reusable configurations that can be applied to multiple endpoints. You can define policy definitions in the `policyDefinitions` section of the configuration file.
+Policies are reusable middleware that can be applied to multiple endpoints. You can configure policies in the `policyDefinitions` section of your configuration file.
 
 ```yaml title="gateweaver.yml"
 policyDefinitions:
   cors:
-    origin: "https://example.com/"
+    origin: "https://example-origin.com"
     methods:
       - "GET"
       - "POST"
-  rateLimit: {}
+  rateLimit:
+    windowMs: 300000
+    limit: 100
+    message: "You have exceeded the 100 requests in 5 minutes limit!"
 ```
-
-:::tip
-You can use the default configuration of a policy by setting it to an empty object `{}`. For example, `rateLimit: {}`.
-:::
 
 ## Available Policies
 

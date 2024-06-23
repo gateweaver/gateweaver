@@ -7,7 +7,7 @@ import TabItem from "@theme/TabItem";
 
 # Getting Started
 
-Gateweaver is a lightweight open-source API Proxy tailor-made for front-end applications. It allows you to securely make API calls while hiding your API keys and sensitive data from the client. Through a simple YAML configuration file, you can define endpoints and apply policies such as CORS, rate limiting, API key management, and JWT validation.
+Gateweaver is a lightweight open-source API Proxy built on Express.js, tailor-made for front-end applications. It allows you to securely make API calls while hiding your API keys and sensitive data from the client. Through a simple YAML configuration file, you can define endpoints and apply policies such as CORS, rate limiting, API key management, and JWT validation. Additionally, you can use custom Express middleware and handlers to extend Gateweaver's functionality to suit your needs.
 
 Get started quickly with the CLI or Docker image, or take a look at some [examples](https://github.com/gateweaver/gateweaver/tree/main/examples) to see how you can use Gateweaver in your projects.
 

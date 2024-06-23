@@ -92,20 +92,12 @@ When set to true, successful requests won’t be counted.
 
 ## Usage
 
-Below are the default values for the Rate Limit policy. You can use the defaults by setting `rateLimit: {}`, or you can customize the policy by specifying the values you want to change.
-
 ```yaml title="gateweaver.yml"
 policyDefinitions:
   rateLimit:
-    rateLimitBy: "IP"
-    windowMs: 60000
-    limit: 5
-    message: "Too many requests, please try again later."
-    statusCode: 429
-    legacyHeaders: false
-    standardHeaders: "draft-6"
-    skipFailedRequests: false
-    skipSuccessfulRequests: false
+    windowMs: 300000
+    limit: 100
+    message: "You have exceeded the 100 requests in 5 minutes limit!"
 
 endpoints:
   - path: "/todos"

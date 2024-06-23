@@ -4,17 +4,17 @@ sidebar_position: 2
 
 # Endpoints
 
-Endpoints are the core of Gateweaver. They define the path and target URL of your API, along with the policies that should be applied to the requests.
+An endpoint is a specific URL within your Proxy Server that accepts requests. Each endpoint is defined by a path, a target, and optional request and response modifications. You can also apply policies and middleware to an endpoint to enforce security, rate limiting, and other requirements.
 
 ## Configuration
 
-Below is the structure for defining an endpoint in `gateweaver.yml`:
+Below is the structure for defining an endpoint in your configuration file:
 
 ```yaml title="gateweaver.yml"
 endpoints:
-  - path: "/example_path"
+  - path: "/example"
     target:
-      url: "https://example.com/target_path"
+      url: "https://example.com/target"
     request:
       headers:
         add-header: "value"
@@ -31,11 +31,14 @@ endpoints:
       - cors
       - rateLimit
       - jwt
+    middleware:
+      path: "./middleware/example-middleware.ts"
+      function: "exampleMiddleware"
 ```
 
 ### path
 
-Defines the path of the endpoint. Requests to this path will be forwarded to the target URL.
+Defines the path of the endpoint.
 
 - `String`: The path of the endpoint. For example, `"/todos"`.
 
@@ -43,9 +46,24 @@ Defines the path of the endpoint. Requests to this path will be forwarded to the
 
 ### target
 
-Defines the target URL where the request will be forwarded.
+Defines where the request should be forwarded to. You can specify a URL to proxy the request to, or you can specify an express.js handler function to process the request.
 
 - `url`: The URL to which the request will be sent. Must be a valid URL.
+- `handler`:
+  - `path`: The path to the handler file. For example, `"./handlers/example-handler.ts"`.
+  - `function`: The function name of the handler. For example, `"exampleHandler"`.
+
+```typescript title="example-handler.ts"
+import { Request, Response } from "express";
+
+export const exampleHandler = (req: Request, res: Response) => {
+  res.send("Hello, world!");
+};
+```
+
+:::note
+To use express.js types in your handler, you need to install the `@types/express` package. You can install it by running `npm install --save-dev @types/express`.
+:::
 
 ### request (Optional)
 
@@ -67,13 +85,35 @@ Modifies the response before it is sent back to the client.
 
 ### policies (Optional)
 
-An array of policies to apply to the request. The available policies include:
+An array of built-in policies to apply to the request. The available policies are:
 
 - [cors](/docs/configuration/policies/cors)
 - [rateLimit](/docs/configuration/policies/rate-limit)
 - [apiKey](/docs/configuration/policies/api-key)
 - [jwt](/docs/configuration/policies/jwt)
 
-You must define the policy in the `policyDefinitions` section of the configuration file before you can reference it in an endpoint.
+### middleware (Optional)
+
+An array of express.js middleware to apply to the request. Each middleware is defined by the following properties:
+
+- `path`: The path to the middleware file. For example, `"./middleware/example-middleware.ts"`.
+- `function`: The function name of the middleware. For example, `"exampleMiddleware"`.
+
+```typescript title="example-middleware.ts"
+import { Request, Response, NextFunction } from "express";
+
+export const exampleMiddleware = (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+) => {
+  console.log("Middleware executed!");
+  next();
+};
+```
+
+:::note
+To use express.js types in your middleware, you need to install the `@types/express` package. You can install it by running `npm install --save-dev @types/express`.
+:::
 
 Powered by [http-proxy-middleware](https://github.com/chimurai/http-proxy-middleware/tree/v2.0.4#readme)

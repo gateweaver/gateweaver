@@ -10,7 +10,7 @@ global:
     - cors
 
 endpoints:
-  - path: "/public/mock"
+  - path: "/proxy/mock"
     target:
       url: "https://example.com/api"
     request:
@@ -23,7 +23,7 @@ endpoints:
         remove-header: ""
         replace-header: "New value"
 
-  - path: "/public/rate-limited"
+  - path: "/proxy/rate-limited"
     target:
       url: "https://example.com/api"
     request:
@@ -34,11 +34,11 @@ endpoints:
     policies:
       - rateLimit
 
-  - path: "/public/handler"
+  - path: "/proxy/handler"
     target:
       handler:
-        path: "./tests/public/handlers/test-handler.ts"
+        path: "./tests/proxy/handlers/test-handler.ts"
         function: "testHandler"
     middleware:
-      - path: "./tests/public/middleware/test-middleware.ts"
+      - path: "./tests/proxy/middleware/test-middleware.ts"
         function: "testMiddleware"

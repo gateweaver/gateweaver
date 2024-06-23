@@ -4,11 +4,11 @@ import request from "supertest";
 import { startServer } from "@gateweaver/server";
 import { checkResponseHeaders } from "../../utils/check-response-headers";
 
-const MOCK_PATH = "/public/mock";
-const RATE_LIMITED_PATH = "/public/rate-limited";
-const HANDLER_PATH = "/public/handler";
+const MOCK_PATH = "/proxy/mock";
+const RATE_LIMITED_PATH = "/proxy/rate-limited";
+const HANDLER_PATH = "/proxy/handler";
 
-describe("e2e - Public Endpoint", () => {
+describe("e2e - Proxy Endpoint", () => {
   let gateweaver: Server;
 
   beforeAll(async () => {
@@ -20,7 +20,7 @@ describe("e2e - Public Endpoint", () => {
     gateweaver?.close();
   });
 
-  it("should return a 200 status, correct body and headers when accessing a public GET endpoint", async () => {
+  it("should return a 200 status, correct body and headers when accessing a GET endpoint", async () => {
     const response = await request(gateweaver).get(MOCK_PATH);
 
     expect(response.status).toBe(200);
@@ -29,7 +29,7 @@ describe("e2e - Public Endpoint", () => {
     checkResponseHeaders(response);
   });
 
-  it("should return a 200 status, correct body and headers when accessing a public POST endpoint", async () => {
+  it("should return a 200 status, correct body and headers when accessing a POST endpoint", async () => {
     const response = await request(gateweaver)
       .post(MOCK_PATH)
       .send({ name: "Gateweaver" });
@@ -40,7 +40,7 @@ describe("e2e - Public Endpoint", () => {
     checkResponseHeaders(response);
   });
 
-  it("should return a 200 status, correct body and headers when accessing a public PUT endpoint", async () => {
+  it("should return a 200 status, correct body and headers when accessing a PUT endpoint", async () => {
     const response = await request(gateweaver)
       .put(MOCK_PATH)
       .send({ name: "Gateweaver" });
@@ -51,7 +51,7 @@ describe("e2e - Public Endpoint", () => {
     checkResponseHeaders(response);
   });
 
-  it("should return a 200 status, correct body and headers when accessing a public PATCH endpoint", async () => {
+  it("should return a 200 status, correct body and headers when accessing a PATCH endpoint", async () => {
     const response = await request(gateweaver)
       .patch(MOCK_PATH)
       .send({ name: "Gateweaver" });
@@ -62,7 +62,7 @@ describe("e2e - Public Endpoint", () => {
     checkResponseHeaders(response);
   });
 
-  it("should return a 200 status, correct body and headers when accessing a public DELETE endpoint", async () => {
+  it("should return a 200 status, correct body and headers when accessing a DELETE endpoint", async () => {
     const response = await request(gateweaver).delete(MOCK_PATH);
 
     expect(response.status).toBe(200);

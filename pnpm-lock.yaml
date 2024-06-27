@@ -7,13 +7,14 @@ settings:
 importers:
 
   .:
+    dependencies:
+      '@types/express':
+        specifier: ^4.17.21
+        version: 4.17.21
     devDependencies:
       '@changesets/cli':
         specifier: ^2.27.1
         version: 2.27.1
-      '@types/express':
-        specifier: ^4.17.21
-        version: 4.17.21
       '@types/jest':
         specifier: ^29.5.12
         version: 29.5.12

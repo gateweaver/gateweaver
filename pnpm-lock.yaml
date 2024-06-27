@@ -7,14 +7,13 @@ settings:
 importers:
 
   .:
-    dependencies:
-      '@types/express':
-        specifier: ^4.17.21
-        version: 4.17.21
     devDependencies:
       '@changesets/cli':
         specifier: ^2.27.1
         version: 2.27.1
+      '@types/express':
+        specifier: ^4.17.21
+        version: 4.17.21
       '@types/jest':
         specifier: ^29.5.12
         version: 29.5.12
@@ -167,6 +166,9 @@ importers:
       '@gateweaver/policies':
         specifier: workspace:*
         version: link:../policies
+      '@types/express':
+        specifier: ^4.17.21
+        version: 4.17.21
       ajv:
         specifier: ^8.12.0
         version: 8.12.0
@@ -206,10 +208,6 @@ importers:
       yaml:
         specifier: ^2.3.4
         version: 2.4.1
-    devDependencies:
-      '@types/express':
-        specifier: ^4.17.21
-        version: 4.17.21
 
 packages:
 

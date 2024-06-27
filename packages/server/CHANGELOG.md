@@ -1,5 +1,12 @@
 # @gateweaver/server
 
+## 0.2.1
+
+### Patch Changes
+
+- 3bfacd1: Add @ypes/express as a real dependency in server package to fix bundling issue when using docker
+  - @gateweaver/policies@0.2.1
+
 ## 0.2.0
 
 ### Minor Changes

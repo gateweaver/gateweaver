@@ -1,5 +1,13 @@
 # @gateweaver/cli
 
+## 0.2.3
+
+### Patch Changes
+
+- Updated dependencies [a1d7ed4]
+  - @gateweaver/server@0.2.3
+  - @gateweaver/policies@0.2.3
+
 ## 0.2.2
 
 ### Patch Changes

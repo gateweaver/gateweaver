@@ -21,7 +21,7 @@ export const setupGlobalMiddleware = async (
       if (typeof middlewareFunction === "function") {
         router.use(middlewareFunction);
         logger.info(
-          `Applied middleware ${middlewareConfig.function} from ${middlewareConfig.path} to all endpoints`,
+          `Applied middleware ${middlewareConfig.function} from ${middlewareConfig.path} globally`,
         );
       } else {
         logger.error(

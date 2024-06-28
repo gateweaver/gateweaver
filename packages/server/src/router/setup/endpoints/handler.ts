@@ -26,8 +26,6 @@ export const setupHandler = async (
       );
     }
   } catch (error) {
-    logger.error(
-      `Failed to load custom handler from ${handlerConfig.path}: ${error}`,
-    );
+    logger.error(`Failed to load handler from ${handlerConfig.path}: ${error}`);
   }
 };

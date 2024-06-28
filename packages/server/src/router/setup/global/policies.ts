@@ -22,22 +22,22 @@ export const setupGlobalPolicies = ({
 
     if (cors && policies.includes(PolicyOption.Cors)) {
       router.use(policyMiddleware.cors(cors));
-      logger.info(`Applied CORS policy to all endpoints`);
+      logger.info(`Applied CORS policy globally`);
     }
 
     if (jwt && policies.includes(PolicyOption.Jwt)) {
       router.use(policyMiddleware.jwt(jwt));
-      logger.info(`Applied JWT policy to all endpoints`);
+      logger.info(`Applied JWT policy globally`);
     }
 
     if (apiKey && policies.includes(PolicyOption.ApiKey)) {
       router.use(policyMiddleware.apiKey(apiKey));
-      logger.info(`Applied API key policy to all endpoints`);
+      logger.info(`Applied API key policy globally`);
     }
 
     if (rateLimit && policies.includes(PolicyOption.RateLimit)) {
       router.use(policyMiddleware.rateLimit(rateLimit));
-      logger.info(`Applied rate limit policy to all endpoints`);
+      logger.info(`Applied rate limit policy globally`);
     }
   }
 };

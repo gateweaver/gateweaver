@@ -5,9 +5,7 @@
 ### Patch Changes
 
 - a1d7ed4: Update main to not start server in watch mode
-
-  Update log messages
-
+- Update log messages
   - @gateweaver/policies@0.2.3
   - @gateweaver/tsconfig@0.2.3
 

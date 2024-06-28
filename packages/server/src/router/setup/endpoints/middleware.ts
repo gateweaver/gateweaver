@@ -22,7 +22,7 @@ export const setupEndpointMiddleware = async (
         if (typeof middlewareFunction === "function") {
           router.use(endpoint.path, middlewareFunction);
           logger.info(
-            `Applied custom middleware ${middlewareConfig.function} to endpoint ${endpoint.path}`,
+            `Applied middleware ${middlewareConfig.function} to endpoint ${endpoint.path}`,
           );
         } else {
           logger.error(
@@ -31,7 +31,7 @@ export const setupEndpointMiddleware = async (
         }
       } catch (error) {
         logger.error(
-          `Failed to load custom middleware from ${middlewareConfig.path}: ${error}`,
+          `Failed to load middleware from ${middlewareConfig.path}: ${error}`,
         );
       }
     }

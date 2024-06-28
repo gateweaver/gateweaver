@@ -7,7 +7,7 @@ import { handleServerError } from "./utils/errors";
 const main = async () => {
   try {
     const filePath = getDefaultConfigPath();
-    await startServer(filePath, true);
+    await startServer(filePath, false);
   } catch (error) {
     handleServerError(error);
   }

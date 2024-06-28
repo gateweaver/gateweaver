@@ -1,5 +1,14 @@
 # @gateweaver/cli
 
+## 0.2.2
+
+### Patch Changes
+
+- b771463: Add tsconfig as a package
+- Updated dependencies [b771463]
+  - @gateweaver/policies@0.2.2
+  - @gateweaver/server@0.2.2
+
 ## 0.2.1
 
 ### Patch Changes

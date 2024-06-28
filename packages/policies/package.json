@@ -23,6 +23,7 @@
     "jwks-rsa": "^3.1.0"
   },
   "devDependencies": {
+    "@gateweaver/tsconfig": "workspace:*",
     "@types/cors": "^2.8.17",
     "@types/express": "^4.17.21"
   }

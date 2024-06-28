@@ -19,9 +19,12 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "@gateweaver/server": "*",
-    "@gateweaver/policies": "*",
+    "@gateweaver/policies": "workspace:*",
+    "@gateweaver/server": "workspace:*",
     "commander": "^12.0.0",
     "dotenv": "^16.4.5"
+  },
+  "devDependencies": {
+    "@gateweaver/tsconfig": "workspace:*"
   }
 }

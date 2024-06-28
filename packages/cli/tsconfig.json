@@ -1,5 +1,5 @@
 {
-  "extends": "../../tsconfig.json",
+  "extends": "@gateweaver/tsconfig/base.json",
   "compilerOptions": {
     "outDir": "./dist",
     "rootDir": "."

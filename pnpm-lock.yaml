@@ -66,10 +66,10 @@ importers:
   packages/cli:
     dependencies:
       '@gateweaver/policies':
-        specifier: '*'
+        specifier: workspace:*
         version: link:../policies
       '@gateweaver/server':
-        specifier: '*'
+        specifier: workspace:*
         version: link:../server
       commander:
         specifier: ^12.0.0
@@ -77,6 +77,10 @@ importers:
       dotenv:
         specifier: ^16.4.5
         version: 16.4.5
+    devDependencies:
+      '@gateweaver/tsconfig':
+        specifier: workspace:*
+        version: link:../tsconfig
 
   packages/docs:
     dependencies:
@@ -154,6 +158,9 @@ importers:
         specifier: ^3.1.0
         version: 3.1.0
     devDependencies:
+      '@gateweaver/tsconfig':
+        specifier: workspace:*
+        version: link:../tsconfig
       '@types/cors':
         specifier: ^2.8.17
         version: 2.8.17
@@ -166,6 +173,9 @@ importers:
       '@gateweaver/policies':
         specifier: workspace:*
         version: link:../policies
+      '@gateweaver/tsconfig':
+        specifier: workspace:*
+        version: link:../tsconfig
       '@types/express':
         specifier: ^4.17.21
         version: 4.17.21
@@ -208,6 +218,8 @@ importers:
       yaml:
         specifier: ^2.3.4
         version: 2.4.1
+
+  packages/tsconfig: {}
 
 packages:
 

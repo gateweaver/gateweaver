@@ -10,7 +10,8 @@
   "author": "",
   "license": "MIT",
   "devDependencies": {
-    "@gateweaver/server": "*",
+    "@gateweaver/server": "workspace:*",
+    "@gateweaver/tsconfig": "workspace:*",
     "@types/jsonwebtoken": "^9.0.6",
     "@types/supertest": "^6.0.2",
     "jsonwebtoken": "^9.0.2",

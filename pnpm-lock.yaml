@@ -122,8 +122,11 @@ importers:
   packages/e2e:
     devDependencies:
       '@gateweaver/server':
-        specifier: '*'
+        specifier: workspace:*
         version: link:../server
+      '@gateweaver/tsconfig':
+        specifier: workspace:*
+        version: link:../tsconfig
       '@types/jsonwebtoken':
         specifier: ^9.0.6
         version: 9.0.6

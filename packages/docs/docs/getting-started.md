@@ -42,12 +42,14 @@ policyDefinitions:
   cors:
     origin: "*"
 
+global:
+  policies:
+    - cors
+
 endpoints:
   - path: "/todos"
     target:
       url: "https://jsonplaceholder.typicode.com/todos"
-    policies:
-      - cors
 ```
 
 Visit the [Configuration](/docs/category/configuration) docs to learn more about the available options.
@@ -64,8 +66,6 @@ endpoints:
     request:
       headers:
         Authorization: "Bearer ${API_KEY}"
-    policies:
-      - cors
 ```
 
 To set environment variables locally during development, create a `.env.gateweaver` file:

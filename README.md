@@ -39,12 +39,14 @@ policyDefinitions:
   cors:
     origin: "*"
 
+global:
+  policies:
+    - cors
+
 endpoints:
   - path: "/todos"
     target:
-      url: "https://example.com/todos"
-    policies:
-      - cors
+      url: "https://jsonplaceholder.typicode.com/todos"
 ```
 
 Visit the [Configuration](https://gateweaver.io/docs/category/configuration) docs to learn more about the available options.
@@ -57,12 +59,10 @@ To use environment variables in your configuration file, you can use the `${VAR_
 endpoints:
   - path: "/todos"
     target:
-      url: "https://example.com/todos"
+      url: "https://jsonplaceholder.typicode.com/todos"
     request:
       headers:
         Authorization: "Bearer ${API_KEY}"
-    policies:
-      - cors
 ```
 
 To set environment variables locally during development, create a `.env.gateweaver` file:

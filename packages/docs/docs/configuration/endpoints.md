@@ -94,7 +94,9 @@ An array of built-in policies to apply to the request. The available policies ar
 
 ### middleware (Optional)
 
-An array of express.js middleware to apply to the request. Each middleware is defined by the following properties:
+An array of express.js middleware to apply to the request. These middleware are executed before the request is proxied to the target server.
+
+Each middleware is defined by the following properties:
 
 - `path`: The path to the middleware file. For example, `"./middleware/example-middleware.ts"`.
 - `function`: The function name of the middleware. For example, `"exampleMiddleware"`.

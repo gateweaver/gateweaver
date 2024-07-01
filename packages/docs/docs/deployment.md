@@ -4,15 +4,20 @@ sidebar_position: 5
 
 # Deployment
 
-Deploying the Gateweaver server can be streamlined using Docker. Begin by creating a Dockerfile in the same directory as your `gateweaver.yml` configuration file. Here's a simple template to get started:
+Deploying Gateweaver can be streamlined using Docker. Begin by creating a Dockerfile in the same directory as your `gateweaver.yml` configuration file. Here's a simple Dockerfile to get you started:
 
 ```Dockerfile title="Dockerfile"
 FROM gateweaver/server:<version>
 COPY gateweaver.yml /app/gateweaver.yml
+
+# Copy handlers and middleware if they exist and are being used
+COPY handlers /app/handlers
+COPY middleware /app/middleware
+
 ENV NODE_ENV=production
 ```
 
-This Dockerfile uses the official Gateweaver server image as the base image and copies your `gateweaver.yml` configuration file into the container. The `NODE_ENV` environment variable is set to `production` to ensure that Gateweaver runs in production mode.
+This Dockerfile uses the official Gateweaver server image as the base. The `COPY` commands add your `gateweaver.yml` configuration file, handlers, and middleware to the `/app` directory, which is the working directory of the server. If you're not using custom handlers or middleware, you can omit those `COPY` lines. The `NODE_ENV` environment variable is set to production to ensure that Gateweaver runs in production mode. This setup allows Gateweaver to find your configuration and custom code at runtime, integrating seamlessly with the prebuilt server in the base image.
 
 :::note
 Ensure to replace `<version>` with the specific version of Gateweaver you are using. If you have been developing locally using the CLI, it is best to use the same version of `@gateweaver/cli` from your project's `package.json` to maintain compatibility. You can also find the latest version of the Gateweaver server image on the [Docker Hub page](https://hub.docker.com/r/gateweaver/server).

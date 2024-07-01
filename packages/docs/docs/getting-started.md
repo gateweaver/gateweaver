@@ -45,7 +45,7 @@ policyDefinitions:
 endpoints:
   - path: "/todos"
     target:
-      url: "https://example.com/todos"
+      url: "https://jsonplaceholder.typicode.com/todos"
     policies:
       - cors
 ```
@@ -60,7 +60,7 @@ To use environment variables in your configuration file, you can use the `${VAR_
 endpoints:
   - path: "/todos"
     target:
-      url: "https://example.com/todos"
+      url: "https://jsonplaceholder.typicode.com/todos"
     request:
       headers:
         Authorization: "Bearer ${API_KEY}"

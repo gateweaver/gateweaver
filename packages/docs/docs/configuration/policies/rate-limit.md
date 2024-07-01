@@ -102,7 +102,7 @@ policyDefinitions:
 endpoints:
   - path: "/todos"
     target:
-      url: "https://example.com/todos"
+      url: "https://jsonplaceholder.typicode.com/todos"
     policies:
       - rateLimit
 ```

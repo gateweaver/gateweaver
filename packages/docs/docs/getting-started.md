@@ -66,7 +66,7 @@ endpoints:
       url: "https://jsonplaceholder.typicode.com"
 ```
 
-This example configuration creates a BFF that proxies all requests to JSONPlaceholder. Your frontend can now access all JSONPlaceholder endpoints through this single proxy, for example:
+This example configuration creates a BFF that proxies all requests to JSONPlaceholder. For example:
 
 - https://jsonplaceholder.typicode.com/todos becomes http://localhost:8080/proxy/todos
 - https://jsonplaceholder.typicode.com/posts becomes http://localhost:8080/proxy/posts

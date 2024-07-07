@@ -99,11 +99,13 @@ endpoints:
         Authorization: "Bearer ${API_KEY}"
 ```
 
+This creates a new endpoint `/secure` that proxies requests to [httpbin.org/bearer](https://httpbin.org/#/Auth/get_bearer) with a bearer token in the request headers.
+
 To set environment variables locally during development, create a `.env.gateweaver` file:
 
 ```bash title=".env.gateweaver"
 CORS_ORIGIN=http://localhost:3000
-API_KEY=your-api-token
+API_KEY=your-api-key
 ```
 
 Remember to add the `.env.gateweaver` file to your `.gitignore` file to prevent it from being committed to your repository.

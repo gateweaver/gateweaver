@@ -5,23 +5,21 @@ global:
 endpoints:
   - path: "/proxy"
     target:
+      url: "https://jsonplaceholder.typicode.com"
+  - path: "/secure"
+    target:
       url: "https://httpbin.org/bearer"
     request:
       headers:
         Authorization: "Bearer ${API_KEY}"
   - path: "/middleware"
     target:
-      url: "https://httpbin.org/bearer"
-    request:
-      headers:
-        Authorization: "Bearer ${API_KEY}"
+      url: "https://httpbin.org/headers"
     middleware:
-      - path: "./middleware/test-middleware.ts"
-        function: "testMiddleware"
+      - path: "./middleware/custom-middleware.ts"
+        function: "customMiddleware"
   - path: "/handler"
     target:
       handler:
-        path: "./handlers/test-handler.ts"
-        function: "testHandler"
-    policies:
-      - rateLimit
+        path: "./handlers/custom-handler.ts"
+        function: "customHandler"

@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from "express";
 
-export function testMiddleware(
+export function customMiddleware(
   req: Request,
   res: Response,
   next: NextFunction,

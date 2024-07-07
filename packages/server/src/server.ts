@@ -82,7 +82,7 @@ export const startServer = (
       persistent: true,
     });
     watcher.on("change", (changedPath) => {
-      logger.info(`Restarting server due to changes in ${changedPath}...`);
+      logger.info(`Restarting server due to changes in ${changedPath}`);
       if (server) {
         server.close(() => {
           setupServer().catch(handleServerError);

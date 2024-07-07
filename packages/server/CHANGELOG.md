@@ -1,5 +1,13 @@
 # @gateweaver/server
 
+## 0.2.4
+
+### Patch Changes
+
+- 0855c69: Add middleware and handler paths to watch mode
+  - @gateweaver/policies@0.2.4
+  - @gateweaver/tsconfig@0.2.4
+
 ## 0.2.3
 
 ### Patch Changes

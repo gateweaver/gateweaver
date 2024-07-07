@@ -4,7 +4,7 @@ sidebar_position: 1
 
 # Global Configuration
 
-The global configuration defines the settings that apply to all endpoints in your Proxy Server.
+The global configuration defines the settings that apply to all endpoints in your Server.
 
 ## Configuration
 

@@ -4,7 +4,7 @@ sidebar_position: 2
 
 # Endpoints
 
-An endpoint is a specific URL within your Proxy Server that accepts requests. Each endpoint is defined by a path, a target, and optional request and response modifications. You can also apply policies and middleware to an endpoint to enforce security, rate limiting, and other requirements.
+An endpoint is a specific URL within your Server that accepts requests. Each endpoint is defined by a path, a target, and optional request and response modifications. You can also apply policies and middleware to an endpoint to enforce security, rate limiting, and other requirements.
 
 ## Configuration
 

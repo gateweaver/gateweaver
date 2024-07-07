@@ -7,6 +7,7 @@ Gateweaver is an open-source Backend for Frontend (BFF) framework built on Expre
 - **API Aggregation**: Easily proxy and combine multiple backend services into a single, frontend-friendly API.
 - **Security Enhancement**: Hide API keys and sensitive data from the client-side.
 - **Flexible Configuration**: Use a simple YAML file to define endpoints and apply policies.
+- **Built-in Policies**: Includes ready-to-use policies for CORS, JWT validation, and rate limiting.
 - **Customization**: Extend functionality with custom Express middleware and handlers.
 - **Easy Development**: Get started quickly with the node CLI or Docker image.
 

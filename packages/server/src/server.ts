@@ -3,11 +3,27 @@ import express, { Express } from "express";
 import chokidar from "chokidar";
 import helmet from "helmet";
 import fs from "fs";
+import { Config, Endpoint } from "./config/config.types";
 import { parseConfig } from "./config/parse-config";
 import { createRouter } from "./router";
 import { errorHandler, httpLogger } from "./middleware";
 import { logger } from "./utils/logger";
 import { handleServerError, MissingConfigError } from "./utils/errors";
+
+const getMiddlewareAndHandlerPaths = (config: Config): string[] => {
+  const paths: string[] = [];
+  config.endpoints.forEach((endpoint: Endpoint) => {
+    if (endpoint.middleware) {
+      endpoint.middleware.forEach((middleware) => {
+        paths.push(middleware.path);
+      });
+    }
+    if (endpoint.target.handler) {
+      paths.push(endpoint.target.handler.path);
+    }
+  });
+  return paths;
+};
 
 export const startServer = (
   filePath = "gateweaver.yml",
@@ -60,9 +76,13 @@ export const startServer = (
   };
 
   if (watch) {
-    const watcher = chokidar.watch(filePath, { persistent: true });
-    watcher.on("change", () => {
-      logger.info(`Restarting server due to changes...`);
+    const config = parseConfig(filePath);
+    const additionalPaths = getMiddlewareAndHandlerPaths(config);
+    const watcher = chokidar.watch([filePath, ...additionalPaths], {
+      persistent: true,
+    });
+    watcher.on("change", (changedPath) => {
+      logger.info(`Restarting server due to changes in ${changedPath}...`);
       if (server) {
         server.close(() => {
           setupServer().catch(handleServerError);
@@ -71,7 +91,9 @@ export const startServer = (
         setupServer().catch(handleServerError);
       }
     });
-    logger.info(`Watching for file changes on ${filePath}`);
+    logger.info(
+      `Watching for file changes on ${filePath} and additional paths: ${additionalPaths.join(", ")}`,
+    );
   }
 
   process.on("SIGTERM", () => {

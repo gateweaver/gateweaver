@@ -4,7 +4,7 @@ sidebar_position: 1
 
 # CORS
 
-The CORS (Cross-Origin Resource Sharing) policy allows you to tailor how endpoints on your Proxy Server respond to cross-origin requests.
+The CORS (Cross-Origin Resource Sharing) policy allows you to tailor how endpoints on your Server respond to cross-origin requests.
 
 ## Options
 
@@ -78,7 +78,7 @@ policyDefinitions:
 endpoints:
   - path: "/todos"
     target:
-      url: "https://example.com/todos"
+      url: "https://jsonplaceholder.typicode.com/todos"
     policies:
       - cors
 ```

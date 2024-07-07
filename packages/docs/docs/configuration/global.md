@@ -4,7 +4,7 @@ sidebar_position: 1
 
 # Global Configuration
 
-The global configuration defines the settings that apply to all endpoints in your Proxy Server.
+The global configuration defines the settings that apply to all endpoints in your Server.
 
 ## Configuration
 
@@ -31,7 +31,9 @@ An array of built-in policies to apply to all requests. The available policies a
 
 ### middleware (Optional)
 
-An array of express.js middleware to apply to all requests. Each middleware is defined by the following properties:
+An array of express.js middleware to apply to all requests. These middleware are executed before the request is proxied to the target server.
+
+Each middleware is defined by the following properties:
 
 - `path`: The path to the middleware file. For example, `"./middleware/example-middleware.ts"`.
 - `function`: The function name of the middleware. For example, `"exampleMiddleware"`.

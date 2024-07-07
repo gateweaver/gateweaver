@@ -4,7 +4,7 @@ sidebar_position: 2
 
 # Endpoints
 
-An endpoint is a specific URL within your Proxy Server that accepts requests. Each endpoint is defined by a path, a target, and optional request and response modifications. You can also apply policies and middleware to an endpoint to enforce security, rate limiting, and other requirements.
+An endpoint is a specific URL within your Server that accepts requests. Each endpoint is defined by a path, a target, and optional request and response modifications. You can also apply policies and middleware to an endpoint to enforce security, rate limiting, and other requirements.
 
 ## Configuration
 
@@ -94,7 +94,9 @@ An array of built-in policies to apply to the request. The available policies ar
 
 ### middleware (Optional)
 
-An array of express.js middleware to apply to the request. Each middleware is defined by the following properties:
+An array of express.js middleware to apply to the request. These middleware are executed before the request is proxied to the target server.
+
+Each middleware is defined by the following properties:
 
 - `path`: The path to the middleware file. For example, `"./middleware/example-middleware.ts"`.
 - `function`: The function name of the middleware. For example, `"exampleMiddleware"`.

@@ -1,6 +1,6 @@
 # Gateweaver
 
-Gateweaver is an open-source Backend for Frontend (BFF) framework built on Express.js, designed to streamline the connection between your frontend applications and backend services. It allows you to create a tailored API layer that simplifies frontend development while enhancing security and performance.
+Gateweaver is an open-source [Backend for Frontend](https://samnewman.io/patterns/architectural/bff/) (BFF) framework built on Express.js, designed to streamline the connection between your frontend applications and backend services. It allows you to create a tailored API layer that simplifies frontend development while enhancing security and performance.
 
 ## Key Features
 

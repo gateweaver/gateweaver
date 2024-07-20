@@ -9,29 +9,32 @@ type FeatureItem = {
 
 const FeatureList: FeatureItem[] = [
   {
+    title: "API Simplification",
+    description: (
+      <>
+        Streamline your frontend development effortlessly. Combine multiple
+        upstream APIs into a single, tailored API layer that enhances security
+        and optimizes performance.
+      </>
+    ),
+  },
+  {
     title: "Easy Configuration",
     description: (
       <>
-        Set up your BFF with ease using a simple YAML file. Get started quickly,
-        letting you focus on development.
+        Set up your API gateway using a simple YAML file. Define endpoints,
+        apply built-in policies like CORS and JWT validation, and add custom
+        middleware with ease.
       </>
     ),
   },
   {
-    title: "Secure by Design",
+    title: "Developer-Friendly",
     description: (
       <>
-        Gateweaver prioritizes your application's security, enabling safe API
-        interactions through straightforward policy implementations.
-      </>
-    ),
-  },
-  {
-    title: "Effortless Integration",
-    description: (
-      <>
-        Seamlessly integrate APIs into your projects, offering both local
-        development ease and versatile deployment options.
+        Get started quickly with the node CLI or Docker image. Compatible with
+        any frontend framework and API architecture, it adapts seamlessly to
+        your development workflow.
       </>
     ),
   },

@@ -7,24 +7,25 @@ import TabItem from "@theme/TabItem";
 
 # Getting Started
 
-Gateweaver is an open-source [Backend for Frontend](https://samnewman.io/patterns/architectural/bff/) (BFF) framework built on Express.js, designed to streamline the connection between your frontend applications and backend services. It allows you to create a tailored API layer that simplifies frontend development while enhancing security and performance.
+Gateweaver is an open-source, lightweight API Gateway built on Express.js, designed to streamline the connection between frontend applications and upstream APIs. It allows you to create a tailored API layer that simplifies frontend development while enhancing security and performance.
 
-## Key Features
+## Key Features and Benefits
 
-- **API Aggregation**: Easily proxy and combine multiple backend services into a single, frontend-friendly API.
-- **Security Enhancement**: Hide API keys and sensitive data from the client-side.
-- **Flexible Configuration**: Use a simple YAML file to define endpoints and apply policies.
+- **API Aggregation**: Easily proxy and combine multiple upstream APIs into a single, frontend-friendly API, simplifying your frontend development.
+
+- **Enhanced Security**: Hide API keys and sensitive data from the client-side, keeping upstream API logic and credentials protected.
+
+- **Flexible Configuration**: Use a simple YAML file to define endpoints and apply policies, making it easy to adapt to your specific use case.
+
+- **Performance Optimization**: Tailor API responses to exactly what your frontend needs, reducing complexity and optimizing API calls.
+
 - **Built-in Policies**: Includes ready-to-use policies for CORS, JWT validation, and rate limiting.
+
 - **Customization**: Extend functionality with custom Express middleware and handlers.
+
 - **Easy Development**: Get started quickly with the node CLI or Docker image.
 
-## Why Gateweaver for BFF?
-
-- **Simplify Frontend Development**: Tailor your API responses to exactly what your frontend needs.
-- **Improve Security**: Keep sensitive backend logic and credentials away from the client.
-- **Enhance Performance**: Optimize API calls and reduce frontend complexity.
-- **Flexible and Lightweight**: Easy to set up and adapt to your specific use case.
-- **Framework and Platform Agnostic**: Can be used with any frontend web or mobile framework and deployed to any cloud provider.
+- **Framework and Platform Agnostic**: Compatible with any frontend web or mobile framework and can integrate with various upstream API architectures.
 
 ## Installation
 
@@ -67,7 +68,7 @@ endpoints:
       url: "https://jsonplaceholder.typicode.com"
 ```
 
-This example configuration creates a BFF that proxies all requests to JSONPlaceholder. For example:
+This example configuration creates an API Gateway that proxies all requests to JSONPlaceholder. For example:
 
 - https://jsonplaceholder.typicode.com/todos becomes http://localhost:8080/proxy/todos
 - https://jsonplaceholder.typicode.com/posts becomes http://localhost:8080/proxy/posts
@@ -230,7 +231,7 @@ npx gateweaver start -w
 
 This command will start the Gateweaver server on port 8080 by default. You can specify a different port by setting the `PORT` environment variable in your `.env.gateweaver` file.
 
-Your BFF is now running and you can access:
+Your API Gateway is now running and you can access:
 
 - http://localhost:8080/proxy/todos for todos data
 - http://localhost:8080/proxy/posts for post data

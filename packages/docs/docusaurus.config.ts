@@ -4,7 +4,7 @@ import type * as Preset from "@docusaurus/preset-classic";
 
 const config: Config = {
   title: "Gateweaver",
-  tagline: "An open-source BFF framework built on Express.js",
+  tagline: "An open-source, lightweight API Gateway built on Express.js",
   favicon: "img/logo.png",
 
   // Set the production url of your site here

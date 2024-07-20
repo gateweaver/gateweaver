@@ -32,8 +32,8 @@ function HomepageHeader() {
 export default function Home(): JSX.Element {
   return (
     <Layout
-      title="Gateweaver, An open-source BFF framework built on Express.js"
-      description="An open-source BFF framework built on Express.js"
+      title="Gateweaver, An open-source, lightweight API Gateway built on Express.js"
+      description="An open-source, lightweight API Gateway built on Express.js"
     >
       <HomepageHeader />
       <main>

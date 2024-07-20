@@ -9,6 +9,7 @@ import { createRouter } from "./router";
 import { errorHandler, httpLogger } from "./middleware";
 import { logger } from "./utils/logger";
 import { handleServerError, MissingConfigError } from "./utils/errors";
+import { generateTypes } from "./utils/generate-types";
 
 const getMiddlewareAndHandlerPaths = (config: Config): string[] => {
   const paths: string[] = [];
@@ -57,6 +58,8 @@ export const startServer = (
       const router = await createRouter(config);
       app.use(router);
       app.use(errorHandler);
+
+      await generateTypes(config);
 
       return new Promise((resolve, _) => {
         if (server) {

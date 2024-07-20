@@ -48,6 +48,7 @@ const targetSchema: JSONSchemaType<Target> = {
   properties: {
     url: { type: "string", nullable: true },
     handler: { ...pathFunctionSchema, nullable: true },
+    openapi: { type: "string", nullable: true },
   },
 };
 

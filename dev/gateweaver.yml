@@ -23,3 +23,11 @@ endpoints:
       handler:
         path: "./handlers/custom-handler.ts"
         function: "customHandler"
+  - path: "/remote"
+    target:
+      url: "https://fakerestapi.azurewebsites.net/api/v1"
+      openapi: "https://fakerestapi.azurewebsites.net/swagger/v1/swagger.json"
+  - path: "/local"
+    target:
+      url: "https://fakerestapi.azurewebsites.net/api/v1"
+      openapi: "./openapi/fakerestapi.json"

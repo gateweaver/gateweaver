@@ -13,23 +13,33 @@ interface TransformedPost {
   snippet: string;
 }
 
-export const customHandler = async (_: Request, res: Response) => {
+export const customHandler = async (req: Request, res: Response) => {
   try {
-    const response = await fetch("https://jsonplaceholder.typicode.com/posts");
+    const postId = req.params.postId;
+
+    if (!postId) {
+      res.status(400).json({ error: "postId is required" });
+      return;
+    }
+
+    const response = await fetch(
+      `https://jsonplaceholder.typicode.com/posts/${postId}`,
+    );
     if (!response.ok) {
       throw new Error(
         `Failed to fetch posts: ${response.status} ${response.statusText}`,
       );
     }
-    const posts: Post[] = await response.json();
 
-    const transformedPosts: TransformedPost[] = posts.map((post) => ({
+    const post: Post = await response.json();
+
+    const transformedPost: TransformedPost = {
       id: post.id,
       title: post.title,
       snippet: post.body.slice(0, 100) + (post.body.length > 100 ? "..." : ""),
-    }));
+    };
 
-    res.json(transformedPosts);
+    res.json(transformedPost);
   } catch (error) {
     console.error(error);
     res

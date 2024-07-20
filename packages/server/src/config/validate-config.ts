@@ -20,9 +20,10 @@ const checkPathUniqueness = (
 };
 
 const validatePathFormat = (endpoint: Endpoint): string | null => {
-  const pathPattern = /^\/[a-zA-Z0-9\-_/]*\/?$/;
+  const pathPattern =
+    /^\/(?:[a-zA-Z0-9\-_]+|:(?!:)[a-zA-Z0-9\-_]+)(?:\/(?:[a-zA-Z0-9\-_]+|:(?!:)[a-zA-Z0-9\-_]+))*\/?$/;
   if (!pathPattern.test(endpoint.path)) {
-    return `Invalid path: '${endpoint.path}'. Must start with / and only contain alphanumeric characters, hyphens, and underscores`;
+    return `Invalid path: '${endpoint.path}'. Must start with / and only contain alphanumeric characters, hyphens, underscores, or path parameters (e.g., :userId)`;
   }
   return null;
 };

@@ -19,7 +19,7 @@ export const setupHandler = async (
     const handlerFunction = handlerModule[handlerConfig.function];
 
     if (typeof handlerFunction === "function") {
-      router.use(endpointPath, handlerFunction);
+      router.all(endpointPath, handlerFunction);
     } else {
       logger.error(
         `Function ${handlerConfig.function} not found in ${handlerConfig.path}`,

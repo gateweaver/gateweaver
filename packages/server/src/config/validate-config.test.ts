@@ -60,7 +60,7 @@ describe("validateConfig", () => {
     };
 
     expect(() => validateConfig(invalidConfig)).toThrow(
-      "Invalid path: 'invalid path'. Must start with / and only contain alphanumeric characters, hyphens, and underscores",
+      "Invalid path: 'invalid path'. Must start with / and only contain alphanumeric characters, hyphens, underscores, or path parameters (e.g., :userId)",
     );
   });
 

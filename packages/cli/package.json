@@ -16,7 +16,10 @@
     "test": "jest --passWithNoTests",
     "test:watch": "jest --watch"
   },
-  "author": "",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/gateweaver/gateweaver.git"
+  },
   "license": "MIT",
   "dependencies": {
     "@gateweaver/policies": "workspace:*",

@@ -17,6 +17,7 @@ export interface PathFunction {
 export interface Target {
   url?: string;
   handler?: PathFunction;
+  openapi?: string;
 }
 
 export interface Endpoint {

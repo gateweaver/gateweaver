@@ -28,3 +28,11 @@ endpoints:
       handler:
         path: "./handlers/create-post.ts"
         function: "createPostHandler"
+  # - path: "/remote"
+  #   target:
+  #     url: "https://fakerestapi.azurewebsites.net/api/v1"
+  #     openapi: "https://fakerestapi.azurewebsites.net/swagger/v1/swagger.json"
+  - path: "/local"
+    target:
+      url: "https://fakerestapi.azurewebsites.net/api/v1"
+      openapi: "./openapi/fakerestapi.json"

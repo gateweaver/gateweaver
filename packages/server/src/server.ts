@@ -9,6 +9,7 @@ import { createRouter } from "./router";
 import { errorHandler, httpLogger } from "./middleware";
 import { logger } from "./utils/logger";
 import { handleServerError, MissingConfigError } from "./utils/errors";
+import { createOpenApiSpec } from "./openapi/createOpenApiSpec";
 
 const getMiddlewareAndHandlerPaths = (config: Config): string[] => {
   const paths: string[] = [];
@@ -55,6 +56,11 @@ export const startServer = (
       app.use(express.json());
       app.use(httpLogger);
       const router = await createRouter(config);
+      const openapiSpec = await createOpenApiSpec(config);
+      app.get("/openapi.json", (_, res) => {
+        res.setHeader("Content-Type", "application/json");
+        res.send(openapiSpec);
+      });
       app.use(router);
       app.use(errorHandler);
 

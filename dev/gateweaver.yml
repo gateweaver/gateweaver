@@ -23,3 +23,8 @@ endpoints:
       handler:
         path: "./handlers/custom-handler.ts"
         function: "customHandler"
+  - path: "/posts"
+    target:
+      handler:
+        path: "./handlers/create-post.ts"
+        function: "createPostHandler"

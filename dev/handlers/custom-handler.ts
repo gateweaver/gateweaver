@@ -12,7 +12,52 @@ interface TransformedPost {
   title: string;
   snippet: string;
 }
-
+/**
+ * @openapi
+ * /handler/{postId}:
+ *   get:
+ *     summary: Custom handler for posts
+ *     parameters:
+ *       - in: path
+ *         name: postId
+ *         required: true
+ *         schema:
+ *           type: string
+ *     responses:
+ *       200:
+ *         description: Successful response
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/TransformedPost'
+ *       400:
+ *         description: Bad request
+ *       500:
+ *         description: Server error
+ *
+ * components:
+ *   schemas:
+ *     Post:
+ *       type: object
+ *       properties:
+ *         userId:
+ *           type: number
+ *         id:
+ *           type: number
+ *         title:
+ *           type: string
+ *         body:
+ *           type: string
+ *     TransformedPost:
+ *       type: object
+ *       properties:
+ *         id:
+ *           type: number
+ *         title:
+ *           type: string
+ *         snippet:
+ *           type: string
+ */
 export const customHandler = async (req: Request, res: Response) => {
   try {
     const postId = req.params.postId;
@@ -46,4 +91,73 @@ export const customHandler = async (req: Request, res: Response) => {
       .status(500)
       .json({ error: "An error occurred while processing your request" });
   }
+};
+
+export const components = {
+  schemas: {
+    Post: {
+      type: "object",
+      properties: {
+        userId: {
+          type: "number",
+        },
+        id: {
+          type: "number",
+        },
+        title: {
+          type: "string",
+        },
+        body: {
+          type: "string",
+        },
+      },
+    },
+    TransformedPost: {
+      type: "object",
+      properties: {
+        id: {
+          type: "number",
+        },
+        title: {
+          type: "string",
+        },
+        snippet: {
+          type: "string",
+        },
+      },
+    },
+  },
+};
+
+export const paths = {
+  "/handler/{postId}": {
+    get: {
+      summary: "Custom handler for posts",
+      parameters: [
+        {
+          in: "path",
+          name: "postId",
+          required: true,
+          schema: {
+            type: "string",
+          },
+        },
+      ],
+      responses: {
+        200: {
+          description: "Successful response",
+          content: {
+            "application/json": {
+              schema: {
+                $ref: "#/components/schemas/TransformedPost",
+              },
+            },
+          },
+        },
+        500: {
+          description: "Server error",
+        },
+      },
+    },
+  },
 };

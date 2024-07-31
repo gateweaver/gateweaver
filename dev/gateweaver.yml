@@ -31,11 +31,12 @@ endpoints:
   # - path: "/remote"
   #   target:
   #     url: "https://fakerestapi.azurewebsites.net/api/v1"
-  #     openapi: "https://fakerestapi.azurewebsites.net/swagger/v1/swagger.json"
+  #     openapi:
+  #       source: "https://fakerestapi.azurewebsites.net/swagger/v1/swagger.json"
   - path: "/local"
     target:
       url: "https://fakerestapi.azurewebsites.net/api/v1"
       openapi:
         source: "./openapi/fakerestapi.json"
         includePaths:
-          - "/api/v1/activities"
+          - "/api/v1/Activities"

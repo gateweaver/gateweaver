@@ -8,6 +8,7 @@ import {
   PathFunction,
   Target,
   GlobalConfig,
+  OpenApiConfig,
 } from "./config.types";
 
 const keyValueSchema: JSONSchemaType<Record<string, string>> = {
@@ -43,12 +44,25 @@ const pathFunctionSchema: JSONSchemaType<PathFunction> = {
   required: ["path", "function"],
 };
 
+const openApiConfigSchema: JSONSchemaType<OpenApiConfig> = {
+  type: "object",
+  properties: {
+    source: { type: "string" },
+    includePaths: {
+      type: "array",
+      items: { type: "string" },
+      nullable: true,
+    },
+  },
+  required: ["source"],
+};
+
 const targetSchema: JSONSchemaType<Target> = {
   type: "object",
   properties: {
     url: { type: "string", nullable: true },
     handler: { ...pathFunctionSchema, nullable: true },
-    openapi: { type: "string", nullable: true },
+    openapi: { ...openApiConfigSchema, nullable: true },
   },
 };
 

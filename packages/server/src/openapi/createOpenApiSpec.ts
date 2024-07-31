@@ -2,6 +2,7 @@ import { OpenAPIV3 } from "openapi-types";
 import swaggerJsdoc from "swagger-jsdoc";
 import SwaggerParser from "@apidevtools/swagger-parser";
 import { Config, Endpoint } from "../config/config.types";
+import { logger } from "../utils/logger";
 
 export const createBaseSpec = async (
   config: Config,
@@ -9,9 +10,9 @@ export const createBaseSpec = async (
   const swaggerDefinition = {
     openapi: "3.0.0",
     info: {
-      title: "Hello World",
+      title: "Gateweaver API",
       version: "1.0.0",
-      description: "A sample API",
+      description: "API Gateway powered by Gateweaver",
     },
     basePath: "/",
   };
@@ -66,6 +67,27 @@ const mergeComponents = (
   };
 };
 
+const filterPaths = (
+  paths: OpenAPIV3.PathsObject,
+  includePaths: string[] | undefined,
+): OpenAPIV3.PathsObject => {
+  if (!includePaths) {
+    return paths;
+  }
+
+  const filteredPaths: OpenAPIV3.PathsObject = {};
+  for (const path of includePaths) {
+    if (paths[path]) {
+      filteredPaths[path] = paths[path];
+    } else {
+      logger.warn(
+        `Path "${path}" specified in includePaths does not exist in the upstream OpenAPI spec.`,
+      );
+    }
+  }
+  return filteredPaths;
+};
+
 const mergeProxySpec = async (
   baseSpec: OpenAPIV3.Document,
   endpoint: Endpoint,
@@ -74,11 +96,14 @@ const mergeProxySpec = async (
     return baseSpec;
   }
 
+  const { source, includePaths } = endpoint.target.openapi;
+
   const upstreamSpec = (await SwaggerParser.parse(
-    endpoint.target.openapi,
+    source,
   )) as OpenAPIV3.Document;
 
-  const prefixedPaths = prefixPaths(upstreamSpec.paths, endpoint.path);
+  const filteredPaths = filterPaths(upstreamSpec.paths, includePaths);
+  const prefixedPaths = prefixPaths(filteredPaths, endpoint.path);
 
   return {
     ...baseSpec,
@@ -101,6 +126,8 @@ export const createOpenApiSpec = async (
       openApiSpec = await mergeProxySpec(openApiSpec, endpoint);
     }
   }
+
+  logger.info("Created OpenAPI spec");
 
   return openApiSpec;
 };

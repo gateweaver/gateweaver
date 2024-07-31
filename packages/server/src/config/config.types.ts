@@ -14,10 +14,15 @@ export interface PathFunction {
   function: string;
 }
 
+export interface OpenApiConfig {
+  source: string;
+  includePaths?: string[];
+}
+
 export interface Target {
   url?: string;
   handler?: PathFunction;
-  openapi?: string;
+  openapi?: OpenApiConfig;
 }
 
 export interface Endpoint {

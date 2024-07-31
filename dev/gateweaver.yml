@@ -35,4 +35,7 @@ endpoints:
   - path: "/local"
     target:
       url: "https://fakerestapi.azurewebsites.net/api/v1"
-      openapi: "./openapi/fakerestapi.json"
+      openapi:
+        source: "./openapi/fakerestapi.json"
+        includePaths:
+          - "/api/v1/activities"

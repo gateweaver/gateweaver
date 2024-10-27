@@ -30,7 +30,7 @@
     "express": "^4.19.2",
     "express-jwt": "^8.4.1",
     "helmet": "^7.1.0",
-    "http-proxy-middleware": "^2.0.6",
+    "http-proxy-middleware": "^2.0.7",
     "pino": "^8.19.0",
     "pino-pretty": "^10.3.1",
     "tsup": "^8.0.2",

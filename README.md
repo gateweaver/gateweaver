@@ -249,5 +249,5 @@ docker run \
 --env-file $(pwd)/.env.gateweaver \
 -v $(pwd)/gateweaver.yml:/app/gateweaver.yml \
 -p 8080:8080 \
-gateweaver/server:0.1.0
+gateweaver/server:latest
 ```

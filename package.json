@@ -41,10 +41,11 @@
     "ts-jest": "^29.3.0",
     "ts-node": "^10.9.2",
     "tsup": "^8.4.0",
-    "turbo": "^1.13.4",
+    "turbo": "^2.4.4",
     "typescript": "^5.8.2"
   },
   "workspaces": [
     "packages/*"
-  ]
+  ],
+  "packageManager": "pnpm@9.14.2"
 }

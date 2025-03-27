@@ -1,5 +1,14 @@
 # @gateweaver/server
 
+## 0.2.5
+
+### Patch Changes
+
+- 682cbb1: Package Upgrades and Bug Fixes
+- Updated dependencies [682cbb1]
+  - @gateweaver/policies@0.2.5
+  - @gateweaver/tsconfig@0.2.5
+
 ## 0.2.4
 
 ### Patch Changes

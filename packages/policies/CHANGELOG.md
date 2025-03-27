@@ -1,5 +1,11 @@
 # @gateweaver/policies
 
+## 0.2.5
+
+### Patch Changes
+
+- 682cbb1: Package Upgrades and Bug Fixes
+
 ## 0.2.4
 
 ## 0.2.3

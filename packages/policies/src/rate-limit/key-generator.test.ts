@@ -47,7 +47,7 @@ describe("keyGenerator", () => {
   });
 
   it("should return IP if rateLimitBy is ip", () => {
-    req.ip = "127.0.0.1";
+    Object.defineProperty(req, "ip", { value: "127.0.0.1" });
     expect(keyGenerator(RateLimitBy.IP)(req)).toBe("127.0.0.1");
   });
 
